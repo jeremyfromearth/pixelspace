@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <link  rel="stylesheet" type="text/css" href="css/main.css">
+        <link  rel="stylesheet" type="text/css" href="css/normalize.css">
+
+        <script src="../lib/spectrum-0.1.js"></script>
+        <script src="js/modernizr-2.6.2.min.js"></script>
+        <script src="js/Basic.js"></script>
+
+        <script>
+            function onLoaded()
+            {
+                var canvas = document.getElementById("basic_canvas");
+                var ctx = canvas.getContext("2d");
+                
+                var renderer = new Basic(ctx);
+                renderer.init();
+                
+                var player = new Player(canvas);
+                player.setRenderer(renderer);
+                player.run();
+
+                document.removeEventListener("DOMContentLoaded", onLoaded, true)
+            }
+
+            document.addEventListener("DOMContentLoaded", onLoaded, true)
+        </script>
+    </head>
+    <body>
+        <canvas id="basic_canvas" width="720" height="420"></canvas>
+    </body>
+</html>
