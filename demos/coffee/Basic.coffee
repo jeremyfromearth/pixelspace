@@ -1,4 +1,4 @@
-class Basic extends Renderer2D
+class Basic extends Renderer
     init : ->
         @bg_color = "#222222"
 
