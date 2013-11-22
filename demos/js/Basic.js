@@ -3,7 +3,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['spectrum'], function(Spectrum) {
+  define(['renderer'], function(Renderer) {
     var Basic, _ref;
     return Basic = (function(_super) {
       __extends(Basic, _super);
@@ -18,11 +18,9 @@
       };
 
       Basic.prototype.render = function() {
-        this.alpha(.5);
         this.font("bold 80pt Baskerville");
         this.color("#ffffff");
         this.text(45, 200, "SPECTRUM", false);
-        this.alpha(1);
         this.color("#d13737");
         this.polygon(this.width * .5 - 25, this.height * .5 + 20, 10, 30);
         this.color("45d137");
@@ -33,7 +31,7 @@
 
       return Basic;
 
-    })(Spectrum.Renderer);
+    })(Renderer);
   });
 
 }).call(this);

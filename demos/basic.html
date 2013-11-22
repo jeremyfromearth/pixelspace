@@ -9,7 +9,7 @@
 
         <script>
             require(['js/config'], function() {
-                require(['js/Basic', 'spectrum'], function(Basic, Spectrum) {
+                require(['spectrum', 'js/Basic'], function(Spectrum, Basic) {
                     var canvas = document.getElementById("canvas");
                     var ctx = canvas.getContext('2d');
                     var basic = new Basic(ctx);

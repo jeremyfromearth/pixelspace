@@ -1,5 +1,5 @@
-define ['spectrum'], (Spectrum) ->    
-    class Basic extends Spectrum.Renderer
+define ['renderer'], (Renderer) ->    
+    class Basic extends Renderer
         init : ->
             @bg_color = "#222222"
 
