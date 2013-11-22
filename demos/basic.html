@@ -5,16 +5,23 @@
         <link  rel="stylesheet" type="text/css" href="css/normalize.css">
 
         <script src="js/modernizr-2.6.2.min.js"></script>
-        <script src="../lib/require.js"></script> 
+        <script src="../lib/vendor/require.js"></script> 
+
         <script>
-            require(['js/main'], function() {
-                    require(['player', 'env', 'renderer', 'compiler'], function(Player, Env, Renderer, Compiler) {
-                        console.log("Player Loaded:", Player);
-                        console.log("Renderer Loaded:", Renderer);
-                        console.log("Compiler Loaded:", Compiler);
-                    });
+            require(['js/config'], function() {
+                require(['js/Basic', 'player'], function(Basic, Player) {
+                    var canvas = document.getElementById("canvas");
+                    var ctx = canvas.getContext('2d');
+                    var basic = new Basic(ctx);
+                    basic.init();
+
+                    var player = new Player(canvas);
+                    player.setRenderer(basic);
+                    player.run();
                 });
+            });
         </script>
+
     </head>
     <body>
         <canvas id="canvas" width="720" height="420"></canvas>

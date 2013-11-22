@@ -1,9 +1,8 @@
-define ['compiler'], (Compiler) ->
+define [], () ->
     class Player
         running : false
 
         constructor : (@canvas) ->
-            console.log Compiler
             @frame = 0
             @width = @canvas.clientWidth
             @height = @canvas.clientHeight
