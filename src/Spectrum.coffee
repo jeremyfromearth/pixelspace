@@ -1,4 +1,4 @@
-define ['player', 'compiler', 'renderer'], (Player, Compiler, Renderer) ->
+define ['renderer', 'player', 'compiler'], (Renderer, Player, Compiler) ->
     class Spectrum
         for m in Object.getOwnPropertyNames Math
                 window[m] = Math[m]

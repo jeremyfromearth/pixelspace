@@ -8,6 +8,9 @@ define [], () ->
             @looping = false
             @bg_color = "#CCCCCC"
 
+        alpha : (a) =>
+            @ctx.globalAlpha = a 
+
         arc : (x, y, radius, start_angle, end_angle, solid = true) =>
             @ctx.beginPath()
             @ctx.arc x, y, radius, start_angle, end_angle
@@ -19,8 +22,7 @@ define [], () ->
             @rectangle 0, 0, @width, @height
             
         color : (color) =>
-            @ctx.fillStyle = color
-            @ctx.strokeStyle = color
+            @ctx.fillStyle = @ctx.strokeStyle = color
 
         font : (style) =>
             @ctx.font = style

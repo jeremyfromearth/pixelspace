@@ -18,12 +18,14 @@
       };
 
       Basic.prototype.render = function() {
+        this.alpha(.5);
         this.font("bold 80pt Baskerville");
         this.color("#ffffff");
         this.text(45, 200, "SPECTRUM", false);
+        this.alpha(1);
         this.color("#d13737");
         this.polygon(this.width * .5 - 25, this.height * .5 + 20, 10, 30);
-        this.color("#45d137");
+        this.color("45d137");
         this.polygon(this.width * .5, this.height * .5 + 20, 10, 30);
         this.color("#3762d1");
         return this.polygon(this.width * .5 + 25, this.height * .5 + 20, 10, 30);
