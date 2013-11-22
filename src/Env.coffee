@@ -1,3 +1,5 @@
+window.Spectrum = {} 
+
 for m in Object.getOwnPropertyNames Math
         window[m] = Math[m]
 

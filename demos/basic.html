@@ -1,29 +1,19 @@
 <html>
     <head>
+        <title>Spectrum Basic Demo</title>
         <link  rel="stylesheet" type="text/css" href="css/main.css">
         <link  rel="stylesheet" type="text/css" href="css/normalize.css">
 
-        <script src="../lib/spectrum-0.1.js"></script>
         <script src="js/modernizr-2.6.2.min.js"></script>
-        <script src="js/Basic.js"></script>
-
+        <script src="../lib/require.js"></script> 
         <script>
-            function onLoaded()
-            {
-                var canvas = document.getElementById("canvas");
-                var ctx = canvas.getContext("2d");
-                
-                var renderer = new Basic(ctx);
-                renderer.init();
-                
-                var player = new Player(canvas);
-                player.setRenderer(renderer);
-                player.run();
-
-                document.removeEventListener("DOMContentLoaded", onLoaded, true)
-            }
-
-            document.addEventListener("DOMContentLoaded", onLoaded, true)
+            require(['js/main'], function() {
+                    require(['player', 'env', 'renderer', 'compiler'], function(Player, Env, Renderer, Compiler) {
+                        console.log("Player Loaded:", Player);
+                        console.log("Renderer Loaded:", Renderer);
+                        console.log("Compiler Loaded:", Compiler);
+                    });
+                });
         </script>
     </head>
     <body>
