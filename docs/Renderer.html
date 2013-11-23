@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Renderer.coffee</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="Compiler.html">
+                Compiler.coffee
+              </a>
+            
+              
+              <a class="source" href="Player.html">
+                Player.coffee
+              </a>
+            
+              
+              <a class="source" href="Renderer.html">
+                Renderer.coffee
+              </a>
+            
+              
+              <a class="source" href="Spectrum.html">
+                Spectrum.coffee
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>Renderer.coffee</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>define [], <span class="function"><span class="params">()</span> -&gt;</span>
+    <span class="class"><span class="keyword">class</span> <span class="title">Renderer</span></span>
+        constructor : <span class="function"><span class="params">(<span class="property">@ctx</span>, <span class="property">@id</span>)</span> -&gt;</span>
+            <span class="property">@frame</span> = <span class="number">0</span>
+            <span class="property">@width</span> = <span class="number">0</span>
+            <span class="property">@height</span> = <span class="number">0</span>
+            <span class="property">@static</span> = <span class="literal">false</span>
+            <span class="property">@looping</span> = <span class="literal">false</span>
+            <span class="property">@bg_color</span> = <span class="string">"#CCCCCC"</span>
+
+        alpha : <span class="function"><span class="params">(a)</span> =&gt;</span>
+            <span class="property">@ctx</span>.globalAlpha = a 
+
+        arc : <span class="function"><span class="params">(x, y, radius, start_angle, end_angle, solid = <span class="literal">true</span>)</span> =&gt;</span>
+            <span class="property">@ctx</span>.beginPath()
+            <span class="property">@ctx</span>.arc x, y, radius, start_angle, end_angle
+            <span class="keyword">if</span> solid <span class="keyword">then</span> <span class="property">@ctx</span>.fill() <span class="keyword">else</span> <span class="property">@ctx</span>.stroke()
+
+        clear :<span class="function"> =&gt;</span>
+            <span class="property">@ctx</span>.clearRect <span class="number">0</span>, <span class="number">0</span>, <span class="property">@width</span>, <span class="property">@height</span> 
+            <span class="property">@color</span> <span class="property">@bg_color</span>
+            <span class="property">@rectangle</span> <span class="number">0</span>, <span class="number">0</span>, <span class="property">@width</span>, <span class="property">@height</span>
+            
+        color : <span class="function"><span class="params">(color)</span> =&gt;</span>
+            <span class="property">@ctx</span>.fillStyle = <span class="property">@ctx</span>.strokeStyle = color
+
+        font : <span class="function"><span class="params">(style)</span> =&gt;</span>
+            <span class="property">@ctx</span>.font = style
+
+        grid : <span class="function"><span class="params">(x, y, rows, columns, width, height)</span> =&gt;</span>
+            row_height = height / rows
+            col_width = width / columns
+
+            <span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">0.</span>.rows] <span class="keyword">by</span> <span class="number">1</span>
+                ypos = (round y + i * row_height) + <span class="number">.5</span>
+                <span class="property">@line</span> x, ypos, x + width, ypos
+
+            <span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">0.</span>.columns] <span class="keyword">by</span> <span class="number">1</span>
+                xpos = (round x + i * col_width) + <span class="number">.5</span>
+                <span class="property">@line</span> xpos, y, xpos, y + height
+
+        line : <span class="function"><span class="params">(x1, y1, x2, y2)</span> =&gt;</span>
+            <span class="property">@ctx</span>.beginPath()
+            <span class="property">@ctx</span>.moveTo x1, y1
+            <span class="property">@ctx</span>.lineTo x2, y2
+            <span class="property">@ctx</span>.stroke()
+
+        lineStyle : <span class="function"><span class="params">(line_width = <span class="number">1.0</span>, joint_style = <span class="string">"round"</span>, cap_style = <span class="string">"round"</span>)</span> =&gt;</span>
+            <span class="property">@ctx</span>.lineWidth = line_width
+            <span class="property">@ctx</span>.lineJoin = joint_style
+            <span class="property">@ctx</span>.lineCap = cap_style
+
+        path : <span class="function"><span class="params">(point_list, solid = <span class="literal">true</span>)</span> =&gt;</span>
+            <span class="keyword">if</span> point_list.length <span class="keyword">is</span> <span class="number">0</span> <span class="keyword">then</span> <span class="keyword">return</span>
+            <span class="property">@ctx</span>.beginPath()
+            <span class="property">@ctx</span>.moveTo point_list[<span class="number">0</span>][<span class="number">0</span>], point_list[<span class="number">0</span>][<span class="number">1</span>]
+            <span class="property">@ctx</span>.lineTo p[<span class="number">0</span>], p[<span class="number">1</span>] <span class="keyword">for</span> p <span class="keyword">in</span> point_list
+            <span class="property">@ctx</span>.closePath()
+            <span class="keyword">if</span> solid <span class="keyword">then</span> <span class="property">@ctx</span>.fill() <span class="keyword">else</span> <span class="property">@ctx</span>.stroke()
+
+        point : <span class="function"><span class="params">(x, y, radius, solid = <span class="literal">true</span>)</span> =&gt;</span>
+            <span class="property">@ctx</span>.beginPath()
+            <span class="property">@ctx</span>.arc x, y, radius, <span class="number">0</span>, TWO_PI, <span class="literal">false</span>
+            <span class="keyword">if</span> solid <span class="keyword">then</span> <span class="property">@ctx</span>.fill() <span class="keyword">else</span> <span class="property">@ctx</span>.stroke()
+
+        points : <span class="function"><span class="params">(point_list, radius, solid = <span class="literal">true</span>)</span> =&gt;</span>
+            <span class="keyword">if</span> point_list.length <span class="keyword">is</span> <span class="number">0</span> <span class="keyword">then</span> <span class="keyword">return</span>
+            <span class="property">@point</span> p[<span class="number">0</span>], p[<span class="number">1</span>], radius, solid <span class="keyword">for</span> p <span class="keyword">in</span> point_list
+
+        polyline : <span class="function"><span class="params">(point_list)</span> =&gt;</span>
+            <span class="keyword">if</span> point_list.length <span class="keyword">is</span> <span class="number">0</span> <span class="keyword">then</span> <span class="keyword">return</span>
+            <span class="property">@ctx</span>.beginPath()
+            <span class="property">@ctx</span>.moveTo point_list[<span class="number">0</span>][<span class="number">0</span>], point_list[<span class="number">0</span>][<span class="number">1</span>]
+            <span class="property">@ctx</span>.lineTo p[<span class="number">0</span>], p[<span class="number">1</span>] <span class="keyword">for</span> p <span class="keyword">in</span> point_list
+            <span class="property">@ctx</span>.stroke()
+            <span class="property">@ctx</span>.closePath()
+
+        polygon : <span class="function"><span class="params">(x, y, radius, sides = <span class="number">3</span>, solid = <span class="literal">true</span>)</span> =&gt;</span>
+            points = []
+            inc = TWO_PI / sides
+            <span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">0.</span>.sides] <span class="keyword">by</span> <span class="number">1</span>
+                angle = i * inc
+                points.push [x + cos(angle) * radius, y + sin(angle) * radius]
+
+            <span class="property">@path</span> points, solid
+
+        polygonRing : <span class="function"><span class="params">(x, y, inner_radius, outer_radius, inner_sides = <span class="number">90</span>, outer_sides = <span class="number">90</span>, solid = <span class="literal">true</span>)</span> =&gt;</span>
+
+            p = {x : <span class="number">0</span>, y : <span class="number">0</span>}
+            inc = TWO_PI / outer_sides
+
+            <span class="property">@ctx</span>.beginPath()
+
+            <span class="keyword">for</span> n <span class="keyword">in</span> [<span class="number">0.</span>.outer_sides] <span class="keyword">by</span> <span class="number">1</span>
+                p.x = x + cos(inc * n) * outer_radius
+                p.y = y + sin(inc * n) * outer_radius
+                <span class="keyword">if</span> n <span class="keyword">is</span> <span class="number">0</span>
+                    <span class="property">@ctx</span>.moveTo p.x, p.y
+                <span class="keyword">else</span>
+                    <span class="property">@ctx</span>.lineTo p.x, p.y    
+
+            inc = TWO_PI / inner_sides
+            <span class="keyword">for</span> n <span class="keyword">in</span> [inner_sides.<span class="number">.0</span>] <span class="keyword">by</span> -<span class="number">1</span>
+                p.x = x + cos(inc * n) * inner_radius
+                p.y = y + sin(inc * n) * inner_radius
+                <span class="keyword">if</span> n <span class="keyword">is</span> inner_sides
+                    <span class="property">@ctx</span>.moveTo p.x, p.y
+                <span class="keyword">else</span>
+                    <span class="property">@ctx</span>.lineTo(p.x, p.y)
+
+            <span class="keyword">if</span> solid <span class="keyword">then</span> <span class="property">@ctx</span>.fill() <span class="keyword">else</span> <span class="property">@ctx</span>.stroke()
+
+        randomColor :<span class="function"> =&gt;</span>
+            <span class="keyword">return</span> <span class="string">"rgb("</span> + 
+                (floor(random() * <span class="number">256</span>)).toString() + <span class="string">','</span> + 
+                (floor(random() * <span class="number">256</span>)).toString() + <span class="string">','</span> +
+                (floor(random() * <span class="number">256</span>)).toString() + <span class="string">")"</span>
+
+        rectangle : <span class="function"><span class="params">(x, y, width, height, solid = <span class="literal">true</span>)</span> =&gt;</span>
+            <span class="keyword">if</span> solid <span class="keyword">then</span> <span class="property">@ctx</span>.fillRect(x, y, width, height) <span class="keyword">else</span> <span class="property">@ctx</span>.strokeRect(x, y, width, height)  
+
+        restoreTransform :<span class="function"> =&gt;</span>
+            <span class="property">@ctx</span>.restore()
+
+        rotate : <span class="function"><span class="params">(theta)</span> =&gt;</span>
+            <span class="property">@ctx</span>.rotate theta
+
+        roundedRectangle : <span class="function"><span class="params">(x, y, width, height, corner_radius, solid = <span class="literal">true</span>)</span> =&gt;</span>
+            <span class="property">@ctx</span>.beginPath();  
+            <span class="property">@ctx</span>.moveTo x, y + corner_radius
+            <span class="property">@ctx</span>.lineTo x, y + height - corner_radius  
+            <span class="property">@ctx</span>.quadraticCurveTo x , y + height, x + corner_radius, y + height  
+            <span class="property">@ctx</span>.lineTo x + width - corner_radius, y + height  
+            <span class="property">@ctx</span>.quadraticCurveTo x + width, y + height, x + width, y + height - corner_radius  
+            <span class="property">@ctx</span>.lineTo x + width, y + corner_radius  
+            <span class="property">@ctx</span>.quadraticCurveTo x + width, y , x + width - corner_radius, y
+            <span class="property">@ctx</span>.lineTo x + corner_radius, y  
+            <span class="property">@ctx</span>.quadraticCurveTo x, y, x, y + corner_radius  
+            <span class="keyword">if</span> solid <span class="keyword">then</span> <span class="property">@ctx</span>.fill() <span class="keyword">else</span> <span class="property">@ctx</span>.stroke()
+
+        saveTransform :<span class="function"> =&gt;</span>
+            <span class="property">@ctx</span>.save()
+
+        scale : <span class="function"><span class="params">(x_scale, y_scale)</span> =&gt;</span>
+            <span class="property">@ctx</span>.scale x_scale, y_scale
+
+        text : <span class="function"><span class="params">(x, y, text, solid = <span class="literal">true</span>)</span> =&gt;</span> 
+            <span class="keyword">if</span> solid <span class="keyword">then</span> <span class="property">@ctx</span>.fillText(text, x, y) <span class="keyword">else</span> <span class="property">@ctx</span>.strokeText(text, x, y)
+
+        translate : <span class="function"><span class="params">(x, y)</span> =&gt;</span> 
+            <span class="property">@ctx</span>.translate x, y</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

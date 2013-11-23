@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Player.coffee</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="Compiler.html">
+                Compiler.coffee
+              </a>
+            
+              
+              <a class="source" href="Player.html">
+                Player.coffee
+              </a>
+            
+              
+              <a class="source" href="Renderer.html">
+                Renderer.coffee
+              </a>
+            
+              
+              <a class="source" href="Spectrum.html">
+                Spectrum.coffee
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>Player.coffee</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>define [], <span class="function"><span class="params">()</span> -&gt;</span>
+    <span class="class"><span class="keyword">class</span> <span class="title">Player</span></span>
+        running : <span class="literal">false</span>
+
+        constructor : <span class="function"><span class="params">(<span class="property">@canvas</span>)</span> -&gt;</span>
+            <span class="property">@frame</span> = <span class="number">0</span>
+            <span class="property">@width</span> = <span class="property">@canvas</span>.clientWidth
+            <span class="property">@height</span> = <span class="property">@canvas</span>.clientHeight
+            <span class="property">@ctx</span> = canvas.getContext <span class="string">"2d"</span>
+            <span class="property">@renderer</span> = <span class="literal">null</span> 
+            <span class="property">@loop</span>()
+
+            <span class="property">@canvas</span>.addEventListener <span class="string">"mousedown"</span>, <span class="property">@onMouseEvent</span>, <span class="literal">true</span>
+            <span class="property">@canvas</span>.addEventListener <span class="string">"mousemove"</span>, <span class="property">@onMouseEvent</span>, <span class="literal">true</span>
+            <span class="property">@canvas</span>.addEventListener <span class="string">"mouseout"</span>, <span class="property">@onMouseEvent</span>, <span class="literal">true</span>
+            <span class="property">@canvas</span>.addEventListener <span class="string">"mouseover"</span>, <span class="property">@onMouseEvent</span>, <span class="literal">true</span>
+            <span class="property">@canvas</span>.addEventListener <span class="string">"mouseup"</span>, <span class="property">@onMouseEvent</span>, <span class="literal">true</span>
+
+        getAnimationCallback :<span class="function"> =&gt;</span>
+            <span class="keyword">return</span>  window.requestAnimationFrame <span class="keyword">or</span>
+                    window.webkitRequestAnimationFrame <span class="keyword">or</span>
+                    window.mozRequestAnimationFrame <span class="keyword">or</span>
+                    window.oRequestAnimationFrame <span class="keyword">or</span>
+                    window.msRequestAnimationFrame <span class="keyword">or</span> 
+                    setTimeout callback, (<span class="number">1000</span> / <span class="number">60</span>)
+
+        <span class="keyword">loop</span> :<span class="function"> =&gt;</span>
+            <span class="property">@getAnimationCallback</span>() <span class="property">@loop</span>
+            <span class="keyword">if</span> <span class="property">@renderer</span>? <span class="keyword">and</span>  <span class="property">@running</span> <span class="keyword">and</span> !<span class="property">@renderer</span>.static
+                <span class="property">@step</span>()
+                <span class="property">@render</span>()
+
+        onMouseEvent : <span class="function"><span class="params">(event)</span> -&gt;</span>
+            x = event.offsetX
+            y = event.offsetY
+
+            <span class="keyword">if</span> <span class="property">@renderer</span>?
+                <span class="keyword">switch</span> event.type
+                    <span class="keyword">when</span> <span class="string">"mousedown"</span>
+                        <span class="keyword">if</span> <span class="property">@renderer</span>.onMouseDown?
+                            <span class="property">@renderer</span>.onMouseDown x, y
+                    <span class="keyword">when</span> <span class="string">'mousemove'</span>
+                        <span class="keyword">if</span> <span class="property">@renderer</span>.onMouseMove?
+                            <span class="property">@renderer</span>.onMouseMove x, y
+                    <span class="keyword">when</span> <span class="string">'mouseout'</span>
+                        <span class="keyword">if</span> <span class="property">@renderer</span>.onMouseOut?
+                            <span class="property">@renderer</span>.onMouseOut x, y
+                    <span class="keyword">when</span> <span class="string">'mouseover'</span>
+                        <span class="keyword">if</span> <span class="property">@renderer</span>.onMouseEnter?
+                            <span class="property">@renderer</span>.onMouseEnter x, y
+                    <span class="keyword">when</span> <span class="string">'mouseup'</span>
+                        <span class="keyword">if</span> <span class="property">@renderer</span>.onMouseUp?
+                            <span class="property">@renderer</span>.onMouseUp x, y
+        pause :<span class="function"> =&gt;</span>
+            <span class="property">@running</span> = <span class="literal">false</span> 
+
+        render :<span class="function"> =&gt;</span>
+            <span class="keyword">if</span> <span class="property">@renderer</span>.clear?
+                <span class="property">@renderer</span>.clear()
+            <span class="keyword">if</span> <span class="property">@renderer</span>.render? <span class="keyword">then</span> <span class="property">@renderer</span>.render()
+
+        run :<span class="function"> =&gt;</span>
+            <span class="property">@running</span> = <span class="literal">true</span>
+
+        setRenderer : <span class="function"><span class="params">(newRenderer)</span> =&gt;</span>
+            <span class="property">@renderer</span> = newRenderer
+            <span class="property">@renderer</span>.width = <span class="property">@canvas</span>.clientWidth
+            <span class="property">@renderer</span>.height = <span class="property">@canvas</span>.clientHeight
+
+        step :<span class="function"> =&gt;</span>
+            <span class="keyword">if</span> <span class="property">@renderer</span>.looping <span class="keyword">and</span> <span class="property">@renderer</span>.duration &gt; <span class="number">0</span>
+                <span class="keyword">if</span> <span class="property">@frame</span> &gt; <span class="property">@renderer</span>.duration
+                    <span class="property">@frame</span> = <span class="number">0</span>
+            <span class="property">@frame</span>++
+            <span class="property">@renderer</span>.frame = <span class="property">@frame</span>
+            <span class="property">@renderer</span>.width = <span class="property">@canvas</span>.clientWidth
+            <span class="property">@renderer</span>.height = <span class="property">@canvas</span>.clientHeight
+            <span class="keyword">if</span> <span class="property">@renderer</span>.step? <span class="keyword">then</span> <span class="property">@renderer</span>.step()
+
+        stop :<span class="function"> =&gt;</span>
+            <span class="property">@frame</span> = <span class="number">0</span>
+            <span class="property">@running</span> = <span class="literal">false</span>
+            <span class="property">@ctx</span>.clearRect <span class="number">0</span>, <span class="number">0</span>, <span class="property">@width</span>, <span class="property">@height</span>
+            <span class="keyword">if</span> <span class="property">@renderer</span>?
+                <span class="keyword">if</span> <span class="property">@renderer</span>.clear?
+                    <span class="property">@renderer</span>.clear()</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

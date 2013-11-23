@@ -30,9 +30,6 @@ define [], () ->
                 @step()
                 @render()
 
-        run : =>
-            @running = true
-
         onMouseEvent : (event) ->
             x = event.offsetX
             y = event.offsetY
@@ -54,7 +51,6 @@ define [], () ->
                     when 'mouseup'
                         if @renderer.onMouseUp?
                             @renderer.onMouseUp x, y
-
         pause : =>
             @running = false 
 
@@ -62,6 +58,9 @@ define [], () ->
             if @renderer.clear?
                 @renderer.clear()
             if @renderer.render? then @renderer.render()
+
+        run : =>
+            @running = true
 
         setRenderer : (newRenderer) =>
             @renderer = newRenderer

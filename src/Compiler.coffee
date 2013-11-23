@@ -40,17 +40,19 @@ define [], () ->
                 @onCompilationError error
 
         # callbacks
-        onNoMainClassError : ->
-            console.log "onNoMainClassError()"
-
         onCompilationError : (error) ->
             console.log "onCompilationError()", error.message
 
         onInitError : (error) ->
             console.log "onInitializationError()"
 
-        onStepError : (error) ->
-            console.log "onStepError()"
+        onNoMainClassError : ->
+            console.log "onNoMainClassError()"
 
         onRenderError : (error) ->
             console.log "onRenderError()", error.message
+
+        onStepError : (error) ->
+            console.log "onStepError()"
+
+        
