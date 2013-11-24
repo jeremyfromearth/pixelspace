@@ -1,8 +1,10 @@
 define ['renderer'], (Renderer) ->    
     class Basic extends Renderer
+        # Initialize instance variables
         init : ->
-            @bg_color = "#222222"
+            @bg = "#222222"
 
+        # Render graphics 
         render : ->
             @font "bold 80pt Baskerville"
             @color "#ffffff"

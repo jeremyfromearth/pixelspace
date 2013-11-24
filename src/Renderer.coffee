@@ -6,7 +6,7 @@ define [], () ->
             @height = 0
             @static = false
             @looping = false
-            @bg_color = "#CCCCCC"
+            @bg = "#CCCCCC"
 
         alpha : (a) =>
             @ctx.globalAlpha = a 
@@ -17,9 +17,12 @@ define [], () ->
             if solid then @ctx.fill() else @ctx.stroke()
 
         clear : =>
+            @ctx.save()
+            @ctx.globalAlpha = 1
             @ctx.clearRect 0, 0, @width, @height 
-            @color @bg_color
+            @color @bg
             @rectangle 0, 0, @width, @height
+            @ctx.restore()
             
         color : (color) =>
             @ctx.fillStyle = @ctx.strokeStyle = color

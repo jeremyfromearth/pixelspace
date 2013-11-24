@@ -14,7 +14,7 @@
       }
 
       Basic.prototype.init = function() {
-        return this.bg_color = "#222222";
+        return this.bg = "#222222";
       };
 
       Basic.prototype.render = function() {

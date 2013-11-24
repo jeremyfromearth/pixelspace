@@ -13,11 +13,28 @@
         return _ref;
       }
 
-      Motion.prototype.init = function() {};
+      Motion.prototype.init = function() {
+        this.n = 0;
+        this.s = 0;
+        this.bg = "#222222";
+        this.cx = this.width * .5;
+        return this.cy = this.height * .5;
+      };
 
-      Motion.prototype.step = function() {};
+      Motion.prototype.step = function() {
+        this.n += .01;
+        return this.s = sin(this.n);
+      };
 
-      Motion.prototype.render = function() {};
+      Motion.prototype.render = function() {
+        this.color("#ffcc00");
+        this.alpha(abs(this.s));
+        this.saveTransform();
+        this.translate(this.cx, this.cy);
+        this.rotate(this.s);
+        this.polygon(0, 0, 100, 2 + ceil(abs(this.s) * 10));
+        return this.restoreTransform();
+      };
 
       return Motion;
 
