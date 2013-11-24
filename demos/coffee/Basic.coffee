@@ -3,15 +3,17 @@ define ['renderer'], (Renderer) ->
         # Initialize instance variables
         init : ->
             @bg = "#222222"
+            @cx = @width * .5
+            @cy = @height * .5
 
         # Render graphics 
         render : ->
             @font "bold 80pt Baskerville"
             @color "#ffffff"
-            @text 45, 200, "SPECTRUM", false
+            @text 165, 250, "SPECTRUM", false
             @color "#d13737"
-            @polygon @width * .5 - 25, @height * .5 + 20, 10, 30
+            @point @cx - 25, @cy + 20, 10
             @color "45d137"
-            @polygon @width * .5, @height * .5 + 20, 10, 30
+            @point @cx, @cy + 20, 10
             @color "#3762d1"
-            @polygon @width * .5 + 25, @height * .5 + 20, 10, 30
+            @point @cx + 25, @cy + 20, 10

@@ -14,19 +14,21 @@
       }
 
       Basic.prototype.init = function() {
-        return this.bg = "#222222";
+        this.bg = "#222222";
+        this.cx = this.width * .5;
+        return this.cy = this.height * .5;
       };
 
       Basic.prototype.render = function() {
         this.font("bold 80pt Baskerville");
         this.color("#ffffff");
-        this.text(45, 200, "SPECTRUM", false);
+        this.text(165, 250, "SPECTRUM", false);
         this.color("#d13737");
-        this.polygon(this.width * .5 - 25, this.height * .5 + 20, 10, 30);
+        this.point(this.cx - 25, this.cy + 20, 10);
         this.color("45d137");
-        this.polygon(this.width * .5, this.height * .5 + 20, 10, 30);
+        this.point(this.cx, this.cy + 20, 10);
         this.color("#3762d1");
-        return this.polygon(this.width * .5 + 25, this.height * .5 + 20, 10, 30);
+        return this.point(this.cx + 25, this.cy + 20, 10);
       };
 
       return Basic;
