@@ -7,7 +7,8 @@
         spectrum: '../lib/spectrum/Spectrum',
         player: '../lib/spectrum/Player',
         compiler: '../lib/spectrum/Compiler',
-        renderer: '../lib/spectrum/Renderer'
+        renderer: '../lib/spectrum/Renderer',
+        env: '../lib/spectrum/Env'
       }
     });
   });

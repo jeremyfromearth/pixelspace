@@ -1,15 +1,9 @@
+# Conveniently load all of Spectrum by loading this file
+# Classes can then be accessed like the following
+# ``` 
+# renderer = Spectrum.Renderer(ctx, id)
 define ['renderer', 'player', 'compiler'], (Renderer, Player, Compiler) ->
     class Spectrum
-        for m in Object.getOwnPropertyNames Math
-                window[m] = Math[m]
-
-        additions = [
-            ["TWO_PI", Math.PI * 2]
-        ]
-
-        for a in additions
-            window[a[0]] = a[1]
-
         @Player = Player
         @Compiler = Compiler
         @Renderer = Renderer

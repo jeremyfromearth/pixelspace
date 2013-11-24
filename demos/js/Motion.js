@@ -23,16 +23,16 @@
 
       Motion.prototype.step = function() {
         this.n += .01;
-        return this.s = sin(this.n);
+        return this.s = this.sin(this.n);
       };
 
       Motion.prototype.render = function() {
         this.color("#ffcc00");
-        this.alpha(abs(this.s));
+        this.alpha(this.abs(this.s));
         this.saveTransform();
         this.translate(this.cx, this.cy);
         this.rotate(this.s);
-        this.polygon(0, 0, 100, 2 + ceil(abs(this.s) * 10));
+        this.polygon(0, 0, 100, 2 + this.ceil(this.abs(this.s) * 10));
         return this.restoreTransform();
       };
 

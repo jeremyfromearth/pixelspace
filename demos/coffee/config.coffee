@@ -6,3 +6,4 @@ define [], () ->
             player: '../lib/spectrum/Player'
             compiler: '../lib/spectrum/Compiler'
             renderer: '../lib/spectrum/Renderer'
+            env: '../lib/spectrum/Env'
