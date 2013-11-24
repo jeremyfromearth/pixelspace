@@ -61,6 +61,29 @@
               
             </div>
             
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>This class is intended to be used to compile scripts right in the browser. There is a specific format that needs to be followed for scripts that are compiled with this class. </p>
+<pre><code>class MyRenderer extends Renderer
+  init : -&gt;
+      particle = new Particle()
+
+class Particle
+  x : 0
+  y : 0
+
+main : ClassOne</code></pre>
+<p>The above example demonstrates the expected format. The script must define a main property that points to sub-class of the Renderer</p>
+
+            </div>
+            
             <div class="content"><div class='highlight'><pre>define [], <span class="function"><span class="params">()</span> -&gt;</span>
     <span class="class"><span class="keyword">class</span> <span class="title">Compiler</span></span>
         constructor : <span class="function"><span class="params">(<span class="property">@ctx</span>)</span> -&gt;</span>
@@ -105,13 +128,13 @@
         </li>
         
         
-        <li id="section-2">
+        <li id="section-3">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-2">&#182;</a>
+                <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <p>callbacks</p>
+              <p>Implement these callbacks to handle compilation errors</p>
 
             </div>
             

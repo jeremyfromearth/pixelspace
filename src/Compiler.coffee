@@ -1,3 +1,21 @@
+
+#This class is intended to be used to compile scripts right in the browser. There is a specific format that needs to be followed for scripts that are compiled with this class. 
+
+# ```
+#class MyRenderer extends Renderer
+#   init : ->
+#       particle = new Particle()
+#
+#class Particle
+#   x : 0
+#   y : 0
+#
+#main : ClassOne
+#```
+
+
+#The above example demonstrates the expected format. The script must define a main property that points to sub-class of the Renderer
+
 define [], () ->
     class Compiler
         constructor : (@ctx) ->
@@ -39,7 +57,7 @@ define [], () ->
             catch error
                 @onCompilationError error
 
-        # callbacks
+        # Implement these callbacks to handle compilation errors
         onCompilationError : (error) ->
             console.log "onCompilationError()", error.message
 

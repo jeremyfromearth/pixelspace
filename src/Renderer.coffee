@@ -1,3 +1,6 @@
+#The renderer class provides a drawing API that simplifies many common drawing operations.
+#Many of the methods have a similar signature. The first two parameters are often x, y coordinates and the following parameters are specific to the function. This class can be used independantly, but it is intended to be extended.   
+
 define [], () ->
     class Renderer
         constructor : (@ctx, @id) ->

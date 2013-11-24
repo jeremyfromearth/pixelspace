@@ -1,3 +1,6 @@
+#This class controls the frame inint/step/render cycle for an instance or sub-class of the Renderer class. It can be started, stopped, paused and un-paused. This class provides the renderer with data about it's environment such as the canvas width, current frame and any mouse events that occurr on the canvas.
+
+
 define [], () ->
     class Player
         running : false
