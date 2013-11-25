@@ -15,7 +15,9 @@
 
       MouseEvents.prototype.init = function() {
         this.data = [];
-        return this.bg = "#222222";
+        this.bg = "#222222";
+        this.current = null;
+        return this.currentMouseEventType = "None";
       };
 
       MouseEvents.prototype.step = function() {
@@ -23,7 +25,7 @@
         i = 0;
         _results = [];
         while (i < this.data.length) {
-          if (this.data[i] != null) {
+          if ((this.data[i] != null) && this.data[i] !== this.current) {
             this.data[i].scale -= .005;
             this.data[i].alpha -= .005;
             if (this.data[i].alpha < 0) {
@@ -36,9 +38,8 @@
       };
 
       MouseEvents.prototype.render = function() {
-        var i, p, _results;
+        var i, p;
         i = 0;
-        _results = [];
         while (i < this.data.length) {
           p = this.data[i];
           if (p != null) {
@@ -48,24 +49,51 @@
             this.color("#ffffff");
             this.point(p.x, p.y, p.radius * p.scale, false);
           }
-          _results.push(i++);
+          i++;
         }
-        return _results;
+        this.alpha(1);
+        this.color("#ffffff");
+        this.text(30, 30, "Mouse position x: " + this.mouseX + ", y: " + this.mouseY);
+        this.text(30, 45, "Current mouse event type: " + this.currentMouseEventType);
+        return this.text(30, 60, "mouseDrag: " + this.mouseDrag + ", mouseIsOver: " + this.mouseIsOver + ", mouseIsDown: " + this.mouseIsDown);
       };
 
       MouseEvents.prototype.onMouseDown = function(x, y) {
-        return this.data.push({
+        this.currentMouseEventType = "mouseDown";
+        this.current = {
           x: x,
           y: y,
           color: this.randomColor(),
           radius: this.random() * 20 + 5,
           alpha: 1,
           scale: 1
-        });
+        };
+        return this.data.push(this.current);
       };
 
-      MouseEvents.prototype.onMouseDrag = function(x, y) {
-        return console.log("onMouseDrag");
+      MouseEvents.prototype.onMouseMove = function(x, y) {
+        this.currentMouseEventType = "mouseMove";
+        if (this.mouseDrag) {
+          if (this.current != null) {
+            this.current.x = x;
+            return this.current.y = y;
+          }
+        }
+      };
+
+      MouseEvents.prototype.onMouseUp = function(x, y) {
+        this.currentMouseEventType = "mouseUp";
+        return this.current = null;
+      };
+
+      MouseEvents.prototype.onMouseOver = function(x, y) {
+        this.currentMouseEventType = "mouseOver";
+        return this.bg = "#222222";
+      };
+
+      MouseEvents.prototype.onMouseOut = function(x, y) {
+        this.currentMouseEventType = "mouseOut";
+        return this.bg = "#000000";
       };
 
       return MouseEvents;

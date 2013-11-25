@@ -10,6 +10,13 @@ define [], () ->
             @static = false
             @looping = false
             @bg = "#CCCCCC"
+
+            @mouseX = 0
+            @mouseY = 0
+            @mouseDrag = false
+            @mouseIsDown = false
+            @mouseIsOver = false
+
             mathAddons = [
                 ["TWO_PI", Math.PI * 2]
             ]

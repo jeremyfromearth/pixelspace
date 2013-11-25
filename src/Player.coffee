@@ -13,11 +13,11 @@ define [], () ->
             @renderer = null 
             @loop()
 
-            @canvas.addEventListener "mousedown", @onMouseEvent, true
-            @canvas.addEventListener "mousemove", @onMouseEvent, true
-            @canvas.addEventListener "mouseout", @onMouseEvent, true
-            @canvas.addEventListener "mouseover", @onMouseEvent, true
-            @canvas.addEventListener "mouseup", @onMouseEvent, true
+            window.addEventListener "mousedown", @onWindowMouseEvent, true
+            window.addEventListener "mousemove", @onWindowMouseEvent, true
+            window.addEventListener "mouseout", @onWindowMouseEvent, true
+            window.addEventListener "mouseover", @onWindowMouseEvent, true
+            window.addEventListener "mouseup", @onWindowMouseEvent, true
 
         getAnimationCallback : =>
             return  window.requestAnimationFrame or
@@ -33,26 +33,44 @@ define [], () ->
                 @step()
                 @render()
 
-        onMouseEvent : (event) =>
-            x = event.offsetX
-            y = event.offsetY
+        onWindowMouseEvent : (event) =>
             if @renderer?
-                switch event.type
-                    when "mousedown"
-                        if @renderer.onMouseDown?
-                            @renderer.onMouseDown x, y
-                    when 'mousemove'
-                        if @renderer.onMouseMove?
-                            @renderer.onMouseMove x, y
-                    when 'mouseout'
-                        if @renderer.onMouseOut?
-                            @renderer.onMouseOut x, y
-                    when 'mouseover'
-                        if @renderer.onMouseEnter?
-                            @renderer.onMouseEnter x, y
-                    when 'mouseup'
-                        if @renderer.onMouseUp?
-                            @renderer.onMouseUp x, y
+                x = event.offsetX
+                y = event.offsetY
+                @renderer.mouseX = x
+                @renderer.mouseY = y
+                if event.target == @canvas
+                    switch event.type
+                        when "mousedown"
+                            @renderer.mouseIsDown = true
+                            if @renderer.onMouseDown?
+                                @renderer.onMouseDown x, y
+                        when 'mousemove'
+                            if @renderer.mouseIsDown
+                                @renderer.mouseDrag = true
+                            if @renderer.onMouseMove?
+                                @renderer.onMouseMove x, y
+                        when 'mouseout'
+                            if @renderer.onMouseOut?
+                                @renderer.mouseIsOver = false
+                                @renderer.onMouseOut x, y
+                        when 'mouseover'
+                            if @renderer.onMouseOver?
+                                @renderer.mouseIsOver = true
+                                @renderer.onMouseOver x, y
+                        when 'mouseup'
+                            @renderer.mouseIsDown = false
+                            @renderer.mouseDrag = false
+                            if @renderer.onMouseUp?
+                                @renderer.onMouseUp x, y
+                else
+                    switch event.type
+                        when "mouseup"
+                            @renderer.mouseIsDown = false
+                            @renderer.mouseDrag = false
+                            if @renderer.onMouseUp?
+                                @renderer.onMouseUp(-1, -1)
+                
         pause : =>
             @running = false 
 
