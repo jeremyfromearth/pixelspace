@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>Spectrum Basic Demo</title>
+        <link  rel="stylesheet" type="text/css" href="css/main.css">
+        <link  rel="stylesheet" type="text/css" href="css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="css/demos.css">
+
+        <script src="js/modernizr-2.6.2.min.js"></script>
+        <script src="../lib/vendor/require.js"></script> 
+
+        <script>
+            require(['js/config'], function() {
+                require(['spectrum', 'js/MouseEvents'], function(Spectrum, MouseEvents) {
+                    var canvas = document.getElementById("canvas");
+                    var ctx = canvas.getContext('2d');
+                    var renderer = new MouseEvents(ctx);
+
+                    var player = new Spectrum.Player(canvas);
+                    player.setRenderer(renderer);
+
+                    renderer.init()
+                    player.run();
+                });
+            });
+        </script>
+
+    </head>
+    <body>
+        <canvas id="canvas" width="960" height="540"></canvas>
+    </body>
+</html>

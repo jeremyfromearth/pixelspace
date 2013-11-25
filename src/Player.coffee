@@ -33,10 +33,9 @@ define [], () ->
                 @step()
                 @render()
 
-        onMouseEvent : (event) ->
+        onMouseEvent : (event) =>
             x = event.offsetX
             y = event.offsetY
-
             if @renderer?
                 switch event.type
                     when "mousedown"
