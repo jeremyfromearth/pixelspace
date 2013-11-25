@@ -47,7 +47,7 @@ define [], () ->
                                 @renderer.onMouseDown x, y
                         when 'mousemove'
                             if @renderer.mouseIsDown
-                                @renderer.mouseDrag = true
+                                @renderer.mouseIsDragging = true
                             if @renderer.onMouseMove?
                                 @renderer.onMouseMove x, y
                         when 'mouseout'
@@ -60,14 +60,14 @@ define [], () ->
                                 @renderer.onMouseOver x, y
                         when 'mouseup'
                             @renderer.mouseIsDown = false
-                            @renderer.mouseDrag = false
+                            @renderer.mouseIsDragging = false
                             if @renderer.onMouseUp?
                                 @renderer.onMouseUp x, y
                 else
                     switch event.type
                         when "mouseup"
                             @renderer.mouseIsDown = false
-                            @renderer.mouseDrag = false
+                            @renderer.mouseIsDragging = false
                             if @renderer.onMouseUp?
                                 @renderer.onMouseUp(-1, -1)
                 

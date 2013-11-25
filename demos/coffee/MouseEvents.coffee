@@ -36,8 +36,8 @@ define ['renderer'], (Renderer) ->
             @color "#ffffff"
             @text 30, 30, "Mouse position x: " + @mouseX + ", y: " + @mouseY
             @text 30, 45, "Current mouse event type: " + @currentMouseEventType
-            @text 30, 60, "mouseDrag: " + 
-                @mouseDrag + ", mouseIsOver: " + 
+            @text 30, 60, "mouseIsDragging: " + 
+                @mouseIsDragging + ", mouseIsOver: " + 
                 @mouseIsOver + ", mouseIsDown: " + @mouseIsDown
 
         onMouseDown : (x, y) ->
@@ -55,7 +55,7 @@ define ['renderer'], (Renderer) ->
 
         onMouseMove : (x, y) ->
             @currentMouseEventType = "mouseMove"
-            if @mouseDrag
+            if @mouseIsDragging
                 if @current?
                     @current.x = x
                     @current.y = y

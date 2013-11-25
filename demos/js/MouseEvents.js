@@ -55,7 +55,7 @@
         this.color("#ffffff");
         this.text(30, 30, "Mouse position x: " + this.mouseX + ", y: " + this.mouseY);
         this.text(30, 45, "Current mouse event type: " + this.currentMouseEventType);
-        return this.text(30, 60, "mouseDrag: " + this.mouseDrag + ", mouseIsOver: " + this.mouseIsOver + ", mouseIsDown: " + this.mouseIsDown);
+        return this.text(30, 60, "mouseIsDragging: " + this.mouseIsDragging + ", mouseIsOver: " + this.mouseIsOver + ", mouseIsDown: " + this.mouseIsDown);
       };
 
       MouseEvents.prototype.onMouseDown = function(x, y) {
@@ -73,7 +73,7 @@
 
       MouseEvents.prototype.onMouseMove = function(x, y) {
         this.currentMouseEventType = "mouseMove";
-        if (this.mouseDrag) {
+        if (this.mouseIsDragging) {
           if (this.current != null) {
             this.current.x = x;
             return this.current.y = y;
