@@ -72,6 +72,15 @@ Many of the methods have a similar signature. The first two parameters are often
             <span class="property">@static</span> = <span class="literal">false</span>
             <span class="property">@looping</span> = <span class="literal">false</span>
             <span class="property">@bg</span> = <span class="string">"#CCCCCC"</span>
+            mathAddons = [
+                [<span class="string">"TWO_PI"</span>, Math.PI * <span class="number">2</span>]
+            ]
+
+            <span class="keyword">for</span> m <span class="keyword">in</span> Object.getOwnPropertyNames Math
+                @[m] = Math[m]
+            
+            <span class="keyword">for</span> a <span class="keyword">in</span> mathAddons
+                @[a[<span class="number">0</span>]] = a[<span class="number">1</span>]
 
         alpha : <span class="function"><span class="params">(a)</span> =&gt;</span>
             <span class="property">@ctx</span>.globalAlpha = a 
@@ -128,7 +137,7 @@ Many of the methods have a similar signature. The first two parameters are often
 
         point : <span class="function"><span class="params">(x, y, radius, solid = <span class="literal">true</span>)</span> =&gt;</span>
             <span class="property">@ctx</span>.beginPath()
-            <span class="property">@ctx</span>.arc x, y, radius, <span class="number">0</span>, TWO_PI, <span class="literal">false</span>
+            <span class="property">@ctx</span>.arc x, y, radius, <span class="number">0</span>, <span class="property">@TWO_PI</span>, <span class="literal">false</span>
             <span class="keyword">if</span> solid <span class="keyword">then</span> <span class="property">@ctx</span>.fill() <span class="keyword">else</span> <span class="property">@ctx</span>.stroke()
 
         points : <span class="function"><span class="params">(point_list, radius, solid = <span class="literal">true</span>)</span> =&gt;</span>
@@ -145,32 +154,32 @@ Many of the methods have a similar signature. The first two parameters are often
 
         polygon : <span class="function"><span class="params">(x, y, radius, sides = <span class="number">3</span>, solid = <span class="literal">true</span>)</span> =&gt;</span>
             points = []
-            inc = TWO_PI / sides
+            inc = <span class="property">@TWO_PI</span> / sides
             <span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">0.</span>.sides] <span class="keyword">by</span> <span class="number">1</span>
                 angle = i * inc
-                points.push [x + cos(angle) * radius, y + sin(angle) * radius]
+                points.push [x + <span class="property">@cos</span>(angle) * radius, y + <span class="property">@sin</span>(angle) * radius]
 
             <span class="property">@path</span> points, solid
 
         polygonRing : <span class="function"><span class="params">(x, y, inner_radius, outer_radius, inner_sides = <span class="number">90</span>, outer_sides = <span class="number">90</span>, solid = <span class="literal">true</span>)</span> =&gt;</span>
 
             p = {x : <span class="number">0</span>, y : <span class="number">0</span>}
-            inc = TWO_PI / outer_sides
+            inc = <span class="property">@TWO_PI</span> / outer_sides
 
             <span class="property">@ctx</span>.beginPath()
 
             <span class="keyword">for</span> n <span class="keyword">in</span> [<span class="number">0.</span>.outer_sides] <span class="keyword">by</span> <span class="number">1</span>
-                p.x = x + cos(inc * n) * outer_radius
-                p.y = y + sin(inc * n) * outer_radius
+                p.x = x + <span class="property">@cos</span>(inc * n) * outer_radius
+                p.y = y + <span class="property">@sin</span>(inc * n) * outer_radius
                 <span class="keyword">if</span> n <span class="keyword">is</span> <span class="number">0</span>
                     <span class="property">@ctx</span>.moveTo p.x, p.y
                 <span class="keyword">else</span>
                     <span class="property">@ctx</span>.lineTo p.x, p.y    
 
-            inc = TWO_PI / inner_sides
+            inc = <span class="property">@TWO_PI</span> / inner_sides
             <span class="keyword">for</span> n <span class="keyword">in</span> [inner_sides.<span class="number">.0</span>] <span class="keyword">by</span> -<span class="number">1</span>
-                p.x = x + cos(inc * n) * inner_radius
-                p.y = y + sin(inc * n) * inner_radius
+                p.x = x + <span class="property">@cos</span>(inc * n) * inner_radius
+                p.y = y + <span class="property">@sin</span>(inc * n) * inner_radius
                 <span class="keyword">if</span> n <span class="keyword">is</span> inner_sides
                     <span class="property">@ctx</span>.moveTo p.x, p.y
                 <span class="keyword">else</span>
@@ -180,9 +189,9 @@ Many of the methods have a similar signature. The first two parameters are often
 
         randomColor :<span class="function"> =&gt;</span>
             <span class="keyword">return</span> <span class="string">"rgb("</span> + 
-                (floor(random() * <span class="number">256</span>)).toString() + <span class="string">','</span> + 
-                (floor(random() * <span class="number">256</span>)).toString() + <span class="string">','</span> +
-                (floor(random() * <span class="number">256</span>)).toString() + <span class="string">")"</span>
+                (<span class="property">@floor</span>(<span class="property">@random</span>() * <span class="number">256</span>)).toString() + <span class="string">','</span> + 
+                (<span class="property">@floor</span>(<span class="property">@random</span>() * <span class="number">256</span>)).toString() + <span class="string">','</span> +
+                (<span class="property">@floor</span>(<span class="property">@random</span>() * <span class="number">256</span>)).toString() + <span class="string">")"</span>
 
         rectangle : <span class="function"><span class="params">(x, y, width, height, solid = <span class="literal">true</span>)</span> =&gt;</span>
             <span class="keyword">if</span> solid <span class="keyword">then</span> <span class="property">@ctx</span>.fillRect(x, y, width, height) <span class="keyword">else</span> <span class="property">@ctx</span>.strokeRect(x, y, width, height)  

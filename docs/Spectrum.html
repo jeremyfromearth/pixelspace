@@ -58,21 +58,15 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
-              
+              <p>Conveniently load all of Spectrum by loading this file
+Classes can then be accessed like the following
+``` 
+renderer = Spectrum.Renderer(ctx, id)</p>
+
             </div>
             
             <div class="content"><div class='highlight'><pre>define [<span class="string">'renderer'</span>, <span class="string">'player'</span>, <span class="string">'compiler'</span>], <span class="function"><span class="params">(Renderer, Player, Compiler)</span> -&gt;</span>
     <span class="class"><span class="keyword">class</span> <span class="title">Spectrum</span></span>
-        <span class="keyword">for</span> m <span class="keyword">in</span> Object.getOwnPropertyNames Math
-                <span class="built_in">window</span>[m] = Math[m]
-
-        additions = [
-            [<span class="string">"TWO_PI"</span>, Math.PI * <span class="number">2</span>]
-        ]
-
-        <span class="keyword">for</span> a <span class="keyword">in</span> additions
-            <span class="built_in">window</span>[a[<span class="number">0</span>]] = a[<span class="number">1</span>]
-
         <span class="property">@Player</span> = Player
         <span class="property">@Compiler</span> = Compiler
         <span class="property">@Renderer</span> = Renderer</pre></div></div>

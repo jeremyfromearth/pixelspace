@@ -94,10 +94,9 @@
                 <span class="property">@step</span>()
                 <span class="property">@render</span>()
 
-        onMouseEvent : <span class="function"><span class="params">(event)</span> -&gt;</span>
+        onMouseEvent : <span class="function"><span class="params">(event)</span> =&gt;</span>
             x = event.offsetX
             y = event.offsetY
-
             <span class="keyword">if</span> <span class="property">@renderer</span>?
                 <span class="keyword">switch</span> event.type
                     <span class="keyword">when</span> <span class="string">"mousedown"</span>
