@@ -39,6 +39,3 @@ define ['renderer'], (Renderer) ->
                 alpha: 1 
                 scale: 1
             }
-            
-        onMouseDrag : (x, y) ->
-            console.log "onMouseDrag"
