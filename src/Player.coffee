@@ -1,6 +1,5 @@
 #This class controls the frame inint/step/render cycle for an instance or sub-class of the Renderer class. It can be started, stopped, paused and un-paused. This class provides the renderer with data about it's environment such as the canvas width, current frame and any mouse events that occurr on the canvas.
 
-
 define [], () ->
     class Player
         running : false
@@ -34,9 +33,12 @@ define [], () ->
                 @render()
 
         onWindowMouseEvent : (event) =>
+            if event.type is "mousedown"
+                console.log event
             if @renderer?
-                x = event.offsetX
-                y = event.offsetY
+                r = @canvas.getBoundingClientRect()
+                x = event.clientX - r.left
+                y = event.clientY - r.top
                 @renderer.mouseX = x
                 @renderer.mouseY = y
                 if event.target == @canvas

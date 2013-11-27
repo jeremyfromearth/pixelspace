@@ -25,7 +25,7 @@
         this.text(165, 250, "SPECTRUM", false);
         this.color("#d13737");
         this.point(this.cx - 25, this.cy + 20, 10);
-        this.color("45d137");
+        this.color("#45d137");
         this.point(this.cx, this.cy + 20, 10);
         this.color("#3762d1");
         return this.point(this.cx + 25, this.cy + 20, 10);
