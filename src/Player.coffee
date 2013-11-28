@@ -33,8 +33,6 @@ define [], () ->
                 @render()
 
         onWindowMouseEvent : (event) =>
-            if event.type is "mousedown"
-                console.log event
             if @renderer?
                 r = @canvas.getBoundingClientRect()
                 x = event.clientX - r.left
