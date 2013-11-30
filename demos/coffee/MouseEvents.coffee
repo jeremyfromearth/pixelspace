@@ -46,7 +46,7 @@ define ['renderer'], (Renderer) ->
                 x: x 
                 y: y
                 color: @randomColor()
-                radius: @random() * 20 + 5
+                radius: Math.random() * 20 + 5
                 alpha: 1 
                 scale: 1
             }

@@ -12,17 +12,17 @@ define ['renderer'], (Renderer) ->
         # Update variables here
         step : ->
             @n += .01
-            @s = @sin(@n)   
+            @s = Math.sin(@n)   
 
         # Render graphics
         render : ->
             @color "#ffcc00"
-            @alpha @abs(@s)
+            @alpha Math.abs(@s)
             # Before using translation save the transformation matrix
             @saveTransform()
             @translate @cx, @cy
             @rotate @s
-            @polygon 0, 0, 100, 2 + @ceil(@abs(@s) * 10) 
+            @polygon 0, 0, 100, 2 + Math.ceil(Math.abs(@s) * 10) 
             # When finished with translation, restore transormation matrix
             @restoreTransform()
             

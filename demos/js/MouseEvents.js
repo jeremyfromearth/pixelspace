@@ -64,7 +64,7 @@
           x: x,
           y: y,
           color: this.randomColor(),
-          radius: this.random() * 20 + 5,
+          radius: Math.random() * 20 + 5,
           alpha: 1,
           scale: 1
         };

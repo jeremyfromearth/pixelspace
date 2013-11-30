@@ -17,16 +17,6 @@ define [], () ->
             @mouseIsOver = false
             @mouseIsDragging = false
 
-            mathAddons = [
-                ["TWO_PI", Math.PI * 2]
-            ]
-
-            for m in Object.getOwnPropertyNames Math
-                @[m] = Math[m]
-            
-            for a in mathAddons
-                @[a[0]] = a[1]
-
         alpha : (a) =>
             @ctx.globalAlpha = a 
 
@@ -82,7 +72,7 @@ define [], () ->
 
         point : (x, y, radius, solid = true) =>
             @ctx.beginPath()
-            @ctx.arc x, y, radius, 0, @TWO_PI, false
+            @ctx.arc x, y, radius, 0, Math.TWO_PI, false
             if solid then @ctx.fill() else @ctx.stroke()
 
         points : (point_list, radius, solid = true) =>
@@ -99,32 +89,32 @@ define [], () ->
 
         polygon : (x, y, radius, sides = 3, solid = true) =>
             points = []
-            inc = @TWO_PI / sides
+            inc = Math.TWO_PI / sides
             for i in [0..sides] by 1
                 angle = i * inc
-                points.push [x + @cos(angle) * radius, y + @sin(angle) * radius]
+                points.push [x + Math.cos(angle) * radius, y + Math.sin(angle) * radius]
 
             @path points, solid
 
         polygonRing : (x, y, inner_radius, outer_radius, inner_sides = 90, outer_sides = 90, solid = true) =>
 
             p = {x : 0, y : 0}
-            inc = @TWO_PI / outer_sides
+            inc = Math.TWO_PI / outer_sides
 
             @ctx.beginPath()
 
             for n in [0..outer_sides] by 1
-                p.x = x + @cos(inc * n) * outer_radius
-                p.y = y + @sin(inc * n) * outer_radius
+                p.x = x + Math.cos(inc * n) * outer_radius
+                p.y = y + Math.sin(inc * n) * outer_radius
                 if n is 0
                     @ctx.moveTo p.x, p.y
                 else
                     @ctx.lineTo p.x, p.y    
 
-            inc = @TWO_PI / inner_sides
+            inc = Math.TWO_PI / inner_sides
             for n in [inner_sides..0] by -1
-                p.x = x + @cos(inc * n) * inner_radius
-                p.y = y + @sin(inc * n) * inner_radius
+                p.x = x + Math.cos(inc * n) * inner_radius
+                p.y = y + Math.sin(inc * n) * inner_radius
                 if n is inner_sides
                     @ctx.moveTo p.x, p.y
                 else
@@ -134,9 +124,9 @@ define [], () ->
 
         randomColor : =>
             return "rgb(" + 
-                (@floor(@random() * 256)).toString() + ',' + 
-                (@floor(@random() * 256)).toString() + ',' +
-                (@floor(@random() * 256)).toString() + ")"
+                (Math.floor(Math.random() * 256)).toString() + ',' + 
+                (Math.floor(Math.random() * 256)).toString() + ',' +
+                (Math.floor(Math.random() * 256)).toString() + ")"
 
         rectangle : (x, y, width, height, solid = true) =>
             if solid then @ctx.fillRect(x, y, width, height) else @ctx.strokeRect(x, y, width, height)  
