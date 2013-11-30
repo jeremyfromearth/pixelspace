@@ -38,6 +38,11 @@
                 Spectrum.coffee
               </a>
             
+              
+              <a class="source" href="Utils.html">
+                Utils.coffee
+              </a>
+            
           </div>
         </li>
       </ul>
@@ -64,11 +69,12 @@ Classes can then be accessed like the following</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>define [<span class="string">'renderer'</span>, <span class="string">'player'</span>, <span class="string">'compiler'</span>], <span class="function"><span class="params">(Renderer, Player, Compiler)</span> -&gt;</span>
+            <div class="content"><div class='highlight'><pre>define [<span class="string">'renderer'</span>, <span class="string">'player'</span>, <span class="string">'compiler'</span>, <span class="string">'utils'</span>], <span class="function"><span class="params">(Renderer, Player, Compiler, Utils)</span> -&gt;</span>
     <span class="class"><span class="keyword">class</span> <span class="title">Spectrum</span></span>
         <span class="property">@Player</span> = Player
         <span class="property">@Compiler</span> = Compiler
-        <span class="property">@Renderer</span> = Renderer</pre></div></div>
+        <span class="property">@Renderer</span> = Renderer
+        <span class="property">@Utils</span> = Utils</pre></div></div>
             
         </li>
         

@@ -38,6 +38,11 @@
                 Spectrum.coffee
               </a>
             
+              
+              <a class="source" href="Utils.html">
+                Utils.coffee
+              </a>
+            
           </div>
         </li>
       </ul>
@@ -74,11 +79,11 @@
             <span class="property">@renderer</span> = <span class="literal">null</span> 
             <span class="property">@loop</span>()
 
-            <span class="property">@canvas</span>.addEventListener <span class="string">"mousedown"</span>, <span class="property">@onMouseEvent</span>, <span class="literal">true</span>
-            <span class="property">@canvas</span>.addEventListener <span class="string">"mousemove"</span>, <span class="property">@onMouseEvent</span>, <span class="literal">true</span>
-            <span class="property">@canvas</span>.addEventListener <span class="string">"mouseout"</span>, <span class="property">@onMouseEvent</span>, <span class="literal">true</span>
-            <span class="property">@canvas</span>.addEventListener <span class="string">"mouseover"</span>, <span class="property">@onMouseEvent</span>, <span class="literal">true</span>
-            <span class="property">@canvas</span>.addEventListener <span class="string">"mouseup"</span>, <span class="property">@onMouseEvent</span>, <span class="literal">true</span>
+            window.addEventListener <span class="string">"mousedown"</span>, <span class="property">@onWindowMouseEvent</span>, <span class="literal">true</span>
+            window.addEventListener <span class="string">"mousemove"</span>, <span class="property">@onWindowMouseEvent</span>, <span class="literal">true</span>
+            window.addEventListener <span class="string">"mouseout"</span>, <span class="property">@onWindowMouseEvent</span>, <span class="literal">true</span>
+            window.addEventListener <span class="string">"mouseover"</span>, <span class="property">@onWindowMouseEvent</span>, <span class="literal">true</span>
+            window.addEventListener <span class="string">"mouseup"</span>, <span class="property">@onWindowMouseEvent</span>, <span class="literal">true</span>
 
         getAnimationCallback :<span class="function"> =&gt;</span>
             <span class="keyword">return</span>  window.requestAnimationFrame <span class="keyword">or</span>
@@ -94,26 +99,45 @@
                 <span class="property">@step</span>()
                 <span class="property">@render</span>()
 
-        onMouseEvent : <span class="function"><span class="params">(event)</span> =&gt;</span>
-            x = event.offsetX
-            y = event.offsetY
+        onWindowMouseEvent : <span class="function"><span class="params">(event)</span> =&gt;</span>
             <span class="keyword">if</span> <span class="property">@renderer</span>?
-                <span class="keyword">switch</span> event.type
-                    <span class="keyword">when</span> <span class="string">"mousedown"</span>
-                        <span class="keyword">if</span> <span class="property">@renderer</span>.onMouseDown?
-                            <span class="property">@renderer</span>.onMouseDown x, y
-                    <span class="keyword">when</span> <span class="string">'mousemove'</span>
-                        <span class="keyword">if</span> <span class="property">@renderer</span>.onMouseMove?
-                            <span class="property">@renderer</span>.onMouseMove x, y
-                    <span class="keyword">when</span> <span class="string">'mouseout'</span>
-                        <span class="keyword">if</span> <span class="property">@renderer</span>.onMouseOut?
-                            <span class="property">@renderer</span>.onMouseOut x, y
-                    <span class="keyword">when</span> <span class="string">'mouseover'</span>
-                        <span class="keyword">if</span> <span class="property">@renderer</span>.onMouseEnter?
-                            <span class="property">@renderer</span>.onMouseEnter x, y
-                    <span class="keyword">when</span> <span class="string">'mouseup'</span>
-                        <span class="keyword">if</span> <span class="property">@renderer</span>.onMouseUp?
-                            <span class="property">@renderer</span>.onMouseUp x, y
+                r = <span class="property">@canvas</span>.getBoundingClientRect()
+                x = event.clientX - r.left
+                y = event.clientY - r.top
+                <span class="property">@renderer</span>.mouseX = x
+                <span class="property">@renderer</span>.mouseY = y
+                <span class="keyword">if</span> event.target == <span class="property">@canvas</span>
+                    <span class="keyword">switch</span> event.type
+                        <span class="keyword">when</span> <span class="string">"mousedown"</span>
+                            <span class="property">@renderer</span>.mouseIsDown = <span class="literal">true</span>
+                            <span class="keyword">if</span> <span class="property">@renderer</span>.onMouseDown?
+                                <span class="property">@renderer</span>.onMouseDown x, y
+                        <span class="keyword">when</span> <span class="string">'mousemove'</span>
+                            <span class="keyword">if</span> <span class="property">@renderer</span>.mouseIsDown
+                                <span class="property">@renderer</span>.mouseIsDragging = <span class="literal">true</span>
+                            <span class="keyword">if</span> <span class="property">@renderer</span>.onMouseMove?
+                                <span class="property">@renderer</span>.onMouseMove x, y
+                        <span class="keyword">when</span> <span class="string">'mouseout'</span>
+                            <span class="keyword">if</span> <span class="property">@renderer</span>.onMouseOut?
+                                <span class="property">@renderer</span>.mouseIsOver = <span class="literal">false</span>
+                                <span class="property">@renderer</span>.onMouseOut x, y
+                        <span class="keyword">when</span> <span class="string">'mouseover'</span>
+                            <span class="keyword">if</span> <span class="property">@renderer</span>.onMouseOver?
+                                <span class="property">@renderer</span>.mouseIsOver = <span class="literal">true</span>
+                                <span class="property">@renderer</span>.onMouseOver x, y
+                        <span class="keyword">when</span> <span class="string">'mouseup'</span>
+                            <span class="property">@renderer</span>.mouseIsDown = <span class="literal">false</span>
+                            <span class="property">@renderer</span>.mouseIsDragging = <span class="literal">false</span>
+                            <span class="keyword">if</span> <span class="property">@renderer</span>.onMouseUp?
+                                <span class="property">@renderer</span>.onMouseUp x, y
+                <span class="keyword">else</span>
+                    <span class="keyword">switch</span> event.type
+                        <span class="keyword">when</span> <span class="string">"mouseup"</span>
+                            <span class="property">@renderer</span>.mouseIsDown = <span class="literal">false</span>
+                            <span class="property">@renderer</span>.mouseIsDragging = <span class="literal">false</span>
+                            <span class="keyword">if</span> <span class="property">@renderer</span>.onMouseUp?
+                                <span class="property">@renderer</span>.onMouseUp(-<span class="number">1</span>, -<span class="number">1</span>)
+                
         pause :<span class="function"> =&gt;</span>
             <span class="property">@running</span> = <span class="literal">false</span> 
 
