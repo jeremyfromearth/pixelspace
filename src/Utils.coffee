@@ -42,6 +42,7 @@ define [], () ->
         return (n - min) / (max - min)
 
     # Returns a random number between the supplied range
+    # Provide optional argument of true as third param to return an integer
     Math.randomInRange = (min, max, round=false) ->
         n = min + (max - min) * Math.random() 
         if round
