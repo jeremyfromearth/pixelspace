@@ -14,12 +14,14 @@
       }
 
       Basic.prototype.init = function() {
+        this["static"] = true;
         this.bg = "#222222";
         this.cx = this.width * .5;
         return this.cy = this.height * .5;
       };
 
       Basic.prototype.render = function() {
+        console.log("render");
         this.font("bold 80pt Baskerville");
         this.color("#ffffff");
         this.text(165, 250, "SPECTRUM", false);
@@ -28,8 +30,7 @@
         this.color("#45d137");
         this.circle(this.cx, this.cy + 20, 10);
         this.color("#3762d1");
-        this.circle(this.cx + 25, this.cy + 20, 10);
-        return this.polygonRing(100, 100, 20, 60, 30, 3, true);
+        return this.circle(this.cx + 25, this.cy + 20, 10);
       };
 
       return Basic;

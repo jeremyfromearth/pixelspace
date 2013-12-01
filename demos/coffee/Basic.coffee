@@ -2,6 +2,7 @@ define ['renderer'], (Renderer) ->
     class Basic extends Renderer
         # Initialize instance variables
         init : ->
+            @static = true
             @bg = "#222222"
             @cx = @width * .5
             @cy = @height * .5

@@ -5,7 +5,7 @@ define [], () ->
         running : false
 
         constructor : (@canvas) ->
-            @frame = 0
+            @stepCount = 0
             @width = @canvas.clientWidth
             @height = @canvas.clientHeight
             @ctx = canvas.getContext "2d"
@@ -30,9 +30,15 @@ define [], () ->
         # The main loop
         loop : =>
             @getAnimationCallback() @loop
-            if @renderer? and  @running and !@renderer.static
-                @step()
-                @render()
+            if @renderer? 
+                if @running 
+                    if !@renderer.static
+                        @step()
+                        @render()
+                    else
+                        if @stepCount is 0
+                            @step()
+                            @render()
 
         # Capture all mouse events on the window and pass them to the renderer when it is the target
         onWindowMouseEvent : (event) =>
@@ -97,17 +103,17 @@ define [], () ->
         # The step phase
         step : =>
             if @renderer.looping and @renderer.duration > 0
-                if @frame > @renderer.duration
-                    @frame = 0
-            @frame++
-            @renderer.frame = @frame
+                if @stepCount > @renderer.duration
+                    @stepCount = 0
+            @stepCount++
+            @renderer.stepCount = @stepCount
             @renderer.width = @canvas.clientWidth
             @renderer.height = @canvas.clientHeight
             if @renderer.step? then @renderer.step()
 
         # Stops the player, resets itself and the renderer
         stop : =>
-            @frame = 0
+            @stepCount = 0
             @running = false
             @ctx.clearRect 0, 0, @width, @height
             if @renderer?

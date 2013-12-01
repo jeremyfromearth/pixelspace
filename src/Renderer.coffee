@@ -4,13 +4,20 @@
 define ['utils'], () ->
     class Renderer
         constructor : (@ctx, @id) ->
-            @frame = 0
+            # Width of the drawing context
             @width = 0
+            # Height of the drawing context 
             @height = 0
+            # Only render once if this Renderer is static
             @static = false
+            # Boolean indicating whether or not to loop the currentStep variable
             @looping = false
+            # If looping, set currentStep back to zero after this many steps
+            @duration = 0
+            # Background color
             @bg = "#CCCCCC"
-
+            # Current step, incremented by Player
+            @stepCount = 0
             # The current x coordinate of the mouse
             @mouseX = 0 
             # The current y coordinate of the mouse
