@@ -20,6 +20,11 @@ define [], () ->
     class Compiler
         constructor : (@ctx) ->
 
+        # Compiles a script such as the one described above.
+        # Attempts to init, step & render.
+        # If any of these methods fail, the corresponding error method is called
+        # Override these methods to handle errors. 
+        # If no errors are detected, a new instance of the script is compiled and returned
         compile : (code) =>
             df = null
             try

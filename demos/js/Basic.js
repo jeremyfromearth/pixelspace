@@ -24,11 +24,12 @@
         this.color("#ffffff");
         this.text(165, 250, "SPECTRUM", false);
         this.color("#d13737");
-        this.point(this.cx - 25, this.cy + 20, 10);
+        this.circle(this.cx - 25, this.cy + 20, 10);
         this.color("#45d137");
-        this.point(this.cx, this.cy + 20, 10);
+        this.circle(this.cx, this.cy + 20, 10);
         this.color("#3762d1");
-        return this.point(this.cx + 25, this.cy + 20, 10);
+        this.circle(this.cx + 25, this.cy + 20, 10);
+        return this.polygonRing(100, 100, 20, 60, 30, 3, true);
       };
 
       return Basic;

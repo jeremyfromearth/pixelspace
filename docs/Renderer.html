@@ -76,94 +76,344 @@ Many of the methods have a similar signature. The first two parameters are often
             <span class="property">@height</span> = <span class="number">0</span>
             <span class="property">@static</span> = <span class="literal">false</span>
             <span class="property">@looping</span> = <span class="literal">false</span>
-            <span class="property">@bg</span> = <span class="string">"#CCCCCC"</span>
+            <span class="property">@bg</span> = <span class="string">"#CCCCCC"</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>The current x coordinate of the mouse</p>
 
-            <span class="property">@mouseX</span> = <span class="number">0</span>
-            <span class="property">@mouseY</span> = <span class="number">0</span>
-            <span class="property">@mouseIsDown</span> = <span class="literal">false</span>
-            <span class="property">@mouseIsOver</span> = <span class="literal">false</span>
-            <span class="property">@mouseIsDragging</span> = <span class="literal">false</span>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="property">@mouseX</span> = <span class="number">0</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>The current y coordinate of the mouse</p>
 
-        alpha : <span class="function"><span class="params">(a)</span> =&gt;</span>
-            <span class="property">@ctx</span>.globalAlpha = a 
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="property">@mouseY</span> = <span class="number">0</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>boolean indicating the mouse is down</p>
 
-        arc : <span class="function"><span class="params">(x, y, radius, start_angle, end_angle, solid = <span class="literal">true</span>)</span> =&gt;</span>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="property">@mouseIsDown</span> = <span class="literal">false</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>boolean indicating the is over this Renderer</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="property">@mouseIsOver</span> = <span class="literal">false</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>boolean indicating that the mouse is dragging</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="property">@mouseIsDragging</span> = <span class="literal">false</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Set the opacity of all subsequent draw commands</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        alpha : <span class="function"><span class="params">(a)</span> =&gt;</span>
+            <span class="property">@ctx</span>.globalAlpha = a</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Draws and arc</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        arc : <span class="function"><span class="params">(x, y, radius, start_angle, end_angle, solid = <span class="literal">true</span>)</span> =&gt;</span>
             <span class="property">@ctx</span>.beginPath()
             <span class="property">@ctx</span>.arc x, y, radius, start_angle, end_angle
             <span class="keyword">if</span> solid <span class="keyword">then</span> <span class="property">@ctx</span>.fill() <span class="keyword">else</span> <span class="property">@ctx</span>.stroke()
+            <span class="property">@ctx</span>.closePath()</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Draws a single circle</p>
 
-        clear :<span class="function"> =&gt;</span>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        circle : <span class="function"><span class="params">(x, y, radius, solid = <span class="literal">true</span>)</span> =&gt;</span>
+            <span class="property">@ctx</span>.beginPath()
+            <span class="property">@ctx</span>.arc x, y, radius, <span class="number">0</span>, Math.TWO_PI, <span class="literal">false</span>
+            <span class="keyword">if</span> solid <span class="keyword">then</span> <span class="property">@ctx</span>.fill() <span class="keyword">else</span> <span class="property">@ctx</span>.stroke()
+            <span class="property">@ctx</span>.closePath()</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Draws circles at specified points</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        circles : <span class="function"><span class="params">(point_list, radius, solid = <span class="literal">true</span>)</span> =&gt;</span>
+            <span class="keyword">if</span> point_list.length <span class="keyword">is</span> <span class="number">0</span> <span class="keyword">then</span> <span class="keyword">return</span>
+            <span class="property">@circle</span> p[<span class="number">0</span>], p[<span class="number">1</span>], radius, solid <span class="keyword">for</span> p <span class="keyword">in</span> point_list</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>Clears the drawing context and redraws the background color
+This method is called by the player every frame before the render method is called</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        clear :<span class="function"> =&gt;</span>
             <span class="property">@ctx</span>.save()
             <span class="property">@ctx</span>.globalAlpha = <span class="number">1</span>
             <span class="property">@ctx</span>.clearRect <span class="number">0</span>, <span class="number">0</span>, <span class="property">@width</span>, <span class="property">@height</span> 
             <span class="property">@color</span> <span class="property">@bg</span>
             <span class="property">@rectangle</span> <span class="number">0</span>, <span class="number">0</span>, <span class="property">@width</span>, <span class="property">@height</span>
-            <span class="property">@ctx</span>.restore()
+            <span class="property">@ctx</span>.restore()</pre></div></div>
             
-        color : <span class="function"><span class="params">(color)</span> =&gt;</span>
-            <span class="property">@ctx</span>.fillStyle = <span class="property">@ctx</span>.strokeStyle = color
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>Sets the color of both fill and stroke style for all subsequent draw commands 
+Color values can be supplied in the following formats</p>
+<pre><code>@color rgb(255, 0, 0)
+@color #ff0000
+@color &quot;red&quot;</code></pre>
 
-        font : <span class="function"><span class="params">(style)</span> =&gt;</span>
-            <span class="property">@ctx</span>.font = style
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        color : <span class="function"><span class="params">(color)</span> =&gt;</span>
+            <span class="property">@ctx</span>.fillStyle = <span class="property">@ctx</span>.strokeStyle = color</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>Sets the fonstyle</p>
+<pre><code>@font &quot;bold 80pt Baskerville&quot;
+@font &quot;normal 100px Helvetica&quot;</code></pre>
 
-        grid : <span class="function"><span class="params">(x, y, rows, columns, width, height)</span> =&gt;</span>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        font : <span class="function"><span class="params">(style)</span> =&gt;</span>
+            <span class="property">@ctx</span>.font = style</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>Draws a grid</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        grid : <span class="function"><span class="params">(x, y, rows, columns, width, height)</span> =&gt;</span>
             row_height = height / rows
             col_width = width / columns
 
             <span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">0.</span>.rows] <span class="keyword">by</span> <span class="number">1</span>
-                ypos = (round y + i * row_height) + <span class="number">.5</span>
+                ypos = (Math.round y + i * row_height) + <span class="number">.5</span>
                 <span class="property">@line</span> x, ypos, x + width, ypos
 
             <span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">0.</span>.columns] <span class="keyword">by</span> <span class="number">1</span>
-                xpos = (round x + i * col_width) + <span class="number">.5</span>
-                <span class="property">@line</span> xpos, y, xpos, y + height
+                xpos = (Math.round x + i * col_width) + <span class="number">.5</span>
+                <span class="property">@line</span> xpos, y, xpos, y + height</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>Draws a line betwen two points</p>
 
-        line : <span class="function"><span class="params">(x1, y1, x2, y2)</span> =&gt;</span>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        line : <span class="function"><span class="params">(x1, y1, x2, y2)</span> =&gt;</span>
             <span class="property">@ctx</span>.beginPath()
             <span class="property">@ctx</span>.moveTo x1, y1
             <span class="property">@ctx</span>.lineTo x2, y2
             <span class="property">@ctx</span>.stroke()
+            <span class="property">@ctx</span>.closePath()</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>Sets the linestyle for all subsequent draw commands</p>
 
-        lineStyle : <span class="function"><span class="params">(line_width = <span class="number">1.0</span>, joint_style = <span class="string">"round"</span>, cap_style = <span class="string">"round"</span>)</span> =&gt;</span>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        lineStyle : <span class="function"><span class="params">(line_width = <span class="number">1.0</span>, joint_style = <span class="string">"round"</span>, cap_style = <span class="string">"round"</span>)</span> =&gt;</span>
             <span class="property">@ctx</span>.lineWidth = line_width
             <span class="property">@ctx</span>.lineJoin = joint_style
-            <span class="property">@ctx</span>.lineCap = cap_style
+            <span class="property">@ctx</span>.lineCap = cap_style</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>Draws a series of lines that define shape
+Lines can be optionally closed and and left un-filled to draw a series of connected lines</p>
+<pre><code>#Draw closed and filled shape
+@shape [[0, 0], [10, 0], [10, 10], [0, 10], [0, 0]]
 
-        path : <span class="function"><span class="params">(point_list, solid = <span class="literal">true</span>)</span> =&gt;</span>
+#Draw connected line segments only
+@shape [[0, 0], [10, 0], [10, 10], [0, 10], [0, 0]], false, false</code></pre>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        shape : <span class="function"><span class="params">(point_list, solid = <span class="literal">true</span>, closed=<span class="literal">true</span>)</span> =&gt;</span>
             <span class="keyword">if</span> point_list.length <span class="keyword">is</span> <span class="number">0</span> <span class="keyword">then</span> <span class="keyword">return</span>
             <span class="property">@ctx</span>.beginPath()
-            <span class="property">@ctx</span>.moveTo point_list[<span class="number">0</span>][<span class="number">0</span>], point_list[<span class="number">0</span>][<span class="number">1</span>]
             <span class="property">@ctx</span>.lineTo p[<span class="number">0</span>], p[<span class="number">1</span>] <span class="keyword">for</span> p <span class="keyword">in</span> point_list
-            <span class="property">@ctx</span>.closePath()
-            <span class="keyword">if</span> solid <span class="keyword">then</span> <span class="property">@ctx</span>.fill() <span class="keyword">else</span> <span class="property">@ctx</span>.stroke()
+            <span class="keyword">if</span> closed
+                <span class="property">@ctx</span>.closePath()
+                <span class="keyword">if</span> solid <span class="keyword">then</span> <span class="property">@ctx</span>.fill() <span class="keyword">else</span> <span class="property">@ctx</span>.stroke() 
+            <span class="keyword">else</span> 
+                <span class="keyword">if</span> solid <span class="keyword">then</span> <span class="property">@ctx</span>.fill() <span class="keyword">else</span> <span class="property">@ctx</span>.stroke() 
+                <span class="property">@ctx</span>.closePath()</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <p>Draws an n-sided polygon</p>
 
-        point : <span class="function"><span class="params">(x, y, radius, solid = <span class="literal">true</span>)</span> =&gt;</span>
-            <span class="property">@ctx</span>.beginPath()
-            <span class="property">@ctx</span>.arc x, y, radius, <span class="number">0</span>, Math.TWO_PI, <span class="literal">false</span>
-            <span class="keyword">if</span> solid <span class="keyword">then</span> <span class="property">@ctx</span>.fill() <span class="keyword">else</span> <span class="property">@ctx</span>.stroke()
-
-        points : <span class="function"><span class="params">(point_list, radius, solid = <span class="literal">true</span>)</span> =&gt;</span>
-            <span class="keyword">if</span> point_list.length <span class="keyword">is</span> <span class="number">0</span> <span class="keyword">then</span> <span class="keyword">return</span>
-            <span class="property">@point</span> p[<span class="number">0</span>], p[<span class="number">1</span>], radius, solid <span class="keyword">for</span> p <span class="keyword">in</span> point_list
-
-        polyline : <span class="function"><span class="params">(point_list)</span> =&gt;</span>
-            <span class="keyword">if</span> point_list.length <span class="keyword">is</span> <span class="number">0</span> <span class="keyword">then</span> <span class="keyword">return</span>
-            <span class="property">@ctx</span>.beginPath()
-            <span class="property">@ctx</span>.moveTo point_list[<span class="number">0</span>][<span class="number">0</span>], point_list[<span class="number">0</span>][<span class="number">1</span>]
-            <span class="property">@ctx</span>.lineTo p[<span class="number">0</span>], p[<span class="number">1</span>] <span class="keyword">for</span> p <span class="keyword">in</span> point_list
-            <span class="property">@ctx</span>.stroke()
-            <span class="property">@ctx</span>.closePath()
-
-        polygon : <span class="function"><span class="params">(x, y, radius, sides = <span class="number">3</span>, solid = <span class="literal">true</span>)</span> =&gt;</span>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        polygon : <span class="function"><span class="params">(x, y, radius, sides = <span class="number">3</span>, solid = <span class="literal">true</span>)</span> =&gt;</span>
             points = []
             inc = Math.TWO_PI / sides
             <span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">0.</span>.sides] <span class="keyword">by</span> <span class="number">1</span>
                 angle = i * inc
                 points.push [x + Math.cos(angle) * radius, y + Math.sin(angle) * radius]
+            <span class="property">@shape</span> points, solid, <span class="literal">true</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p>Draws a polygon with n inner sides and n outer sides of</p>
+<pre><code>#Draws a triangle with a hole in the center
+@polygonRing 100, 100, 20, 60, 30, 3, true</code></pre>
 
-            <span class="property">@path</span> points, solid
-
-        polygonRing : <span class="function"><span class="params">(x, y, inner_radius, outer_radius, inner_sides = <span class="number">90</span>, outer_sides = <span class="number">90</span>, solid = <span class="literal">true</span>)</span> =&gt;</span>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        polygonRing : <span class="function"><span class="params">(x, y, inner_radius, outer_radius, inner_sides = <span class="number">90</span>, outer_sides = <span class="number">90</span>, solid = <span class="literal">true</span>)</span> =&gt;</span>
 
             p = {x : <span class="number">0</span>, y : <span class="number">0</span>}
             inc = Math.TWO_PI / outer_sides
@@ -187,24 +437,89 @@ Many of the methods have a similar signature. The first two parameters are often
                 <span class="keyword">else</span>
                     <span class="property">@ctx</span>.lineTo(p.x, p.y)
 
-            <span class="keyword">if</span> solid <span class="keyword">then</span> <span class="property">@ctx</span>.fill() <span class="keyword">else</span> <span class="property">@ctx</span>.stroke()
+            <span class="keyword">if</span> solid <span class="keyword">then</span> <span class="property">@ctx</span>.fill() <span class="keyword">else</span> <span class="property">@ctx</span>.stroke()</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>Returns a random color in rgb format</p>
 
-        randomColor :<span class="function"> =&gt;</span>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        randomColor :<span class="function"> =&gt;</span>
             <span class="keyword">return</span> <span class="string">"rgb("</span> + 
                 (Math.floor(Math.random() * <span class="number">256</span>)).toString() + <span class="string">','</span> + 
                 (Math.floor(Math.random() * <span class="number">256</span>)).toString() + <span class="string">','</span> +
-                (Math.floor(Math.random() * <span class="number">256</span>)).toString() + <span class="string">")"</span>
+                (Math.floor(Math.random() * <span class="number">256</span>)).toString() + <span class="string">")"</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p>Draws a rectangle</p>
 
-        rectangle : <span class="function"><span class="params">(x, y, width, height, solid = <span class="literal">true</span>)</span> =&gt;</span>
-            <span class="keyword">if</span> solid <span class="keyword">then</span> <span class="property">@ctx</span>.fillRect(x, y, width, height) <span class="keyword">else</span> <span class="property">@ctx</span>.strokeRect(x, y, width, height)  
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        rectangle : <span class="function"><span class="params">(x, y, width, height, solid = <span class="literal">true</span>)</span> =&gt;</span>
+            <span class="keyword">if</span> solid <span class="keyword">then</span> <span class="property">@ctx</span>.fillRect(x, y, width, height) <span class="keyword">else</span> <span class="property">@ctx</span>.strokeRect(x, y, width, height)</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <p>Restores the drawing context</p>
 
-        restoreTransform :<span class="function"> =&gt;</span>
-            <span class="property">@ctx</span>.restore()
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        restoreTransform :<span class="function"> =&gt;</span>
+            <span class="property">@ctx</span>.restore()</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <p>Rotates the drawing context</p>
 
-        rotate : <span class="function"><span class="params">(theta)</span> =&gt;</span>
-            <span class="property">@ctx</span>.rotate theta
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        rotate : <span class="function"><span class="params">(theta)</span> =&gt;</span>
+            <span class="property">@ctx</span>.rotate theta</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <p>Draws a rounded rectangle</p>
 
-        roundedRectangle : <span class="function"><span class="params">(x, y, width, height, corner_radius, solid = <span class="literal">true</span>)</span> =&gt;</span>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        roundedRectangle : <span class="function"><span class="params">(x, y, width, height, corner_radius, solid = <span class="literal">true</span>)</span> =&gt;</span>
             <span class="property">@ctx</span>.beginPath();  
             <span class="property">@ctx</span>.moveTo x, y + corner_radius
             <span class="property">@ctx</span>.lineTo x, y + height - corner_radius  
@@ -215,18 +530,70 @@ Many of the methods have a similar signature. The first two parameters are often
             <span class="property">@ctx</span>.quadraticCurveTo x + width, y , x + width - corner_radius, y
             <span class="property">@ctx</span>.lineTo x + corner_radius, y  
             <span class="property">@ctx</span>.quadraticCurveTo x, y, x, y + corner_radius  
-            <span class="keyword">if</span> solid <span class="keyword">then</span> <span class="property">@ctx</span>.fill() <span class="keyword">else</span> <span class="property">@ctx</span>.stroke()
+            <span class="keyword">if</span> solid <span class="keyword">then</span> <span class="property">@ctx</span>.fill() <span class="keyword">else</span> <span class="property">@ctx</span>.stroke()</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-25">&#182;</a>
+              </div>
+              <p>Saves the drawing context</p>
 
-        saveTransform :<span class="function"> =&gt;</span>
-            <span class="property">@ctx</span>.save()
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        saveTransform :<span class="function"> =&gt;</span>
+            <span class="property">@ctx</span>.save()</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-26">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-26">&#182;</a>
+              </div>
+              <p>Sets the scale of the drawing context</p>
 
-        scale : <span class="function"><span class="params">(x_scale, y_scale)</span> =&gt;</span>
-            <span class="property">@ctx</span>.scale x_scale, y_scale
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        scale : <span class="function"><span class="params">(x_scale, y_scale)</span> =&gt;</span>
+            <span class="property">@ctx</span>.scale x_scale, y_scale</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-27">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-27">&#182;</a>
+              </div>
+              <p>Draws text</p>
 
-        text : <span class="function"><span class="params">(x, y, text, solid = <span class="literal">true</span>)</span> =&gt;</span> 
-            <span class="keyword">if</span> solid <span class="keyword">then</span> <span class="property">@ctx</span>.fillText(text, x, y) <span class="keyword">else</span> <span class="property">@ctx</span>.strokeText(text, x, y)
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        text : <span class="function"><span class="params">(x, y, text, solid = <span class="literal">true</span>)</span> =&gt;</span> 
+            <span class="keyword">if</span> solid <span class="keyword">then</span> <span class="property">@ctx</span>.fillText(text, x, y) <span class="keyword">else</span> <span class="property">@ctx</span>.strokeText(text, x, y)</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-28">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-28">&#182;</a>
+              </div>
+              <p>Translate the drawing context</p>
 
-        translate : <span class="function"><span class="params">(x, y)</span> =&gt;</span> 
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        translate : <span class="function"><span class="params">(x, y)</span> =&gt;</span> 
             <span class="property">@ctx</span>.translate x, y</pre></div></div>
             
         </li>

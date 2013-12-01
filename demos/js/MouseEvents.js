@@ -45,9 +45,7 @@
           if (p != null) {
             this.alpha(p.alpha);
             this.color(p.color);
-            this.point(p.x, p.y, p.radius * p.scale);
-            this.color("#ffffff");
-            this.point(p.x, p.y, p.radius * p.scale, false);
+            this.circle(p.x, p.y, p.radius * p.scale);
           }
           i++;
         }

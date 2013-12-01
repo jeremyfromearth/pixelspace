@@ -18,6 +18,7 @@ define [], () ->
             window.addEventListener "mouseover", @onWindowMouseEvent, true
             window.addEventListener "mouseup", @onWindowMouseEvent, true
 
+        # Wraps various browser specific request for animation frame
         getAnimationCallback : =>
             return  window.requestAnimationFrame or
                     window.webkitRequestAnimationFrame or
@@ -26,12 +27,14 @@ define [], () ->
                     window.msRequestAnimationFrame or 
                     setTimeout callback, (1000 / 60)
 
+        # The main loop
         loop : =>
             @getAnimationCallback() @loop
             if @renderer? and  @running and !@renderer.static
                 @step()
                 @render()
 
+        # Capture all mouse events on the window and pass them to the renderer when it is the target
         onWindowMouseEvent : (event) =>
             if @renderer?
                 r = @canvas.getBoundingClientRect()
@@ -71,22 +74,27 @@ define [], () ->
                             if @renderer.onMouseUp?
                                 @renderer.onMouseUp(-1, -1)
                 
+        # Pauses the player
         pause : =>
             @running = false 
 
+        # Calls render phase 
         render : =>
             if @renderer.clear?
                 @renderer.clear()
             if @renderer.render? then @renderer.render()
 
+        # Starts or un-pauses the loop
         run : =>
             @running = true
 
+        # Sets an instance of a Renderer sub-class as the renderer for this Player
         setRenderer : (newRenderer) =>
             @renderer = newRenderer
             @renderer.width = @canvas.clientWidth
             @renderer.height = @canvas.clientHeight
 
+        # The step phase
         step : =>
             if @renderer.looping and @renderer.duration > 0
                 if @frame > @renderer.duration
@@ -97,6 +105,7 @@ define [], () ->
             @renderer.height = @canvas.clientHeight
             if @renderer.step? then @renderer.step()
 
+        # Stops the player, resets itself and the renderer
         stop : =>
             @frame = 0
             @running = false

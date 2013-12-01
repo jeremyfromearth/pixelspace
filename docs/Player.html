@@ -83,23 +83,62 @@
             window.addEventListener <span class="string">"mousemove"</span>, <span class="property">@onWindowMouseEvent</span>, <span class="literal">true</span>
             window.addEventListener <span class="string">"mouseout"</span>, <span class="property">@onWindowMouseEvent</span>, <span class="literal">true</span>
             window.addEventListener <span class="string">"mouseover"</span>, <span class="property">@onWindowMouseEvent</span>, <span class="literal">true</span>
-            window.addEventListener <span class="string">"mouseup"</span>, <span class="property">@onWindowMouseEvent</span>, <span class="literal">true</span>
+            window.addEventListener <span class="string">"mouseup"</span>, <span class="property">@onWindowMouseEvent</span>, <span class="literal">true</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Wraps various browser specific request for animation frame</p>
 
-        getAnimationCallback :<span class="function"> =&gt;</span>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        getAnimationCallback :<span class="function"> =&gt;</span>
             <span class="keyword">return</span>  window.requestAnimationFrame <span class="keyword">or</span>
                     window.webkitRequestAnimationFrame <span class="keyword">or</span>
                     window.mozRequestAnimationFrame <span class="keyword">or</span>
                     window.oRequestAnimationFrame <span class="keyword">or</span>
                     window.msRequestAnimationFrame <span class="keyword">or</span> 
-                    setTimeout callback, (<span class="number">1000</span> / <span class="number">60</span>)
+                    setTimeout callback, (<span class="number">1000</span> / <span class="number">60</span>)</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>The main loop</p>
 
-        <span class="keyword">loop</span> :<span class="function"> =&gt;</span>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="keyword">loop</span> :<span class="function"> =&gt;</span>
             <span class="property">@getAnimationCallback</span>() <span class="property">@loop</span>
             <span class="keyword">if</span> <span class="property">@renderer</span>? <span class="keyword">and</span>  <span class="property">@running</span> <span class="keyword">and</span> !<span class="property">@renderer</span>.static
                 <span class="property">@step</span>()
-                <span class="property">@render</span>()
+                <span class="property">@render</span>()</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Capture all mouse events on the window and pass them to the renderer when it is the target</p>
 
-        onWindowMouseEvent : <span class="function"><span class="params">(event)</span> =&gt;</span>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        onWindowMouseEvent : <span class="function"><span class="params">(event)</span> =&gt;</span>
             <span class="keyword">if</span> <span class="property">@renderer</span>?
                 r = <span class="property">@canvas</span>.getBoundingClientRect()
                 x = event.clientX - r.left
@@ -136,25 +175,90 @@
                             <span class="property">@renderer</span>.mouseIsDown = <span class="literal">false</span>
                             <span class="property">@renderer</span>.mouseIsDragging = <span class="literal">false</span>
                             <span class="keyword">if</span> <span class="property">@renderer</span>.onMouseUp?
-                                <span class="property">@renderer</span>.onMouseUp(-<span class="number">1</span>, -<span class="number">1</span>)
-                
-        pause :<span class="function"> =&gt;</span>
-            <span class="property">@running</span> = <span class="literal">false</span> 
+                                <span class="property">@renderer</span>.onMouseUp(-<span class="number">1</span>, -<span class="number">1</span>)</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Pauses the player</p>
 
-        render :<span class="function"> =&gt;</span>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        pause :<span class="function"> =&gt;</span>
+            <span class="property">@running</span> = <span class="literal">false</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Calls render phase </p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        render :<span class="function"> =&gt;</span>
             <span class="keyword">if</span> <span class="property">@renderer</span>.clear?
                 <span class="property">@renderer</span>.clear()
-            <span class="keyword">if</span> <span class="property">@renderer</span>.render? <span class="keyword">then</span> <span class="property">@renderer</span>.render()
+            <span class="keyword">if</span> <span class="property">@renderer</span>.render? <span class="keyword">then</span> <span class="property">@renderer</span>.render()</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Starts or un-pauses the loop</p>
 
-        run :<span class="function"> =&gt;</span>
-            <span class="property">@running</span> = <span class="literal">true</span>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        run :<span class="function"> =&gt;</span>
+            <span class="property">@running</span> = <span class="literal">true</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Sets an instance of a Renderer sub-class as the renderer for this Player</p>
 
-        setRenderer : <span class="function"><span class="params">(newRenderer)</span> =&gt;</span>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        setRenderer : <span class="function"><span class="params">(newRenderer)</span> =&gt;</span>
             <span class="property">@renderer</span> = newRenderer
             <span class="property">@renderer</span>.width = <span class="property">@canvas</span>.clientWidth
-            <span class="property">@renderer</span>.height = <span class="property">@canvas</span>.clientHeight
+            <span class="property">@renderer</span>.height = <span class="property">@canvas</span>.clientHeight</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>The step phase</p>
 
-        step :<span class="function"> =&gt;</span>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        step :<span class="function"> =&gt;</span>
             <span class="keyword">if</span> <span class="property">@renderer</span>.looping <span class="keyword">and</span> <span class="property">@renderer</span>.duration &gt; <span class="number">0</span>
                 <span class="keyword">if</span> <span class="property">@frame</span> &gt; <span class="property">@renderer</span>.duration
                     <span class="property">@frame</span> = <span class="number">0</span>
@@ -162,9 +266,22 @@
             <span class="property">@renderer</span>.frame = <span class="property">@frame</span>
             <span class="property">@renderer</span>.width = <span class="property">@canvas</span>.clientWidth
             <span class="property">@renderer</span>.height = <span class="property">@canvas</span>.clientHeight
-            <span class="keyword">if</span> <span class="property">@renderer</span>.step? <span class="keyword">then</span> <span class="property">@renderer</span>.step()
+            <span class="keyword">if</span> <span class="property">@renderer</span>.step? <span class="keyword">then</span> <span class="property">@renderer</span>.step()</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Stops the player, resets itself and the renderer</p>
 
-        stop :<span class="function"> =&gt;</span>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        stop :<span class="function"> =&gt;</span>
             <span class="property">@frame</span> = <span class="number">0</span>
             <span class="property">@running</span> = <span class="literal">false</span>
             <span class="property">@ctx</span>.clearRect <span class="number">0</span>, <span class="number">0</span>, <span class="property">@width</span>, <span class="property">@height</span>

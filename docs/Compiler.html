@@ -91,9 +91,26 @@ main : ClassOne</code></pre>
             
             <div class="content"><div class='highlight'><pre>define [], <span class="function"><span class="params">()</span> -&gt;</span>
     <span class="class"><span class="keyword">class</span> <span class="title">Compiler</span></span>
-        constructor : <span class="function"><span class="params">(<span class="property">@ctx</span>)</span> -&gt;</span>
+        constructor : <span class="function"><span class="params">(<span class="property">@ctx</span>)</span> -&gt;</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Compiles a script such as the one described above.
+Attempts to init, step &amp; render.
+If any of these methods fail, the corresponding error method is called
+Override these methods to handle errors. 
+If no errors are detected, a new instance of the script is compiled and returned</p>
 
-        compile : <span class="function"><span class="params">(code)</span> =&gt;</span>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        compile : <span class="function"><span class="params">(code)</span> =&gt;</span>
             df = <span class="literal">null</span>
             <span class="keyword">try</span>
                 obj = CoffeeScript.eval code, {<span class="attribute">bare</span>: <span class="literal">true</span>}
@@ -133,11 +150,11 @@ main : ClassOne</code></pre>
         </li>
         
         
-        <li id="section-3">
+        <li id="section-4">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-3">&#182;</a>
+                <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
               <p>Implement these callbacks to handle compilation errors</p>
 

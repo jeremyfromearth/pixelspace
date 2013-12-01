@@ -11,15 +11,15 @@
 
         <script>
             require(['js/config'], function() {
-                require(['spectrum', 'js/Motion'], function(Spectrum, Motion) {
+                require(['spectrum', 'js/Motion'], function(Spectrum, App) {
                     var canvas = document.getElementById("canvas");
                     var ctx = canvas.getContext('2d');
-                    var renderer = new Motion(ctx);
+                    var app = new App(ctx);
 
                     var player = new Spectrum.Player(canvas);
-                    player.setRenderer(renderer);
+                    player.setRenderer(app);
 
-                    renderer.init()
+                    app.init()
                     player.run();
                 });
             });

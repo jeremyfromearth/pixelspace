@@ -12,15 +12,15 @@
 
         <script>
             require(['js/config'], function() {
-                require(['spectrum', 'js/Basic'], function(Spectrum, Basic) {
+                require(['spectrum', 'js/Basic'], function(Spectrum, App) {
                     var canvas = document.getElementById("canvas");
                     var ctx = canvas.getContext('2d');
-                    var basic = new Basic(ctx);
+                    var app = new App(ctx);
 
                     var player = new Spectrum.Player(canvas);
-                    player.setRenderer(basic);
+                    player.setRenderer(app);
 
-                    basic.init();
+                    app.init();
                     player.run();
                 });
             });

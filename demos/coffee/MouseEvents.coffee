@@ -27,9 +27,7 @@ define ['renderer'], (Renderer) ->
                 if p?
                     @alpha p.alpha
                     @color p.color 
-                    @point p.x, p.y, p.radius * p.scale
-                    @color "#ffffff"
-                    @point p.x, p.y, p.radius * p.scale, false
+                    @circle p.x, p.y, p.radius * p.scale
                 i++
             
             @alpha 1
