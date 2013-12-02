@@ -21,7 +21,6 @@
       };
 
       Basic.prototype.render = function() {
-        console.log("render");
         this.font("bold 80pt Baskerville");
         this.color("#ffffff");
         this.text(165, 250, "SPECTRUM", false);
