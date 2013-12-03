@@ -204,6 +204,19 @@ define ['utils'], () ->
         saveTransform : =>
             @ctx.save()
 
+        # Sets a drop shadow on all subsequent draw commands
+        shadow : (offsetX, offsetY, blur, color) ->
+            @ctx.shadowOffsetX = offsetX
+            @ctx.shadowOffsetY = offsetY
+            @ctx.shadowBlur = blur
+            @ctx.shadowColor = color
+
+        # Clears the drop shadow on all subsequent draw commands
+        shadowClear : () ->
+            @ctx.shadowOffsetX = 0
+            @ctx.shadowOffsetY = 0
+            @ctx.shadowBlur = 0
+
         # Sets the scale of the drawing context
         scale : (x_scale, y_scale) =>
             @ctx.scale x_scale, y_scale
