@@ -143,12 +143,10 @@ define ['utils'], () ->
         # @polygonRing 100, 100, 20, 60, 30, 3, true 
         # ```
         polygonRing : (x, y, innerRadius, outerRadius, innerSides = 90, outerSides = 90, solid = true) =>
-
             p = {x : 0, y : 0}
             inc = Math.TWO_PI / outerSides
 
             @ctx.beginPath()
-
             for n in [0..outerSides] by 1
                 p.x = x + Math.cos(inc * n) * outerRadius
                 p.y = y + Math.sin(inc * n) * outerRadius
@@ -166,6 +164,7 @@ define ['utils'], () ->
                 else
                     @ctx.lineTo(p.x, p.y)
 
+            @ctx.closePath()
             if solid then @ctx.fill() else @ctx.stroke()
 
         # Returns a random color in rgb format
