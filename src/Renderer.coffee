@@ -34,9 +34,9 @@ define ['utils'], () ->
             @ctx.globalAlpha = a 
 
         # Draws and arc
-        arc : (x, y, radius, start_angle, end_angle, solid = true) =>
+        arc : (x, y, radius, startAngle, endAngle, solid = true) =>
             @ctx.beginPath()
-            @ctx.arc x, y, radius, start_angle, end_angle
+            @ctx.arc x, y, radius, startAngle, endAngle
             if solid then @ctx.fill() else @ctx.stroke()
             @ctx.closePath()
 
@@ -48,9 +48,9 @@ define ['utils'], () ->
             @ctx.closePath()
 
         # Draws circles at specified points
-        circles : (point_list, radius, solid = true) =>
-            if point_list.length is 0 then return
-            @circle p[0], p[1], radius, solid for p in point_list
+        circles : (pointList, radius, solid = true) =>
+            if pointList.length is 0 then return
+            @circle p[0], p[1], radius, solid for p in pointList
 
         # Clears the drawing context and redraws the background color
         # This method is called by the player every frame before the render method is called
@@ -82,15 +82,15 @@ define ['utils'], () ->
 
         # Draws a grid
         grid : (x, y, rows, columns, width, height) =>
-            row_height = height / rows
-            col_width = width / columns
+            rowHeight = height / rows
+            colWidth = width / columns
 
             for i in [0..rows] by 1
-                ypos = (Math.round y + i * row_height) + .5
+                ypos = (Math.round y + i * rowHeight) + .5
                 @line x, ypos, x + width, ypos
 
             for i in [0..columns] by 1
-                xpos = (Math.round x + i * col_width) + .5
+                xpos = (Math.round x + i * colWidth) + .5
                 @line xpos, y, xpos, y + height
 
         # Draws a line betwen two points
@@ -102,10 +102,10 @@ define ['utils'], () ->
             @ctx.closePath()
 
         # Sets the linestyle for all subsequent draw commands
-        lineStyle : (line_width = 1.0, joint_style = "round", cap_style = "round") =>
-            @ctx.lineWidth = line_width
-            @ctx.lineJoin = joint_style
-            @ctx.lineCap = cap_style
+        lineStyle : (lineWidth = 1.0, jointStyle = "round", capStyle = "round") =>
+            @ctx.lineWidth = lineWidth
+            @ctx.lineJoin = jointStyle
+            @ctx.lineCap = capStyle
 
         # Draws a series of lines that define shape
         # Lines can be optionally closed and and left un-filled to draw a series of connected lines
@@ -116,10 +116,10 @@ define ['utils'], () ->
         # #Draw connected line segments only
         # @shape [[0, 0], [10, 0], [10, 10], [0, 10], [0, 0]], false, false 
         # ```
-        shape : (point_list, solid = true, closed=true) =>
-            if point_list.length is 0 then return
+        shape : (pointList, solid = true, closed=true) =>
+            if pointList.length is 0 then return
             @ctx.beginPath()
-            @ctx.lineTo p[0], p[1] for p in point_list
+            @ctx.lineTo p[0], p[1] for p in pointList
             if closed
                 @ctx.closePath()
                 if solid then @ctx.fill() else @ctx.stroke() 
@@ -142,26 +142,26 @@ define ['utils'], () ->
         # #Draws a triangle with a hole in the center
         # @polygonRing 100, 100, 20, 60, 30, 3, true 
         # ```
-        polygonRing : (x, y, inner_radius, outer_radius, inner_sides = 90, outer_sides = 90, solid = true) =>
+        polygonRing : (x, y, innerRadius, outerRadius, innerSides = 90, outerSides = 90, solid = true) =>
 
             p = {x : 0, y : 0}
-            inc = Math.TWO_PI / outer_sides
+            inc = Math.TWO_PI / outerSides
 
             @ctx.beginPath()
 
-            for n in [0..outer_sides] by 1
-                p.x = x + Math.cos(inc * n) * outer_radius
-                p.y = y + Math.sin(inc * n) * outer_radius
+            for n in [0..outerSides] by 1
+                p.x = x + Math.cos(inc * n) * outerRadius
+                p.y = y + Math.sin(inc * n) * outerRadius
                 if n is 0
                     @ctx.moveTo p.x, p.y
                 else
                     @ctx.lineTo p.x, p.y    
 
-            inc = Math.TWO_PI / inner_sides
-            for n in [inner_sides..0] by -1
-                p.x = x + Math.cos(inc * n) * inner_radius
-                p.y = y + Math.sin(inc * n) * inner_radius
-                if n is inner_sides
+            inc = Math.TWO_PI / innerSides
+            for n in [innerSides..0] by -1
+                p.x = x + Math.cos(inc * n) * innerRadius
+                p.y = y + Math.sin(inc * n) * innerRadius
+                if n is innerSides
                     @ctx.moveTo p.x, p.y
                 else
                     @ctx.lineTo(p.x, p.y)
@@ -187,17 +187,17 @@ define ['utils'], () ->
             @ctx.rotate theta
 
         # Draws a rounded rectangle
-        roundedRectangle : (x, y, width, height, corner_radius, solid = true) =>
+        roundedRectangle : (x, y, width, height, cornerRadius, solid = true) =>
             @ctx.beginPath();  
-            @ctx.moveTo x, y + corner_radius
-            @ctx.lineTo x, y + height - corner_radius  
-            @ctx.quadraticCurveTo x , y + height, x + corner_radius, y + height  
-            @ctx.lineTo x + width - corner_radius, y + height  
-            @ctx.quadraticCurveTo x + width, y + height, x + width, y + height - corner_radius  
-            @ctx.lineTo x + width, y + corner_radius  
-            @ctx.quadraticCurveTo x + width, y , x + width - corner_radius, y
-            @ctx.lineTo x + corner_radius, y  
-            @ctx.quadraticCurveTo x, y, x, y + corner_radius  
+            @ctx.moveTo x, y + cornerRadius
+            @ctx.lineTo x, y + height - cornerRadius  
+            @ctx.quadraticCurveTo x , y + height, x + cornerRadius, y + height  
+            @ctx.lineTo x + width - cornerRadius, y + height  
+            @ctx.quadraticCurveTo x + width, y + height, x + width, y + height - cornerRadius  
+            @ctx.lineTo x + width, y + cornerRadius  
+            @ctx.quadraticCurveTo x + width, y , x + width - cornerRadius, y
+            @ctx.lineTo x + cornerRadius, y  
+            @ctx.quadraticCurveTo x, y, x, y + cornerRadius  
             if solid then @ctx.fill() else @ctx.stroke()
 
         # Saves the drawing context
@@ -218,8 +218,8 @@ define ['utils'], () ->
             @ctx.shadowBlur = 0
 
         # Sets the scale of the drawing context
-        scale : (x_scale, y_scale) =>
-            @ctx.scale x_scale, y_scale
+        scale : (scaleX, scaleY) =>
+            @ctx.scale scaleX, scaleY
 
         # Draws text
         text : (x, y, text, solid = true) => 
