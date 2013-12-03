@@ -27,6 +27,11 @@ define [], () ->
         dy *= dy 
         return Math.sqrt(dx + dy)  
 
+    # Returns array of RGB value of supplied hex value
+    # Input value is expected to be in 0xrrggbb format
+    Math.hexToRGB = (hex) ->
+        return [hex >> 16, (hex >> 8) & 0xff, hex & 0xff]
+
     # Interpolates a value between 0.0 and 1.0 to a correspondig value between min and max
     # ``` 
     # Math.interpolateLin(.2, 0, 100) # 20
