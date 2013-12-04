@@ -19,16 +19,20 @@ define [], () ->
     # CONSTANTS
     Math.TWO_PI = Math.PI * 2
 
-    # Test whether a given point is in a rectangle
+    # Returns a boolean indicating that the point (px, py) is contained by the circle 
     Math.hitTestCircle = (px, py, x, y, r) ->
         return Math.distance(px, py, x, y) <= r 
     
+    # Returns a boolean indicating that the point (px, py) is contained in the rectangle
     Math.hitTestRectangle = (px, py, x, y, w, h) ->
         return px >= x && px <= x + w && py >= y && py <= y + h
 
-    Math.hitTestRing = (px, py, x, y, r, innerRadius, outerRadius) ->
-        return false
+    # Returns a boolean that the point (px, py) is with the band of a ring shape 
+    Math.hitTestRing = (px, py, x, y, r1, r2) ->
+        d = Math.distance(px, py, x, y)
+        return d > r1 and d < r2 
 
+    # Returns a boolean that the point (px, py) is contained by the triangle
     Math.hitTestTriangle = (px, py, x0, y0, x1, y1, x2, y2) ->
         A = .5 * (-y1 * x2 + y0 * (-x1 + x2) + x0 * (y1 - y2) + x1 * y2)
         s = (y0 * x2 - x0 * y2 + (y2 - y0) * px + (x0 - x2) * py)

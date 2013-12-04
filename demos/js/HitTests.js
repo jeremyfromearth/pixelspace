@@ -28,7 +28,11 @@
         this.tx1 = this.centerX + 150;
         this.ty1 = this.centerY + 50;
         this.tx2 = this.centerX + 400;
-        return this.ty2 = this.centerY + 50;
+        this.ty2 = this.centerY + 50;
+        this.r2x = this.centerX;
+        this.r2y = this.cy + 150;
+        this.r2r1 = 20;
+        return this.r2r2 = 50;
       };
 
       HitTests.prototype.render = function() {
@@ -49,7 +53,13 @@
         } else {
           this.color("#ffffff");
         }
-        return this.shape([[this.tx0, this.ty0], [this.tx1, this.ty1], [this.tx2, this.ty2]], true, true);
+        this.shape([[this.tx0, this.ty0], [this.tx1, this.ty1], [this.tx2, this.ty2]], true, true);
+        if (Math.hitTestRing(this.mouseX, this.mouseY, this.r2x, this.r2y, this.r2r1, this.r2r2)) {
+          this.color("#000000");
+        } else {
+          this.color("#ffffff");
+        }
+        return this.polygonRing(this.r2x, this.r2y, this.r2r1, this.r2r2, 16, 36);
       };
 
       return HitTests;
