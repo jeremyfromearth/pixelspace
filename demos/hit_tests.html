@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Spectrum Basic Demo</title>
+        <title>Picking</title>
 
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="css/main.css">
@@ -12,7 +12,7 @@
 
         <script>
             require(['js/config'], function() {
-                require(['spectrum', 'js/Basic'], function(Spectrum, App) {
+                require(['spectrum', 'js/HitTests'], function(Spectrum, App) {
                     var canvas = document.getElementById("canvas");
                     var ctx = canvas.getContext('2d');
                     var app = new App(ctx);
