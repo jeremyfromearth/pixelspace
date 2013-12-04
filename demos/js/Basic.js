@@ -29,7 +29,8 @@
         this.color("#45d137");
         this.circle(this.cx, this.cy + 20, 10);
         this.color("#3762d1");
-        return this.circle(this.cx + 25, this.cy + 20, 10);
+        this.circle(this.cx + 25, this.cy + 20, 10);
+        return this.color("white");
       };
 
       return Basic;

@@ -18,3 +18,4 @@ define ['renderer'], (Renderer) ->
             @circle @cx, @cy + 20, 10
             @color "#3762d1"
             @circle @cx + 25, @cy + 20, 10
+            @color "white"

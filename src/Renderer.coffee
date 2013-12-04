@@ -142,27 +142,20 @@ define ['utils'], () ->
         # #Draws a triangle with a hole in the center
         # @polygonRing 100, 100, 20, 60, 30, 3, true 
         # ```
-        polygonRing : (x, y, innerRadius, outerRadius, innerSides = 90, outerSides = 90, solid = true) =>
+        polygonRing : (x, y, innerRadius, outerRadius, innerSides = 90, outerSides = 90, arcLength = Math.TWO_PI, solid = true) =>
             p = {x : 0, y : 0}
-            inc = Math.TWO_PI / outerSides
-
+            inc = arcLength / outerSides
             @ctx.beginPath()
             for n in [0..outerSides] by 1
                 p.x = x + Math.cos(inc * n) * outerRadius
                 p.y = y + Math.sin(inc * n) * outerRadius
-                if n is 0
-                    @ctx.moveTo p.x, p.y
-                else
-                    @ctx.lineTo p.x, p.y    
+                @ctx.lineTo p.x, p.y    
 
-            inc = Math.TWO_PI / innerSides
+            inc =  arcLength / innerSides
             for n in [innerSides..0] by -1
                 p.x = x + Math.cos(inc * n) * innerRadius
                 p.y = y + Math.sin(inc * n) * innerRadius
-                if n is innerSides
-                    @ctx.moveTo p.x, p.y
-                else
-                    @ctx.lineTo(p.x, p.y)
+                @ctx.lineTo(p.x, p.y)
 
             @ctx.closePath()
             if solid then @ctx.fill() else @ctx.stroke()
@@ -177,6 +170,7 @@ define ['utils'], () ->
         # Draws a rectangle
         rectangle : (x, y, width, height, solid = true) =>
             if solid then @ctx.fillRect(x, y, width, height) else @ctx.strokeRect(x, y, width, height)  
+
         # Restores the drawing context
         restoreTransform : =>
             @ctx.restore()
