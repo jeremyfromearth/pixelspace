@@ -19,6 +19,9 @@ define [], () ->
     # CONSTANTS
     Math.TWO_PI = Math.PI * 2
 
+    Math.clamp = (n, min, max) ->
+        return Math.min(Math.max(n, min), max)
+
     # Returns a boolean indicating that the point (px, py) is contained by the circle 
     Math.hitTestCircle = (px, py, x, y, r) ->
         return Math.distance(px, py, x, y) <= r 
