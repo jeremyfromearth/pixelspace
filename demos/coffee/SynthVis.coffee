@@ -12,13 +12,14 @@ define ['renderer'], (Renderer) ->
                 @gain.connect @audioCtx.destination
                 @freqData = new Uint8Array(@analyzer.frequencyBinCount)
                 @stepInterval = 5
+                @gain.gain.value = 0
                 @oscillator.start 0
-                @playing = true
+                @playing = false
             @bg = "#222222"
 
         step : () ->
             if @audioCtx? and @stepCount % @stepInterval is 0 and @playing
-                @gain.gain.value = Math.clamp(Math.transpose(@mouseY, 0, @height, 1, 0), 0, 1)
+                @gain.gain.value = Math.clamp(Math.transpose(@mouseY, 0, @height, .5, 0), 0, .5)
                 @oscillator.frequency.value = Math.clamp(Math.transpose(@mouseX, 0, @width, 20, 2000), 20, 2000)
                 @analyzer.getByteFrequencyData @freqData
 
@@ -27,7 +28,7 @@ define ['renderer'], (Renderer) ->
             if @audioCtx? 
                 @text 10, 20, "x: frequency " + Math.roundTo @oscillator.frequency.value, 2
                 @text 10, 35, "y: amplitude " + Math.roundTo @gain.gain.value, 2
-                @text 10, 50, "Click to toggle playback"
+                @text 10, 50, "Click anywhere to toggle playback"
                 if @playing
                     for x in [0..@freqData.length * .5]
                         value = @freqData[x] * 1.55555 
@@ -40,7 +41,7 @@ define ['renderer'], (Renderer) ->
             if @playing 
                 @gain.gain.value = 0
             else 
-                @gain.gain.value = 1 
+                @gain.gain.value = .5 
             @playing = !@playing
 
 

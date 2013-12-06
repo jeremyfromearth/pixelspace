@@ -26,15 +26,16 @@
           this.gain.connect(this.audioCtx.destination);
           this.freqData = new Uint8Array(this.analyzer.frequencyBinCount);
           this.stepInterval = 5;
+          this.gain.gain.value = 0;
           this.oscillator.start(0);
-          this.playing = true;
+          this.playing = false;
         }
         return this.bg = "#222222";
       };
 
       SynthesisVisualization.prototype.step = function() {
         if ((this.audioCtx != null) && this.stepCount % this.stepInterval === 0 && this.playing) {
-          this.gain.gain.value = Math.clamp(Math.transpose(this.mouseY, 0, this.height, 1, 0), 0, 1);
+          this.gain.gain.value = Math.clamp(Math.transpose(this.mouseY, 0, this.height, .5, 0), 0, .5);
           this.oscillator.frequency.value = Math.clamp(Math.transpose(this.mouseX, 0, this.width, 20, 2000), 20, 2000);
           return this.analyzer.getByteFrequencyData(this.freqData);
         }
@@ -46,7 +47,7 @@
         if (this.audioCtx != null) {
           this.text(10, 20, "x: frequency " + Math.roundTo(this.oscillator.frequency.value, 2));
           this.text(10, 35, "y: amplitude " + Math.roundTo(this.gain.gain.value, 2));
-          this.text(10, 50, "Click to toggle playback");
+          this.text(10, 50, "Click anywhere to toggle playback");
           if (this.playing) {
             _results = [];
             for (x = _i = 0, _ref1 = this.freqData.length * .5; 0 <= _ref1 ? _i <= _ref1 : _i >= _ref1; x = 0 <= _ref1 ? ++_i : --_i) {
@@ -65,7 +66,7 @@
         if (this.playing) {
           this.gain.gain.value = 0;
         } else {
-          this.gain.gain.value = 1;
+          this.gain.gain.value = .5;
         }
         return this.playing = !this.playing;
       };
