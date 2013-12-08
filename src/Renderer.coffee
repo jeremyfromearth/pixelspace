@@ -3,7 +3,8 @@
 
 define ['utils'], () ->
     class Renderer
-        constructor : (@ctx, @id) ->
+        constructor : (@ctx, @id) -> 
+
             # Width of the drawing context
             @width = 0
             # Height of the drawing context 
