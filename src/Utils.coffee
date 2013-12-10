@@ -1,5 +1,4 @@
 define [], () ->
-    
     # Array Utils
     # ======
 
@@ -25,7 +24,7 @@ define [], () ->
     # Returns a boolean indicating that the point (px, py) is contained by the circle 
     Math.hitTestCircle = (px, py, x, y, r) ->
         return Math.distance(px, py, x, y) <= r 
-    
+
     # Returns a boolean indicating that the point (px, py) is contained in the rectangle
     Math.hitTestRectangle = (px, py, x, y, w, h) ->
         return px >= x && px <= x + w && py >= y && py <= y + h
@@ -44,7 +43,7 @@ define [], () ->
         s *= sign
         t *= sign
         return s > 0 and t > 0 and (s + t) < 2 * A * sign
-    
+
     Math.hitTestWedge = (px, py, x, y, r, startAngle, endAngle) ->
         return false
 
@@ -110,7 +109,3 @@ define [], () ->
     # ```    
     Math.transpose = (n, min1, max1, min2, max2) ->
         return Math.interpolateLin(Math.normalize(n, min1, max1), min2, max2)
-
-
-
-    

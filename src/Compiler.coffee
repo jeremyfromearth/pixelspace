@@ -15,7 +15,6 @@
 
 
 #The above example demonstrates the expected format. The script must define a main property that points to sub-class of the Renderer
-
 define [], () ->
     class Compiler
         constructor : (@ctx) ->
@@ -77,5 +76,3 @@ define [], () ->
 
         onStepError : (error) ->
             console.log "onStepError()"
-
-        

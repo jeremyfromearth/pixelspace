@@ -1,4 +1,4 @@
-define ['renderer'], (Renderer) ->    
+define ['renderer'], (Renderer) ->
     class Basic extends Renderer
         # Initialize instance variables
         init : ->
@@ -18,4 +18,3 @@ define ['renderer'], (Renderer) ->
             @circle @cx, @cy + 20, 10
             @color "#3762d1"
             @circle @cx + 25, @cy + 20, 10
-            @color "white"
