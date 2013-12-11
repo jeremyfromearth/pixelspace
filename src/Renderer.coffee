@@ -155,6 +155,8 @@ define ['utils'], (Util) ->
             for n in [innerSides..0] by -1
                 p.x = x + Math.cos(inc * n) * innerRadius
                 p.y = y + Math.sin(inc * n) * innerRadius
+                if n == innerSides
+                    @ctx.moveTo p.x, p.y
                 @ctx.lineTo(p.x, p.y)
 
             @ctx.closePath()
