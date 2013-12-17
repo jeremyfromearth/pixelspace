@@ -48,7 +48,7 @@
           this.color("#ffffff");
         }
         this.circle(this.cx, this.cy, this.cr);
-        if (Math.hitTestTriangle(this.mouseX, this.mouseY, this.tx0, this.ty0, this.tx1, this.ty1, this.tx2, this.ty2)) {
+        if (Math.hitTestTriangle(this.mouseX, this.mouseY, [this.tx0, this.ty0], [this.tx1, this.ty1], [this.tx2, this.ty2])) {
           this.color("#000000");
         } else {
           this.color("#ffffff");

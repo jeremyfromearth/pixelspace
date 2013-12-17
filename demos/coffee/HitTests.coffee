@@ -47,7 +47,7 @@ define ['renderer'], (Renderer) ->
             @circle @cx, @cy, @cr
             
             # Triangle
-            if Math.hitTestTriangle @mouseX, @mouseY, @tx0, @ty0, @tx1, @ty1, @tx2, @ty2
+            if Math.hitTestTriangle @mouseX, @mouseY, [@tx0, @ty0], [@tx1, @ty1], [@tx2, @ty2]
                 @color "#000000"
             else
                 @color "#ffffff"

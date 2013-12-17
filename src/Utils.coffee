@@ -34,8 +34,15 @@ define [], () ->
         d = Math.distance(px, py, x, y)
         return d > r1 and d < r2 
 
-    # Returns a boolean that the point (px, py) is contained by the triangle
-    Math.hitTestTriangle = (px, py, x0, y0, x1, y1, x2, y2) ->
+    # Returns a boolean that the point (px, py) is contained by the triangle p1, p2, p3
+    # p1, p2, p3 are arrays of two points each
+    Math.hitTestTriangle = (px, py, p1, p2, p3) ->
+        x0 = p1[0]
+        y0 = p1[1]
+        x1 = p2[0]
+        y1 = p2[1]
+        x2 = p3[0]
+        y2 = p3[1]
         A = .5 * (-y1 * x2 + y0 * (-x1 + x2) + x0 * (y1 - y2) + x1 * y2)
         s = (y0 * x2 - x0 * y2 + (y2 - y0) * px + (x0 - x2) * py)
         t = (x0 * y1 - y0 * x1 + (y0 - y1) * px + (x1 - x0) * py)
