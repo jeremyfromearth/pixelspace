@@ -5,18 +5,8 @@ Spectrum is an canvas rendering framework with a concise delcaritive drawing API
 
 > Tested in Chrome, Firefox & Safari
 
-To build the lib files use: 
-```
-$ cd spectrum/
-$ cake watch:js
-
-```
-To build the docs, first install docco on node and then use:
-```
-$ cd spectrum/
-$ docco src/*.coffee
-```
-A Spectrum app is comprised of an instance of the `Player` class and an instance of a `Renderer` sub-class. The `Player` is responsible for managing the playback of the renderer. It does so through the two methods that `Renderer` subclass should override: step() and render()
+A Spectrum app is comprised of an instance of the `Player` class and an instance of a `Renderer` sub-class. The `Player` is responsible for managing the playback of the renderer. It does so through the two methods that a `Renderer` subclass should override: `step()` and `render()`
+<br/>
 <br/>
 Example of a `Renderer` subclass:
 ```
@@ -35,7 +25,8 @@ define ['renderer'], (Renderer) ->
             @color "orange"
             @rectange @x, @y, 100, 100
 ```
-The init method initializes instance variable, which can also be done within the constructor. However, when using the constructor, it is important to also call the constructor of the super-class. The `step()` method is intended for updating data and values and the `render()` method is for calling drawing commands.
+The init method initializes instance variable, which can also be done within the constructor. However, when using the constructor, it is important to also call the constructor of the super-class. The `step()` method is intended for updating data and variables and the `render()` method is intended for calling drawing commands.
+<br/>
 <br/>
 Example of initializing a `Player`:
 ```
