@@ -9,6 +9,7 @@ To build the lib files use:
 ```
 $ cd spectrum/
 $ cake watch:js
+
 ```
 To build the docs, first install docco on node and then use:
 ```
@@ -34,7 +35,7 @@ define ['renderer'], (Renderer) ->
             @color "orange"
             @rectange @x, @y, 100, 100
 ```
-The init method initializes instance variable. This can also be done inside the constructor, but it is important to also call the constructor of the super-class as well. The `step()` method is intended for updating data and values and the `render()` method is for calling drawing commands.
+The init method initializes instance variable, which can also be done within the constructor. However, when using the constructor, it is important to also call the constructor of the super-class. The `step()` method is intended for updating data and values and the `render()` method is for calling drawing commands.
 <br/>
 Example of initializing a `Player`:
 ```
