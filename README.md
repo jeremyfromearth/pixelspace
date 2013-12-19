@@ -1,7 +1,7 @@
 spectrum
 ========
 
-Spectrum is an canvas rendering framework with a concise delcaritive drawing API and a handful of helpful utilitie functions. 
+**Spectrum is an HTML5 Canvas framework with a concise drawing API, simple animation loop and a handful of helpful utilities.**
 
 > Tested in Chrome, Firefox & Safari
 
