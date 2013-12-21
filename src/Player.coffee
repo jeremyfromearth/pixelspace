@@ -129,5 +129,7 @@ define [], () ->
                     document.mozCancelFullScreen()
             else
                 @isFullScreen = true
-                if @canvas.webkiRequestFullScreen
+                if @canvas.webkitRequestFullScreen?
                     @canvas.webkitRequestFullScreen Element.ALLOW_KEYBOARD_INPUT
+                if @canvas.mozRequestFullScreen?
+                    @canvas.mozRequestFullScreen()
