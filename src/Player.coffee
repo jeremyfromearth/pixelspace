@@ -51,7 +51,6 @@ define [], () ->
                 if event.target == @canvas
                     switch event.type
                         when "mousedown"
-                            @toggleFullScreen()
                             @renderer.mouseIsDown = true
                             if @renderer.onMouseDown?
                                 @renderer.onMouseDown x, y
@@ -122,22 +121,13 @@ define [], () ->
                     @renderer.clear()
         
         toggleFullScreen : () ->
-            console.log @isFullScreen
-            requestFullScreen = @requestFullScreen()
-            cancelFullScreen = @cancelFullScreen()
-            if !requestFullScreen or !cancelFullScreen
-                return
             if @isFullScreen
                 @isFullScreen = false
-                cancelFullScreen()
+                if document.webkitCancelFullScreen?
+                    document.webkitCancelFullScreen()
+                if document.mozCancelFullScreen?
+                    document.mozCancelFullScreen()
             else
                 @isFullScreen = true
-                requestFullScreen()
-
-        requestFullScreen : () ->
-            return @canvas.webkitRequestFullScreen or
-                   @canvas.mozRequestFullScreen
-        
-        cancelFullScreen : () ->
-            return document.webkitCancelFullScreen or
-                   document.mozCancelFullScreen
+                if @canvas.webkiRequestFullScreen
+                    @canvas.webkitRequestFullScreen Element.ALLOW_KEYBOARD_INPUT
