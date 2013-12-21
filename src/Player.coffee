@@ -4,6 +4,7 @@ define [], () ->
         running : false
 
         constructor : (@canvas) ->
+            @isFullScreen = false
             @stepCount = 0
             @width = @canvas.clientWidth
             @height = @canvas.clientHeight
@@ -50,6 +51,7 @@ define [], () ->
                 if event.target == @canvas
                     switch event.type
                         when "mousedown"
+                            @toggleFullScreen()
                             @renderer.mouseIsDown = true
                             if @renderer.onMouseDown?
                                 @renderer.onMouseDown x, y
@@ -118,3 +120,24 @@ define [], () ->
             if @renderer?
                 if @renderer.clear?
                     @renderer.clear()
+        
+        toggleFullScreen : () ->
+            console.log @isFullScreen
+            requestFullScreen = @requestFullScreen()
+            cancelFullScreen = @cancelFullScreen()
+            if !requestFullScreen or !cancelFullScreen
+                return
+            if @isFullScreen
+                @isFullScreen = false
+                cancelFullScreen()
+            else
+                @isFullScreen = true
+                requestFullScreen()
+
+        requestFullScreen : () ->
+            return @canvas.webkitRequestFullScreen or
+                   @canvas.mozRequestFullScreen
+        
+        cancelFullScreen : () ->
+            return document.webkitCancelFullScreen or
+                   document.mozCancelFullScreen
