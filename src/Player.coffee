@@ -8,7 +8,7 @@ define [], () ->
 
         constructor : (@canvas) ->
             @isFullScreen = false
-            @fullScreenMode = 
+            @fullScreenMode = Player.FS_RESIZE
             @stepCount = 0
             @width = @canvas.clientWidth
             @height = @canvas.clientHeight
@@ -146,9 +146,17 @@ define [], () ->
                     document.webkitCancelFullScreen()
                 if document.mozCancelFullScreen?
                     document.mozCancelFullScreen()
+                if document.cancelFullScreen?
+                    document.cancelFullScreen()
+                if document.msCancelFullScreen?
+                    document.msCanceFullScreen()
             else
                 @isFullScreen = true
                 if @canvas.webkitRequestFullScreen?
                     @canvas.webkitRequestFullScreen Element.ALLOW_KEYBOARD_INPUT
                 if @canvas.mozRequestFullScreen?
                     @canvas.mozRequestFullScreen()
+                if @canvas.requestFullScreen?
+                    @canvas.requestFullScreen()
+                if @canvas.msRequestFullScreen?
+                    @canvas.msRequestFullScreen()
