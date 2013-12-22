@@ -7,3 +7,4 @@ define [], () ->
             compiler: '../lib/spectrum/Compiler'
             renderer: '../lib/spectrum/Renderer'
             utils: '../lib/spectrum/Utils'
+            dispatcher: '../lib/spectrum/Dispatcher'

@@ -3,8 +3,12 @@ define [], () ->
     class Player
         running : false
 
+        @FS_RESIZE = 'fs_resize'
+        @FS_NO_RESIZE = 'fs_no_resize'
+
         constructor : (@canvas) ->
             @isFullScreen = false
+            @fullScreenMode = 
             @stepCount = 0
             @width = @canvas.clientWidth
             @height = @canvas.clientHeight
@@ -12,6 +16,8 @@ define [], () ->
             @renderer = null 
             @loop()
 
+            window.addEventListener "keyup", @onWindowKeyboardEvent, true
+            window.addEventListener "keydown", @onWindowKeyboardEvent, true
             window.addEventListener "mousedown", @onWindowMouseEvent, true
             window.addEventListener "mousemove", @onWindowMouseEvent, true
             window.addEventListener "mouseout", @onWindowMouseEvent, true
@@ -39,6 +45,19 @@ define [], () ->
                         if @stepCount is 0
                             @step()
                             @render()
+
+        onWindowKeyboardEvent : (event) =>
+            if @renderer?
+                switch event.type
+                    when 'keydown'
+                        if @renderer.onKeyDown?
+                            @renderer.onKeyDown event.keyCode, 
+                                      event.altKey, event.ctrlKey, 
+                                      event.shiftKey, event.timeStamp
+                        if @renderer.onKeyUp?
+                            @renderer.onKeyUp event.keyCode, 
+                                      event.altKey, event.ctrlKey, 
+                                      event.shiftKey, event.timeStamp
 
         # Capture all mouse events on the window and pass them to the renderer when it is the target
         onWindowMouseEvent : (event) =>
