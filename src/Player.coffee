@@ -1,21 +1,21 @@
 #This class controls the frame inint/step/render cycle for an instance or sub-class of the Renderer class. It can be started, stopped, paused and un-paused. This class provides the renderer with data about it's environment such as the canvas width, current frame and any mouse events that occurr on the canvas.
 define [], () ->
     class Player
-        running : false
 
         @FS_RESIZE = 'fs_resize'
         @FS_NO_RESIZE = 'fs_no_resize'
 
         constructor : (@canvas) ->
-            @isFullScreen = false
-            @fullScreenMode = Player.FS_RESIZE
+            @keysDown = {}
             @stepCount = 0
+            @running = false
+            @renderer = null 
+            @isFullScreen = false
+            @ctx = @canvas.getContext "2d"
             @width = @canvas.clientWidth
             @height = @canvas.clientHeight
-            @ctx = canvas.getContext "2d"
-            @renderer = null 
-            @loop()
-
+            @fullScreenMode = Player.FS_RESIZE
+            
             window.addEventListener "keyup", @onWindowKeyboardEvent, true
             window.addEventListener "keydown", @onWindowKeyboardEvent, true
             window.addEventListener "mousedown", @onWindowMouseEvent, true
@@ -23,6 +23,8 @@ define [], () ->
             window.addEventListener "mouseout", @onWindowMouseEvent, true
             window.addEventListener "mouseover", @onWindowMouseEvent, true
             window.addEventListener "mouseup", @onWindowMouseEvent, true
+
+            @loop()
 
         # Wraps various browser specific request for animation frame
         getAnimationCallback : =>
@@ -50,10 +52,13 @@ define [], () ->
             if @renderer?
                 switch event.type
                     when 'keydown'
+                        @keysDown[event.keyCode] = yes 
                         if @renderer.onKeyDown?
                             @renderer.onKeyDown event.keyCode, 
                                       event.altKey, event.ctrlKey, 
                                       event.shiftKey, event.timeStamp
+                    when 'keyup'
+                        @keysDown[event.keyCode] = null
                         if @renderer.onKeyUp?
                             @renderer.onKeyUp event.keyCode, 
                                       event.altKey, event.ctrlKey, 

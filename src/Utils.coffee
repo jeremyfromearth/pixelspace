@@ -12,6 +12,13 @@ define [], () ->
             result.push copy.splice(r, 1)[0]
         return result
 
+    # Keyboard Utils
+    # ======
+    Keyboard = {}
+    if window?
+        window.Keyboard = Keyboard
+    Keyboard.keyCodes = {}
+
     # Math Utils
     # ======
 
