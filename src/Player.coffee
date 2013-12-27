@@ -6,7 +6,6 @@ define [], () ->
         @FS_NO_RESIZE = 'fs_no_resize'
 
         constructor : (@canvas) ->
-            @keysDown = {}
             @stepCount = 0
             @running = false
             @renderer = null 
@@ -52,13 +51,11 @@ define [], () ->
             if @renderer?
                 switch event.type
                     when 'keydown'
-                        @keysDown[event.keyCode] = yes 
                         if @renderer.onKeyDown?
                             @renderer.onKeyDown event.keyCode, 
                                       event.altKey, event.ctrlKey, 
                                       event.shiftKey, event.timeStamp
                     when 'keyup'
-                        @keysDown[event.keyCode] = null
                         if @renderer.onKeyUp?
                             @renderer.onKeyUp event.keyCode, 
                                       event.altKey, event.ctrlKey, 
