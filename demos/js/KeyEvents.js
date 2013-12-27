@@ -13,13 +13,20 @@
         return _ref;
       }
 
-      KeyEvents.prototype.init = function() {};
+      KeyEvents.prototype.init = function() {
+        return this.keyInfo = '';
+      };
 
       KeyEvents.prototype.step = function() {};
 
-      KeyEvents.prototype.render = function() {};
+      KeyEvents.prototype.render = function() {
+        this.color('black');
+        return this.text(10, 30, this.keyInfo);
+      };
 
-      KeyEvents.prototype.onKeyDown = function(keyCode, altKey, ctrlKey, shiftKey, timeStamp) {};
+      KeyEvents.prototype.onKeyDown = function(keyCode, altKey, ctrlKey, shiftKey, timeStamp) {
+        return this.keyInfo = 'keyCode: ' + keyCode + ', altKey: ' + altKey + ', ctrlKey: ' + ctrlKey + ', shiftKey: ' + shiftKey + ', timeStamp: ' + timeStamp;
+      };
 
       return KeyEvents;
 
