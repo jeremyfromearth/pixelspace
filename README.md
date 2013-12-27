@@ -23,7 +23,7 @@ define ['renderer'], (Renderer) ->
 
         render : () ->
             @color "orange"
-            @rectange @x, @y, 100, 100
+            @rectangle @x, @y, 100, 100
 ```
 The init method initializes instance variable, which can also be done within the constructor. However, when using the constructor, it is important to also call the constructor of the super-class. The `step()` method is intended for updating data and variables and the `render()` method is intended for calling drawing commands.
 <br/>
