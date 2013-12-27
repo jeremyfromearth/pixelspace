@@ -5,7 +5,7 @@ spectrum
 
 > Tested in Chrome, Firefox & Safari
 
-A Spectrum app is comprised of an instance of the `Player` class and an instance of a `Renderer` sub-class. The `Player` is responsible for managing the playback of the renderer. It does so through the two methods that a `Renderer` subclass should override: `step()` and `render()`
+A Spectrum app is comprised of an instance of the `Player` class and an instance of a `Renderer` subclass. The `Player` is responsible for managing the playback of the renderer. It does so through the two methods that a `Renderer` subclass should override: `step()` and `render()`
 <br/>
 <br/>
 Example of a `Renderer` subclass:

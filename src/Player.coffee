@@ -52,6 +52,7 @@ define [], () ->
             if @renderer?
                 switch event.type
                     when 'keydown'
+                        console.log event
                         @keysDown[event.keyCode] = yes 
                         if @renderer.onKeyDown?
                             @renderer.onKeyDown event.keyCode, 
