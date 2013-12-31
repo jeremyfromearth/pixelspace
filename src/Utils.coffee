@@ -116,3 +116,14 @@ define [], () ->
     # ```    
     Math.transpose = (n, min1, max1, min2, max2) ->
         return Math.interpolateLin(Math.normalize(n, min1, max1), min2, max2)
+
+
+    # String Utils
+    # ======
+    
+    String.alphabet = () ->
+        return 'abcdefghijklmnopqrstuvwxyz'
+
+    String.numerics = () ->
+        return '0123456789'
+
