@@ -1,6 +1,6 @@
 #The renderer class provides a drawing API that simplifies many common drawing operations.
 #Many of the methods have a similar signature. The first two parameters are often x, y coordinates and the following parameters are specific to the function. This class can be used independantly, but it is intended to be extended.   
-define ['dispatcher', 'utils'], (Util, Dispatcher) ->
+define ['dispatcher', 'utils'], (Dispatcher) ->
     class Renderer extends Dispatcher
         constructor : (@ctx, @id) -> 
             # Width of the drawing context

@@ -15,7 +15,7 @@
 
 
 #The above example demonstrates the expected format. The script must define a main property that points to sub-class of the Renderer
-define [], () ->
+define ->
     class Compiler
         constructor : (@ctx) ->
 

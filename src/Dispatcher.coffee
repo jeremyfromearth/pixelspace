@@ -1,11 +1,11 @@
-class EventDispatcher
-    callbacks : {}
+define ->
+    class Dispatcher
+        callbacks : {}
 
-    add : (eventName, callback) ->
-        @callbacks[eventName] ||= []
-        @callbacks[eventName].push callback
+        add : (eventName, callback) ->
+            @callbacks[eventName] ||= []
+            @callbacks[eventName].push callback
 
-    dispatch : (eventName, data) ->
-        @chain = @callbacks[eventName]
-        callback data for callback in chain if chain?
-
+        dispatch : (eventName, data) ->
+            @chain = @callbacks[eventName]
+            callback data for callback in chain if chain?
