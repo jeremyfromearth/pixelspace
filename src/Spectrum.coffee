@@ -3,9 +3,14 @@
 # ``` 
 # renderer = Spectrum.Renderer(ctx, id)
 # ```
-define ['renderer', 'player', 'compiler', 'utils'], (Renderer, Player, Compiler, Utils) ->
+define ['renderer', 
+        'player', 
+        'dispatcher', 
+        'utils'], 
+    (Renderer, Player, Dispatcher, Utils) ->
     class Spectrum
         @Player = Player
-        @Compiler = Compiler
         @Renderer = Renderer
+        @Dispatcher = Dispatcher
         @Utils = Utils
+

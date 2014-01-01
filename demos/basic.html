@@ -10,12 +10,12 @@
         <script src="../lib/vendor/require.js"></script> 
         <script src="js/config.js"></script>
         <script>
-            require(['spectrum', 'js/Basic'], function(Spectrum, App) {
+            require(['player', 'js/Basic'], function(Player, App) {
                 var canvas = document.getElementById("canvas");
                 var ctx = canvas.getContext('2d');
                 var app = new App(ctx);
 
-                var player = new Spectrum.Player(canvas);
+                var player = new Player(canvas);
                 player.setRenderer(app);
 
                 app.init()
