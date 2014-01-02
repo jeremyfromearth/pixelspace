@@ -1,10 +1,10 @@
-spectrum
-========
+# spectrum
 
 **Spectrum is an HTML5 Canvas framework with a concise drawing API, simple animation loop and a handful of helpful utilities.**
 
 > Tested in Chrome, Firefox & Safari
 
+## Demos
 Demos are available here: https://github.com/jeremynealbrown/visible
 <br>
 The demo repo should be cloned into a location next to spectrum.
@@ -15,7 +15,7 @@ visible/
 ```
 Some of the demos also require coffeerithms which can be found here: https://github.com/jeremynealbrown/coffeerithms
 
-
+## Anatomy of a spectrum app
 A Spectrum app is comprised of an instance of the `Player` class and an instance of a `Renderer` subclass. The `Player` is responsible for managing the playback of the renderer. It does so through the two methods that a `Renderer` subclass should override: `step()` and `render()`
 <br/>
 <br/>
@@ -37,8 +37,8 @@ define ['renderer'], (Renderer) ->
             @rectangle @x, @y, 100, 100
 ```
 The init method initializes instance variable, which can also be done within the constructor. However, when using the constructor, it is important to also call the constructor of the super-class. The `step()` method is intended for updating data and variables and the `render()` method is intended for calling drawing commands.
-<br/>
-<br/>
+<br>
+<br>
 Example of initializing a `Player`:
 ```
 canvas = getElementById 'canvas'
