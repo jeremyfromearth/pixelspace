@@ -7,12 +7,14 @@ spectrum
 
 Demos are available here: https://github.com/jeremynealbrown/visible
 <br>
-The demo repo should be cloned into a location next to the spectrum repo along with the coffeerithms repo if you want to run the examples that require it.
+The demo repo should be cloned into a location next to spectrum.
 ```
 coffeerithms/
 spectrum/
 visible/
 ```
+Some of the demos also require coffeerithms which can be found here: https://github.com/jeremynealbrown/coffeerithms
+
 
 A Spectrum app is comprised of an instance of the `Player` class and an instance of a `Renderer` subclass. The `Player` is responsible for managing the playback of the renderer. It does so through the two methods that a `Renderer` subclass should override: `step()` and `render()`
 <br/>
