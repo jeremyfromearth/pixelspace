@@ -5,7 +5,7 @@ appname     = "spectrum"
 release     = "0.1"
 
 src_path    = "./src"
-lib_path    = "./lib/spectrum"
+lib_path    = "./lib/"
 js_path     = "#{lib_path}"
 bndl_path   = "#{lib_path}/#{appname}-#{release}.js"
 min_path    = "#{lib_path}/#{appname}-#{release}.min.js"

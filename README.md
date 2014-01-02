@@ -5,7 +5,14 @@ spectrum
 
 > Tested in Chrome, Firefox & Safari
 
-To run the demos, simply open the .html files in the demos directory with your web browser. For the most part the html for each of the demos looks very similar. The only differences between each of them is the title of the page and the JavaScript file that each loads. To view the source for a given demo, look for the file in the demo/coffee directory with a matching name. For instance, demos/basic.html - demos/coffee/Basic.coffee.
+Demos are available here: https://github.com/jeremynealbrown/visible
+<br>
+The demo repo should be cloned into a location next to the spectrum repo along with the coffeerithms repo if you want to run the examples that require it.
+```
+coffeerithms/
+spectrum/
+visible/
+```
 
 A Spectrum app is comprised of an instance of the `Player` class and an instance of a `Renderer` subclass. The `Player` is responsible for managing the playback of the renderer. It does so through the two methods that a `Renderer` subclass should override: `step()` and `render()`
 <br/>
