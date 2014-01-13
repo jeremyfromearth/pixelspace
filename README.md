@@ -16,6 +16,9 @@ visible/
 Some of the demos also require coffeerithms which can be found here: https://github.com/jeremynealbrown/coffeerithms
 
 ## Anatomy of a spectrum app
+
+> For more detailed info see: http://jeremynealbrown.github.io/blog/2014/01/11/spectrum/
+
 A Spectrum app is comprised of an instance of the `Player` class and an instance of a `Renderer` subclass. The `Player` is responsible for managing the playback of the renderer. It does so through the two methods that a `Renderer` subclass should override: `step()` and `render()`
 <br/>
 <br/>
