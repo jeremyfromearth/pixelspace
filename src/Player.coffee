@@ -117,9 +117,16 @@ define ->
 
         # Sets an instance of a Renderer sub-class as the renderer for this Player
         setRenderer : (newRenderer) =>
+            if @renderer?
+                @renderer.removeListener 'fullscreen', @toggleFullscreen
             @renderer = newRenderer
             @renderer.width = @canvas.clientWidth
             @renderer.height = @canvas.clientHeight
+            @renderer.isFullScreen = @isFullScreen
+            @renderer.addListener 'fullscreen', @toggleFullScreen
+            @renderer.addListener 'fullscreen', @toggleFullScreen
+            @renderer.addListener 'fullscreen', @toggleFullScreen
+            @renderer.addListener 'fullscreen', @toggleFullScreen
 
         # The step phase
         step : =>
@@ -141,7 +148,7 @@ define ->
                 if @renderer.clear?
                     @renderer.clear()
         
-        toggleFullScreen : () ->
+        toggleFullScreen : () =>
             if @isFullScreen
                 @isFullScreen = false
                 if document.webkitCancelFullScreen?
@@ -162,3 +169,6 @@ define ->
                     @canvas.requestFullScreen()
                 if @canvas.msRequestFullScreen?
                     @canvas.msRequestFullScreen()
+
+            if @renderer?
+                @renderer.isFullScreen = @isFullScreen

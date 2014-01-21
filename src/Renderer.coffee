@@ -15,6 +15,8 @@ define ['spectrum/Dispatcher', 'spectrum/Utils'], (Dispatcher) ->
             @duration = 0
             # Background color
             @bg = "#CCCCCC"
+            # Boolean indicating that player is in fullscreen
+            @isFullScreen = false
             # Current step, incremented by Player
             @stepCount = 0
             # The current x coordinate of the mouse
@@ -78,6 +80,9 @@ define ['spectrum/Dispatcher', 'spectrum/Utils'], (Dispatcher) ->
         # ```
         font : (style) =>
             @ctx.font = style
+
+        fullscreen : () ->
+            @dispatch 'fullscreen'
 
         # Draws a grid
         grid : (x, y, rows, columns, width, height) =>
@@ -217,8 +222,8 @@ define ['spectrum/Dispatcher', 'spectrum/Utils'], (Dispatcher) ->
 
         # Draws text
         text : (x, y, text, solid = true) => 
-            if solid then @ctx.fillText(text, x, y) else @ctx.strokeText(text, x, y)
-        
+            if solid then @ctx.fillText text, x, y else @ctx.strokeText text, x, y
+
         # Translate the drawing context
         translate : (x, y) => 
             @ctx.translate x, y
