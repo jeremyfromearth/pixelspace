@@ -18,6 +18,10 @@ define  ->
     # CONSTANTS
     Math.TWO_PI = Math.PI * 2
 
+    Math.average = (terms) ->
+        return (Math.sum terms) / terms.length
+
+
     Math.clamp = (n, min, max) ->
         return Math.min(Math.max(n, min), max)
 
@@ -109,6 +113,12 @@ define  ->
     # ```
     Math.toRadians = (degrees) ->
         return Math.PI * degrees / 180
+
+    Math.sum = (terms) ->
+        n = 0
+        for x in terms
+            n += x
+        return n
 
     # Transposes a value from one range to another
     # ``` 
