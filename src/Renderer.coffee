@@ -41,11 +41,12 @@ define ['spectrum/Dispatcher', 'spectrum/Utils'], (Dispatcher) ->
             if solid then @ctx.fill() else @ctx.stroke()
             @ctx.closePath()
 
-        # Draws a bezier curve
-        # Identical to CanvasRenderingContext2D method signatute
-        bezier : (cp1x, cp1y, cp2x, cp2y, x, y) =>
+        # Draws a bezier curve between x1, y1 > x2, y2 with control point cp1 & cp2
+        bezier : (cp1x, cp1y, cp2x, cp2y, x1, y1, x2, y2) =>
             @ctx.beginPath()
-            @ctx.bezierCurveTo cp1x, cp1y, cp2x, cp2y, x, y
+            @ctx.moveTo x1, y1
+            @ctx.bezierCurveTo cp1x, cp1y, cp2x, cp2y, x2, y2
+            @ctx.stroke()
             @ctx.closePath()
 
         # Draws a single circle
