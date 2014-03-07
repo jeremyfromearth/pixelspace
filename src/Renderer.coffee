@@ -41,6 +41,13 @@ define ['spectrum/Dispatcher', 'spectrum/Utils'], (Dispatcher) ->
             if solid then @ctx.fill() else @ctx.stroke()
             @ctx.closePath()
 
+        # Draws a bezier curve
+        # Identical to CanvasRenderingContext2D method signatute
+        bezier : (cp1x, cp1y, cp2x, cp2y, x, y) =>
+            @ctx.beginPath()
+            @ctx.bezierCurveTo cp1x, cp1y, cp2x, cp2y, x, y
+            @ctx.closePath()
+
         # Draws a single circle
         circle : (x, y, radius, solid = true) =>
             @ctx.beginPath()
@@ -81,6 +88,7 @@ define ['spectrum/Dispatcher', 'spectrum/Utils'], (Dispatcher) ->
         font : (style) =>
             @ctx.font = style
 
+        # Dispatches a fullscreen event function 
         fullscreen : () ->
             @dispatch 'fullscreen'
 
