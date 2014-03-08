@@ -16,11 +16,12 @@ define  ->
     # ======
 
     # CONSTANTS
+    Math.HALF_PI = Math.PI * .5
+    Math.QTR_PI = Math.PI * .25
     Math.TWO_PI = Math.PI * 2
 
     Math.average = (terms) ->
         return (Math.sum terms) / terms.length
-
 
     Math.clamp = (n, min, max) ->
         return Math.min(Math.max(n, min), max)
@@ -127,6 +128,8 @@ define  ->
     Math.transpose = (n, min1, max1, min2, max2) ->
         return Math.interpolateLin(Math.normalize(n, min1, max1), min2, max2)
 
+    # Convenience for testing the truthiness of whether or not a given number is between two others
+    Math.within = (x, gt, lt) -> return x >= gt and x <= lt;
 
     # String Utils
     # ======
