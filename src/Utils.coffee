@@ -12,6 +12,9 @@ define  ->
             result.push copy.splice(r, 1)[0]
         return result
 
+    Array.NUMERIC = (a, b) ->
+        return a - b
+
     # Math Utils
     # ======
 
