@@ -89,6 +89,13 @@ define  ->
     Math.normalize = (n, min, max) ->
         return (n - min) / (max - min)
 
+    # Returns a random color in rgb format
+    Math.randomColor = ->
+        r = (Math.randomInRange(0, 255, true))
+        g = (Math.randomInRange(0, 255, true))
+        b = (Math.randomInRange(0, 255, true))
+        return 'rgb(' + r + ', ' + g + ', ' + b + ')'
+
     # Returns a random number between the supplied range
     # Provide optional argument of true as third param to return an integer
     Math.randomInRange = (min, max, round=false) ->
