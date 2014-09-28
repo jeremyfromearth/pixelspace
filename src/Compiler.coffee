@@ -1,7 +1,6 @@
 #This class is intended to be used to compile spectrum apps in the browser. 
 #There is a specific format that needs to be followed for scripts that are compiled with this class. 
 
-#
 #class MyRenderer extends Renderer
 #   init : ->
 #       particle = new Particle()
@@ -15,7 +14,7 @@
 
 
 #The above example demonstrates the expected format. The script must define a main property that points to sub-class of the Renderer
-define ->
+define ['spectrum/Renderer', 'underscore'], (Renderer, _) ->
     class Compiler
         constructor : (@ctx) ->
 
@@ -27,14 +26,12 @@ define ->
         compile : (code) =>
             r = null
             try
-                obj = CoffeeScript.eval code, {bare: true}
-                if obj? 
-                    if obj.main
-                        r = new obj.main @ctx
-                    else
-                        @onNoMainClassError() 
-                        return
-                
+                obj = CoffeeScript.eval code, {bare:true}
+
+                pre = {}
+                r = _.extend pre, new Renderer(@ctx)
+                r = _.extend r, obj
+
                 if r?
                     if r.init?
                         try 
@@ -56,8 +53,12 @@ define ->
                         catch error
                             @onRenderError error
                             return
-                obj = null
-                return CoffeeScript.eval code, {bare: true}
+                pre = {}
+                r = {}
+                r = _.extend pre, new Renderer(@ctx)
+                r = _.extend r, obj
+                return r
+
             catch error
                 @onCompilationError error
 

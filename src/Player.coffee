@@ -1,4 +1,6 @@
-#This class controls the frame inint/step/render cycle for an instance or sub-class of the Renderer class. It can be started, stopped, paused and un-paused. This class provides the renderer with data about it's environment such as the canvas width, current frame and any mouse events that occurr on the canvas.
+# This class controls the frame inint/step/render cycle for an instance or sub-class of the Renderer class. 
+# It can be started, stopped, paused and un-paused. 
+# This class provides the renderer with data about it's environment such as the canvas width, current frame and any mouse events that occurr on the canvas.
 define ->
     class Player
 
@@ -14,7 +16,7 @@ define ->
             @width = @canvas.clientWidth
             @height = @canvas.clientHeight
             @fullScreenMode = Player.FS_RESIZE
-            
+        
             window.addEventListener "keyup", @onWindowKeyboardEvent, true
             window.addEventListener "keydown", @onWindowKeyboardEvent, true
             window.addEventListener "mousedown", @onWindowMouseEvent, true

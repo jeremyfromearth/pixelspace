@@ -139,7 +139,7 @@ define  ->
         return Math.interpolateLin(Math.normalize(n, min1, max1), min2, max2)
 
     # Convenience for testing the truthiness of whether or not a given number is between two others
-    Math.within = (x, gt, lt) -> return x >= gt and x <= lt;
+    Math.within = (x, gt, lt) -> return x >= gt and x <= lt
 
     # String Utils
     # ======

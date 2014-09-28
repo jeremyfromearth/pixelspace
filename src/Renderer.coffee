@@ -2,7 +2,7 @@
 #Many of the methods have a similar signature. The first two parameters are often x, y coordinates and the following parameters are specific to the function. This class can be used independantly, but it is intended to be extended.   
 define ['spectrum/Dispatcher', 'spectrum/Utils'], (Dispatcher) ->
     class Renderer extends Dispatcher
-        constructor : (@ctx, @id) -> 
+        constructor : (@ctx) -> 
             # Width of the drawing context
             @width = 0
             # Height of the drawing context 
@@ -28,21 +28,22 @@ define ['spectrum/Dispatcher', 'spectrum/Utils'], (Dispatcher) ->
             # boolean indicating the is over this Renderer
             @mouseIsOver = false 
             #boolean indicating that the mouse is dragging
-            @mouseIsDragging = false 
+            @mouseIsDragging = false
+                
 
         # Set the opacity of all subsequent draw commands
-        alpha : (a) =>
+        alpha : (a) ->
             @ctx.globalAlpha = a 
 
         # Draws and arc
-        arc : (x, y, radius, startAngle, endAngle, solid = true) =>
+        arc : (x, y, radius, startAngle, endAngle, solid = true) ->
             @ctx.beginPath()
             @ctx.arc x, y, radius, startAngle, endAngle
             if solid then @ctx.fill() else @ctx.stroke()
             @ctx.closePath()
 
         # Draws a bezier curve between x1, y1 > x2, y2 with control point cp1 & cp2
-        bezier : (cp1x, cp1y, cp2x, cp2y, x1, y1, x2, y2) =>
+        bezier : (cp1x, cp1y, cp2x, cp2y, x1, y1, x2, y2) ->
             @ctx.beginPath()
             @ctx.moveTo x1, y1
             @ctx.bezierCurveTo cp1x, cp1y, cp2x, cp2y, x2, y2
@@ -50,20 +51,20 @@ define ['spectrum/Dispatcher', 'spectrum/Utils'], (Dispatcher) ->
             @ctx.closePath()
 
         # Draws a single circle
-        circle : (x, y, radius, solid = true) =>
+        circle : (x, y, radius, solid = true) ->
             @ctx.beginPath()
             @ctx.arc x, y, radius, 0, Math.TWO_PI, false
             if solid then @ctx.fill() else @ctx.stroke()
             @ctx.closePath()
 
         # Draws circles at specified points
-        circles : (pointList, radius, solid = true) =>
+        circles : (pointList, radius, solid = true) ->
             if pointList.length is 0 then return
             @circle p[0], p[1], radius, solid for p in pointList
 
         # Clears the drawing context and redraws the background color
         # This method is called by the player every frame before the render method is called
-        clear : =>
+        clear : ->
             @ctx.save()
             @ctx.globalAlpha = 1
             @ctx.clearRect 0, 0, @width, @height 
@@ -78,7 +79,7 @@ define ['spectrum/Dispatcher', 'spectrum/Utils'], (Dispatcher) ->
         # @color #ff0000
         # @color "red"
         # ```
-        color : (color) =>
+        color : (color) ->
             @ctx.fillStyle = @ctx.strokeStyle = color
 
         # Sets the fonstyle
@@ -86,7 +87,7 @@ define ['spectrum/Dispatcher', 'spectrum/Utils'], (Dispatcher) ->
         # @font "bold 80pt Baskerville"
         # @font "normal 100px Helvetica"
         # ```
-        font : (style) =>
+        font : (style) ->
             @ctx.font = style
 
         # Dispatches a fullscreen event function 
@@ -94,7 +95,7 @@ define ['spectrum/Dispatcher', 'spectrum/Utils'], (Dispatcher) ->
             @dispatch 'fullscreen'
 
         # Draws a grid
-        grid : (x, y, rows, columns, width, height) =>
+        grid : (x, y, rows, columns, width, height) ->
             rowHeight = height / rows
             colWidth = width / columns
 
@@ -107,7 +108,7 @@ define ['spectrum/Dispatcher', 'spectrum/Utils'], (Dispatcher) ->
                 @line xpos, y, xpos, y + height
 
         # Draws a line betwen two points
-        line : (x1, y1, x2, y2) =>
+        line : (x1, y1, x2, y2) ->
             @ctx.beginPath()
             @ctx.moveTo x1, y1
             @ctx.lineTo x2, y2
@@ -115,7 +116,7 @@ define ['spectrum/Dispatcher', 'spectrum/Utils'], (Dispatcher) ->
             @ctx.closePath()
 
         # Sets the linestyle for all subsequent draw commands
-        lineStyle : (lineWidth = 1.0, jointStyle = "round", capStyle = "round") =>
+        lineStyle : (lineWidth = 1.0, jointStyle = "round", capStyle = "round") ->
             @ctx.lineWidth = lineWidth
             @ctx.lineJoin = jointStyle
             @ctx.lineCap = capStyle
@@ -129,7 +130,7 @@ define ['spectrum/Dispatcher', 'spectrum/Utils'], (Dispatcher) ->
         # #Draw connected line segments only
         # @shape [[0, 0], [10, 0], [10, 10], [0, 10], [0, 0]], false, false 
         # ```
-        shape : (pointList, solid = true, closed=true) =>
+        shape : (pointList, solid = true, closed=true) ->
             if pointList.length is 0 then return
             @ctx.beginPath()
             @ctx.lineTo p[0], p[1] for p in pointList
@@ -141,7 +142,7 @@ define ['spectrum/Dispatcher', 'spectrum/Utils'], (Dispatcher) ->
                 @ctx.closePath()
 
         # Draws an n-sided polygon
-        polygon : (x, y, radius, sides = 3, solid = true) =>
+        polygon : (x, y, radius, sides = 3, solid = true) ->
             points = []
             inc = Math.TWO_PI / sides
             for i in [0..sides] by 1
@@ -155,7 +156,7 @@ define ['spectrum/Dispatcher', 'spectrum/Utils'], (Dispatcher) ->
         # #Draws a triangle with a hole in the center
         # @polygonRing 100, 100, 20, 60, 30, 3, true 
         # ```
-        polygonRing : (x, y, innerRadius, outerRadius, innerSides = 90, outerSides = 90, arcLength = Math.TWO_PI, solid = true) =>
+        polygonRing : (x, y, innerRadius, outerRadius, innerSides = 90, outerSides = 90, arcLength = Math.TWO_PI, solid = true) ->
             p = {x : 0, y : 0}
             inc = arcLength / outerSides
             @ctx.beginPath()
@@ -176,26 +177,26 @@ define ['spectrum/Dispatcher', 'spectrum/Utils'], (Dispatcher) ->
             if solid then @ctx.fill() else @ctx.stroke()
 
         # Returns a random color in rgb format
-        randomColor : =>
+        randomColor : ->
             return "rgb(" + 
                 (Math.floor(Math.random() * 256)).toString() + ',' + 
                 (Math.floor(Math.random() * 256)).toString() + ',' +
                 (Math.floor(Math.random() * 256)).toString() + ")"
 
         # Draws a rectangle
-        rectangle : (x, y, width, height, solid = true) =>
+        rectangle : (x, y, width, height, solid = true) ->
             if solid then @ctx.fillRect(x, y, width, height) else @ctx.strokeRect(x, y, width, height)  
 
         # Restores the drawing context
-        restoreTransform : =>
+        restoreTransform : ->
             @ctx.restore()
 
         # Rotates the drawing context
-        rotate : (theta) =>
+        rotate : (theta) ->
             @ctx.rotate theta
 
         # Draws a rounded rectangle
-        roundedRectangle : (x, y, width, height, cornerRadius, solid = true) =>
+        roundedRectangle : (x, y, width, height, cornerRadius, solid = true) ->
             @ctx.beginPath();  
             @ctx.moveTo x, y + cornerRadius
             @ctx.lineTo x, y + height - cornerRadius  
@@ -209,9 +210,9 @@ define ['spectrum/Dispatcher', 'spectrum/Utils'], (Dispatcher) ->
             if solid then @ctx.fill() else @ctx.stroke()
 
         # Saves the drawing context
-        saveTransform : =>
+        saveTransform : ->
             @ctx.save()
-
+    
         # Sets a drop shadow on all subsequent draw commands
         shadow : (offsetX, offsetY, blur, color) ->
             @ctx.shadowOffsetX = offsetX
@@ -226,18 +227,18 @@ define ['spectrum/Dispatcher', 'spectrum/Utils'], (Dispatcher) ->
             @ctx.shadowBlur = 0
 
         # Sets the scale of the drawing context
-        scale : (scaleX, scaleY) =>
+        scale : (scaleX, scaleY) ->
             @ctx.scale scaleX, scaleY
 
         # Draws text
-        text : (x, y, text, solid = true) => 
+        text : (x, y, text, solid = true) ->
             if solid then @ctx.fillText text, x, y else @ctx.strokeText text, x, y
 
         # Translate the drawing context
-        translate : (x, y) => 
+        translate : (x, y) -> 
             @ctx.translate x, y
 
-        wedge : (x, y, radius, startAngle, endAngle, solid = true) =>
+        wedge : (x, y, radius, startAngle, endAngle, solid = true) ->
             @ctx.beginPath()
             @ctx.arc x, y, radius, startAngle, endAngle
             @ctx.lineTo x, y 
