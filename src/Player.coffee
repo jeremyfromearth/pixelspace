@@ -9,7 +9,7 @@ define ->
 
         constructor : (@canvas) ->
             @stepCount = 0
-            @running = false
+            @playing = false
             @renderer = null 
             @isFullScreen = false
             @ctx = @canvas.getContext "2d"
@@ -49,7 +49,7 @@ define ->
         loop : =>
             @getAnimationCallback() @loop
             if @renderer? 
-                if @running 
+                if @playing 
                     if !@renderer.static
                         @step()
                         @render()
@@ -114,7 +114,7 @@ define ->
                 
         # Pauses the player
         pause : =>
-            @running = false 
+            @playing = false 
 
         # Calls render phase 
         render : =>
@@ -123,9 +123,8 @@ define ->
             if @renderer.render? then @renderer.render()
 
         # Starts or un-pauses the loop
-        run : =>
-            @running = true
-            
+        play : =>
+            @playing = true
 
         # Sets an instance of a Renderer sub-class as the renderer for this Player
         setRenderer : (newRenderer) =>
@@ -154,7 +153,7 @@ define ->
         # Stops the player, resets itself and the renderer
         stop : =>
             @stepCount = 0
-            @running = false
+            @playing = false
             @ctx.clearRect 0, 0, @width, @height
             if @renderer?
                 if @renderer.clear?
