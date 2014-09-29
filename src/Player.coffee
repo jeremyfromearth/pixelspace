@@ -130,6 +130,11 @@ define ->
         setRenderer : (newRenderer) =>
             if @renderer?
                 @renderer.removeListener 'fullscreen', @toggleFullscreen
+                @renderer.removeListener 'fullscreen', @toggleFullScreen
+                @renderer.removeListener 'fullscreen', @toggleFullScreen
+                @renderer.removeListener 'fullscreen', @toggleFullScreen
+                @renderer.removeListener 'fullscreen', @toggleFullScreen
+
             @renderer = newRenderer
             @renderer.width = @canvas.clientWidth
             @renderer.height = @canvas.clientHeight
