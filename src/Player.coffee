@@ -36,6 +36,15 @@ define ->
                     window.msRequestAnimationFrame or 
                     setTimeout callback, (1000 / 60)
 
+        # Initialize properties on the renderer and cal Renderer.init()
+        init : =>
+            if @renderer?
+                @renderer.stepCount = @stepCount
+                @renderer.width = @canvas.clientWidth
+                @renderer.height = @canvas.clientHeight 
+                if @renderer.init?
+                    @renderer.init()
+
         # The main loop
         loop : =>
             @getAnimationCallback() @loop
@@ -116,6 +125,7 @@ define ->
         # Starts or un-pauses the loop
         run : =>
             @running = true
+            
 
         # Sets an instance of a Renderer sub-class as the renderer for this Player
         setRenderer : (newRenderer) =>
