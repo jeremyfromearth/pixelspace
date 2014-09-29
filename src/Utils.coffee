@@ -59,7 +59,9 @@ define  ->
         t *= sign
         return s > 0 and t > 0 and (s + t) < 2 * A * sign
 
+    # Returns a boolean indicating that the point (px, py) is contained within a wedge shaped region
     Math.hitTestWedge = (px, py, x, y, r, startAngle, endAngle) ->
+        # TODO: Implement
         return false
 
     # Returns the distance between two points

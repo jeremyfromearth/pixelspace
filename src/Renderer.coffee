@@ -32,7 +32,6 @@ define ['spectrum/Dispatcher', 'spectrum/Utils'], (Dispatcher) ->
             #boolean indicating that the mouse is dragging
             @mouseIsDragging = false
                 
-
         # Set the opacity of all subsequent draw commands
         alpha : (a) ->
             @ctx.globalAlpha = a 
