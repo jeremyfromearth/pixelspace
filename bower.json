@@ -1,0 +1,25 @@
+{
+  "name": "spectrum",
+  "version": "0.0.0",
+  "homepage": "https://github.com/jeremynealbrown/spectrum",
+  "authors": [
+    "jeremy <jeremynealbrown@gmail.com>"
+  ],
+  "description": "An HTML5 canvas drawing framework",
+  "main": "lib/Spectrum.js",
+  "keywords": [
+    "canvas",
+    "drawing",
+    "sketch",
+    "creative",
+    "coding"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
