@@ -1,5 +1,5 @@
-# This class controls the frame inint/step/render cycle for an instance or sub-class of the Renderer class. 
-# It can be started, stopped, paused and un-paused. 
+# This class controls the frame inint/step/render cycle for an instance or sub-class of the Renderer class.
+# It can be started, stopped, paused and un-paused.
 # This class provides the renderer with data about it's environment such as the canvas width, current frame and any mouse events that occurr on the canvas.
 define ->
     class Player
@@ -10,13 +10,13 @@ define ->
         constructor : (@canvas) ->
             @stepCount = 0
             @playing = false
-            @renderer = null 
+            @renderer = null
             @isFullScreen = false
             @ctx = @canvas.getContext "2d"
             @width = @canvas.clientWidth
             @height = @canvas.clientHeight
             @fullScreenMode = Player.FS_RESIZE
-        
+
             window.addEventListener "keyup", @onWindowKeyboardEvent, true
             window.addEventListener "keydown", @onWindowKeyboardEvent, true
             window.addEventListener "mousedown", @onWindowMouseEvent, true
@@ -33,7 +33,7 @@ define ->
                     window.webkitRequestAnimationFrame or
                     window.mozRequestAnimationFrame or
                     window.oRequestAnimationFrame or
-                    window.msRequestAnimationFrame or 
+                    window.msRequestAnimationFrame or
                     setTimeout callback, (1000 / 60)
 
         # Initialize properties on the renderer and cal Renderer.init()
@@ -41,15 +41,15 @@ define ->
             if @renderer?
                 @renderer.stepCount = @stepCount
                 @renderer.width = @canvas.clientWidth
-                @renderer.height = @canvas.clientHeight 
+                @renderer.height = @canvas.clientHeight
                 if @renderer.init?
                     @renderer.init()
 
         # The main loop
         loop : =>
             @getAnimationCallback() @loop
-            if @renderer? 
-                if @playing 
+            if @renderer?
+                if @playing
                     if !@renderer.static
                         @step()
                         @render()
@@ -63,13 +63,13 @@ define ->
                 switch event.type
                     when 'keydown'
                         if @renderer.onKeyDown?
-                            @renderer.onKeyDown event.keyCode, 
-                                      event.altKey, event.ctrlKey, 
+                            @renderer.onKeyDown event.keyCode,
+                                      event.altKey, event.ctrlKey,
                                       event.shiftKey, event.timeStamp
                     when 'keyup'
                         if @renderer.onKeyUp?
-                            @renderer.onKeyUp event.keyCode, 
-                                      event.altKey, event.ctrlKey, 
+                            @renderer.onKeyUp event.keyCode,
+                                      event.altKey, event.ctrlKey,
                                       event.shiftKey, event.timeStamp
 
         # Capture all mouse events on the window and pass them to the renderer when it is the target
@@ -111,12 +111,12 @@ define ->
                             @renderer.mouseIsDragging = false
                             if @renderer.onMouseUp?
                                 @renderer.onMouseUp(-1, -1)
-                
+
         # Pauses the player
         pause : =>
-            @playing = false 
+            @playing = false
 
-        # Calls render phase 
+        # Calls render phase
         render : =>
             if @renderer.clear?
                 @renderer.clear()
@@ -130,18 +130,11 @@ define ->
         setRenderer : (newRenderer) =>
             if @renderer?
                 @renderer.removeListener 'fullscreen', @toggleFullscreen
-                @renderer.removeListener 'fullscreen', @toggleFullScreen
-                @renderer.removeListener 'fullscreen', @toggleFullScreen
-                @renderer.removeListener 'fullscreen', @toggleFullScreen
-                @renderer.removeListener 'fullscreen', @toggleFullScreen
 
             @renderer = newRenderer
             @renderer.width = @canvas.clientWidth
             @renderer.height = @canvas.clientHeight
             @renderer.isFullScreen = @isFullScreen
-            @renderer.addListener 'fullscreen', @toggleFullScreen
-            @renderer.addListener 'fullscreen', @toggleFullScreen
-            @renderer.addListener 'fullscreen', @toggleFullScreen
             @renderer.addListener 'fullscreen', @toggleFullScreen
 
         # The step phase
@@ -163,7 +156,7 @@ define ->
             if @renderer?
                 if @renderer.clear?
                     @renderer.clear()
-        
+
         toggleFullScreen : () =>
             if @isFullScreen
                 @isFullScreen = false
