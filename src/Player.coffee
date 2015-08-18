@@ -11,6 +11,7 @@ define ->
             @stepCount = 0
             @playing = false
             @renderer = null
+            @isFullWindow = false
             @isFullScreen = false
             @ctx = @canvas.getContext "2d"
             @width = @canvas.clientWidth
@@ -24,6 +25,7 @@ define ->
             window.addEventListener "mouseout", @onWindowMouseEvent, true
             window.addEventListener "mouseover", @onWindowMouseEvent, true
             window.addEventListener "mouseup", @onWindowMouseEvent, true
+            window.addEventListener "resize", @onWindowResize, true
 
             @loop()
 
@@ -112,6 +114,14 @@ define ->
                             if @renderer.onMouseUp?
                                 @renderer.onMouseUp(-1, -1)
 
+        # Checks to see if the player is full window and resizes the canvas if it is
+        onWindowResize : (event) =>
+            if @isFullWindow?
+                if @canvas.width != window.innerWidth
+                    @canvas.width = window.innerWidth
+                if @canvas.height != window.innerHeight
+                    @canvas.height = window.innerHeight
+
         # Pauses the player
         pause : =>
             @playing = false
@@ -125,6 +135,12 @@ define ->
         # Starts or un-pauses the loop
         play : =>
             @playing = true
+
+        # Set the player to fill the entire browser window
+        setFullWindow : (full) =>
+            @isFullWindow = full
+            if full?
+                @onWindowResize()
 
         # Sets an instance of a Renderer sub-class as the renderer for this Player
         setRenderer : (newRenderer) =>
@@ -144,8 +160,9 @@ define ->
                     @stepCount = 0
             @stepCount++
             @renderer.stepCount = @stepCount
-            @renderer.width = @canvas.clientWidth
-            @renderer.height = @canvas.clientHeight
+
+            @width = @renderer.width = @canvas.clientWidth
+            @height = @renderer.height = @canvas.clientHeight
             if @renderer.step? then @renderer.step()
 
         # Stops the player, resets itself and the renderer
