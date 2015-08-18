@@ -158,8 +158,8 @@ define ->
             if @renderer.looping and @renderer.duration > 0
                 if @stepCount > @renderer.duration
                     @stepCount = 0
-            @stepCount++
             @renderer.stepCount = @stepCount
+            @stepCount++
 
             @width = @renderer.width = @canvas.clientWidth
             @height = @renderer.height = @canvas.clientHeight
