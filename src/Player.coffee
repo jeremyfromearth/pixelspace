@@ -116,7 +116,7 @@ define ->
 
         # Checks to see if the player is full window and resizes the canvas if it is
         onWindowResize : (event) =>
-            if @isFullWindow?
+            if @isFullWindow
                 if @canvas.width != window.innerWidth
                     @canvas.width = window.innerWidth
                 if @canvas.height != window.innerHeight
