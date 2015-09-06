@@ -7,9 +7,9 @@ define ['spectrum/Renderer'], (Renderer) ->
             @cx = @width * .5
             @cy = @height * .5
 
-        # Render graphics 
+        # Render graphics
         render : ->
-            @font "bold 80pt Baskerville"
+            @font "bold 80pt Helvetica"
             @color "#ffffff"
             @text 165, 250, "SPECTRUM", false
             @color "#d13737"
