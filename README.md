@@ -4,6 +4,13 @@
 
 > Tested in Chrome, Firefox & Safari
 
+## Install
+Spectrum is registered with bower.io. To install with Bower, simply use:
+
+```
+bower install spectrum-js
+```
+
 ## Demos
 Demos are available here: https://github.com/jeremynealbrown/visible
 <br>
