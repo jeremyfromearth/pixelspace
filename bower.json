@@ -5,13 +5,17 @@
   "authors": [
     "jeremy <jeremynealbrown@gmail.com>"
   ],
+  "dependencies" : [
+    "requirejs": "~2.1.20"    
+  ],
   "description": "An HTML5 canvas drawing framework",
   "main": "lib/Spectrum.js",
   "keywords": [
     "canvas",
     "drawing",
     "sketch",
-    "creative coding"
+    "creative coding",
+    "data visualization"
   ],
   "license": "MIT",
   "ignore": [
