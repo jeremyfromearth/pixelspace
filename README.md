@@ -12,11 +12,15 @@ bower install spectrum-js
 ```
 
 ## Developing
-If you'd like to compile the Coffeescript files each time an edit is made run this command from the with the spectrum directory
+If you'd like to compile the Coffeescript files each time an edit is made run this command from the with the spectrum directory:
 
 ```
-npm install -g cake
 cake watch
+```
+
+If you get an error about not having cake installed run this first:
+```
+npm install -g cake
 ```
 
 ## Anatomy of a spectrum app
