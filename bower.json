@@ -1,11 +1,14 @@
 {
-  "name": "Spectrum",
+  "name": "spectrumjs",
   "version": "v1.0",
   "homepage": "https://github.com/jeremynealbrown/spectrum",
   "authors": [
     "jeremy <jeremynealbrown@gmail.com>"
   ],
   "description": "\"An HTML5 canvas drawing library\"",
+  "dependencies" : {
+    "requirejs": "~2.1.20"
+  },
   "main": "\"lib/Spectrum.js\"",
   "keywords": [
     "creative",
