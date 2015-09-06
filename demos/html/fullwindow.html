@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title>FullScreen</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="../css/main.css">
+        <link rel="stylesheet" type="text/css" href="../css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="../css/demos.css">
+        <script src="../js/require.js"></script>
+        <script src="../js/config.js"></script>
+        <script>
+            require(['spectrum/Player', 'demos/FullWindow'], function(Player, App) {
+                var canvas = document.getElementById("canvas");
+                var ctx = canvas.getContext('2d');
+                var app = new App(ctx);
+                var player = new Player(canvas);
+                player.setFullWindow(true)
+                player.setRenderer(app);
+                player.init();
+                player.play();
+            });
+
+        </script>
+        <style type="text/css">
+            .fullscreen-canvas {
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas class="fullscreen-canvas" id="canvas"></canvas>
+    </body>
+</html>

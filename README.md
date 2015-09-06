@@ -4,23 +4,20 @@
 
 > Tested in Chrome, Firefox & Safari
 
-## Install
+## Installation
 Spectrum is registered with bower.io. To install with Bower, simply use:
 
 ```
 bower install spectrum-js
 ```
 
-## Demos
-Demos are available here: https://github.com/jeremynealbrown/visible
-<br>
-The demo repo should be cloned into a location next to spectrum.
+## Developing
+If you'd like to compile the Coffeescript files each time an edit is made run this command from the with the spectrum directory
+
 ```
-coffeerithms/
-spectrum/
-visible/
+npm install -g cake
+cake watch
 ```
-Some of the demos also require coffeerithms which can be found here: https://github.com/jeremynealbrown/coffeerithms
 
 ## Anatomy of a spectrum app
 
@@ -31,7 +28,7 @@ Example of a `Renderer` subclass:
 ```
 define ['renderer'], (Renderer) ->
     class DataVisualization extends Renderer
-        
+
         init : () ->
             @x = 0
             @y = 0
