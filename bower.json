@@ -11,10 +11,8 @@
   },
   "main": "\"lib/Spectrum.js\"",
   "keywords": [
-    "creative",
-    "coding",
-    "data",
-    "visualization",
+    "creative-coding",
+    "data-visualization",
     "drawing",
     "canvas"
   ],
