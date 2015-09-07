@@ -23,6 +23,7 @@
         this.mouseIsDown = false;
         this.mouseIsOver = false;
         this.mouseIsDragging = false;
+        this.ctx.globalAlpha = 1.0;
       }
 
       Renderer.prototype.alpha = function(a) {
