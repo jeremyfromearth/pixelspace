@@ -1,7 +1,6 @@
-define  ->
+define ->
     # Array Utils
     # ======
-
     # Returns a randomized copy of the supplied Array
     Array.shuffle = (a) ->
         result = []
@@ -29,18 +28,18 @@ define  ->
     Math.clamp = (n, min, max) ->
         return Math.min(Math.max(n, min), max)
 
-    # Returns a boolean indicating that the point (px, py) is contained by the circle 
+    # Returns a boolean indicating that the point (px, py) is contained by the circle
     Math.hitTestCircle = (px, py, x, y, r) ->
-        return Math.distance(px, py, x, y) <= r 
+        return Math.distance(px, py, x, y) <= r
 
     # Returns a boolean indicating that the point (px, py) is contained in the rectangle
     Math.hitTestRectangle = (px, py, x, y, w, h) ->
         return px >= x && px <= x + w && py >= y && py <= y + h
 
-    # Returns a boolean that the point (px, py) is with the band of a ring shape 
+    # Returns a boolean that the point (px, py) is with the band of a ring shape
     Math.hitTestRing = (px, py, x, y, r1, r2) ->
         d = Math.distance(px, py, x, y)
-        return d > r1 and d < r2 
+        return d > r1 and d < r2
 
     # Returns a boolean that the point (px, py) is contained by the triangle p1, p2, p3
     # p1, p2, p3 are arrays of two points each
@@ -69,8 +68,8 @@ define  ->
         dx = x1 - x2
         dy = y1 - y2
         dx *= dx
-        dy *= dy 
-        return Math.sqrt(dx + dy)  
+        dy *= dy
+        return Math.sqrt(dx + dy)
 
     # Returns array of RGB value of supplied hex value
     # Input value is expected to be in 0xrrggbb format
@@ -78,7 +77,7 @@ define  ->
         return [hex >> 16, (hex >> 8) & 0xff, hex & 0xff]
 
     # Interpolates a value between 0.0 and 1.0 to a correspondig value between min and max
-    # ``` 
+    # ```
     # Math.interpolateLin(.2, 0, 100) # 20
     # ```
     Math.interpolateLin = (n, min, max) ->
@@ -101,7 +100,7 @@ define  ->
     # Returns a random number between the supplied range
     # Provide optional argument of true as third param to return an integer
     Math.randomInRange = (min, max, round=false) ->
-        n = min + (max - min) * Math.random() 
+        n = min + (max - min) * Math.random()
         if round
             return Math.round(n)
         return n
@@ -109,7 +108,7 @@ define  ->
     # Rounds to the nearest decimal
     # ```
     # Math.roundTo(3.219, 2) # 3.22
-    # ``` 
+    # ```
     Math.roundTo = (n, decimals) ->
         return Math.round(n * Math.pow(10, decimals)) / Math.pow(10, decimals)
 
@@ -134,9 +133,9 @@ define  ->
         return n
 
     # Transposes a value from one range to another
-    # ``` 
+    # ```
     # Math.transpose(40, 30, 50, 0, 1) # .5
-    # ```    
+    # ```
     Math.transpose = (n, min1, max1, min2, max2) ->
         return Math.interpolateLin(Math.normalize(n, min1, max1), min2, max2)
 
@@ -145,10 +144,9 @@ define  ->
 
     # String Utils
     # ======
-    
+
     String.alphabet = () ->
         return 'abcdefghijklmnopqrstuvwxyz'
 
     String.numerics = () ->
         return '0123456789'
-
