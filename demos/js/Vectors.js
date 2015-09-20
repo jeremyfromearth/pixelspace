@@ -21,7 +21,6 @@
         this.timeFactor = 0.2;
         this.velocity = new Vector();
         this.coordHistory = [];
-        this.maxCoordHistoryLength = Math.round(Math.random() * 500);
       }
 
       Particle.prototype.update = function() {

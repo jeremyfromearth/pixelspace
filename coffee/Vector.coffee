@@ -3,10 +3,15 @@ define ->
 
         @Zero = new Vector(0, 0)
 
+        @distance : (v1, v2) ->
+            x = v1.x - v2.x
+            y = v1.y - v2.y
+            Math.sqrt x * x + y * y
+
         constructor : (@x = 0, @y = 0) ->
-            
+
         length : () ->
-            return Math.sqrt @x * @x + @y * @y
+            Math.sqrt @x * @x + @y * @y
 
         add : (v) ->
             new Vector(@x + v.x, @y + v.y)

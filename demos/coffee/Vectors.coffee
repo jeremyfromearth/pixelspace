@@ -13,7 +13,6 @@ define ['spectrum/Renderer', 'spectrum/Vector'], (Renderer, Vector) ->
             @timeFactor = 0.2
             @velocity = new Vector()
             @coordHistory = []
-            @maxCoordHistoryLength = Math.round Math.random() * 500
 
         update : =>
             delta = @target.sub(@coords)
@@ -25,7 +24,6 @@ define ['spectrum/Renderer', 'spectrum/Vector'], (Renderer, Vector) ->
                 @scale += (@scaleTarget - @scale) * @timeFactor
                 if @coordHistory.length > @maxCoordHistoryLength
                     @coordHistory.shift()
-
 
     class Vectors extends Renderer
         init : ->
@@ -45,4 +43,5 @@ define ['spectrum/Renderer', 'spectrum/Vector'], (Renderer, Vector) ->
                 @circle p1.coords.x, p1.coords.y, 2
                 for p2 in @particles
                     if p1 != p2
+                        
                         @line p1.coords.x, p1.coords.y, p2.coords.x, p2.coords.y
