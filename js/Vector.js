@@ -5,13 +5,6 @@
     return Vector = (function() {
       Vector.Zero = new Vector(0, 0);
 
-      Vector.distance = function(v1, v2) {
-        var x, y;
-        x = v1.x - v2.x;
-        y = v1.y - v2.y;
-        return Math.sqrt(x * x + y * y);
-      };
-
       function Vector(x1, y1) {
         this.x = x1 != null ? x1 : 0;
         this.y = y1 != null ? y1 : 0;
@@ -39,6 +32,13 @@
 
       Vector.prototype.scale = function(n) {
         return new Vector(this.x * n, this.y * n);
+      };
+
+      Vector.prototype.distance = function(v) {
+        var dx, dy;
+        dx = x - v.x;
+        dy = y - v.y;
+        return Math.sqrt(dx * dx + dy * dy);
       };
 
       Vector.prototype.normalized = function(v) {

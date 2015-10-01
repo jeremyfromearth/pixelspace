@@ -3,11 +3,6 @@ define ->
 
         @Zero = new Vector(0, 0)
 
-        @distance : (v1, v2) ->
-            x = v1.x - v2.x
-            y = v1.y - v2.y
-            Math.sqrt x * x + y * y
-
         constructor : (@x = 0, @y = 0) ->
 
         length : () ->
@@ -27,6 +22,11 @@ define ->
 
         scale : (n) ->
             new Vector(@x * n, @y * n)
+
+        distance : (v) ->
+            dx = x - v.x
+            dy = y - v.y
+            Math.sqrt dx * dx + dy * dy
 
         normalized : (v) ->
             len = @length()
