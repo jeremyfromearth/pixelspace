@@ -1,10 +1,10 @@
 define ['spectrum/Renderer', 'spectrum/Vector'], (Renderer, Vector) ->
     class Particle
-        constructor : (x, y) ->
+        constructor : (v) ->
             @id = -1
             @alphaTarget = 1.0
-            @coords = new Vector(x, y)
-            @damping = 0.1
+            @coords = v
+            @damping = 0.9
             @direction = new Vector()
             @target = new Vector()
             @scale = 1.0
@@ -28,20 +28,23 @@ define ['spectrum/Renderer', 'spectrum/Vector'], (Renderer, Vector) ->
     class Vectors extends Renderer
         init : ->
             @particles = []
-            for i in [0..10]
-                @particles.push new Particle @width * 0.5, @height * 0.5
-                @particles[i].target = new Vector Math.randomInRange(0, @width), Math.randomInRange( 0, @height)
+            for i in [0..3] @particles.push new Particle new Vector @width * 0.5, @height * 0.5
+                @particles[i].target =
+                    Vector.Random 0, @width * .25 + @width * .75,
+                                  0, @height * .25 + @height * .75
 
         step : ->
             for particle in @particles
                 particle.update()
 
+
         render : ->
             for p1 in @particles
                 @color "red"
-                @shape p1.coordHistory, false, false
                 @circle p1.coords.x, p1.coords.y, 2
                 for p2 in @particles
                     if p1 != p2
-                        
+                        #@line p1.coords.x, p
+                        #distance = p1.coords.distance p2.coords
+                        #if distance < 200
                         @line p1.coords.x, p1.coords.y, p2.coords.x, p2.coords.y

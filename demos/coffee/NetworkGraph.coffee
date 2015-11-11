@@ -1,17 +1,17 @@
 define ['spectrum/Renderer'], (Renderer) ->
     class NetworkGraph extends Renderer
-        init : -> 
+        init : ->
             @bg = '#000'
             @static = true
             @radius = 250
-            @center = 
+            @center =
                 x: @width * .5,
                 y : @height * .5
 
             numNodes = 100
-            thetaInc = Math.PI * 2 / numNodes
+            thetaInc = Math.TWO_PI / numNodes
             @nodes = ({
-                theta : n * thetaInc, 
+                theta : n * thetaInc,
                 x : (Math.cos n * thetaInc) * @radius + @center.x,
                 y : (Math.sin n * thetaInc) * @radius + @center.y,
                 color : Math.randomColor()
@@ -38,13 +38,13 @@ define ['spectrum/Renderer'], (Renderer) ->
                 @circle node.x, node.y, 2
                 @color node.color
                 @circle node.x, node.y, 2
-                 
+
         rnd : ->
             return Math.randomInRange(0, @nodes.length - 1, true)
 
         getControlPointsForEdge : (p1, p2)->
             cp1 = {}
-            cp2 = {}            
+            cp2 = {}
             r1 = @radius * .3
             r2 = @radius * .1
             cp1.x = p1.x - Math.cos(p1.theta) * r1

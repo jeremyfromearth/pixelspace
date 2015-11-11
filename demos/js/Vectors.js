@@ -7,12 +7,12 @@
   define(['spectrum/Renderer', 'spectrum/Vector'], function(Renderer, Vector) {
     var Particle, Vectors;
     Particle = (function() {
-      function Particle(x, y) {
+      function Particle(v) {
         this.update = bind(this.update, this);
         this.id = -1;
         this.alphaTarget = 1.0;
-        this.coords = new Vector(x, y);
-        this.damping = 0.1;
+        this.coords = v;
+        this.damping = 0.9;
         this.direction = new Vector();
         this.target = new Vector();
         this.scale = 1.0;
@@ -52,9 +52,9 @@
         var i, j, results;
         this.particles = [];
         results = [];
-        for (i = j = 0; j <= 10; i = ++j) {
-          this.particles.push(new Particle(this.width * 0.5, this.height * 0.5));
-          results.push(this.particles[i].target = new Vector(Math.randomInRange(0, this.width), Math.randomInRange(0, this.height)));
+        for (i = j = 0; j <= 3; i = ++j) {
+          this.particles.push(new Particle(new Vector(this.width * 0.5, this.height * 0.5)));
+          results.push(this.particles[i].target = Vector.Random(0, this.width * .25 + this.width * .75, 0, this.height * .25 + this.height * .75));
         }
         return results;
       };
@@ -77,7 +77,6 @@
         for (j = 0, len = ref.length; j < len; j++) {
           p1 = ref[j];
           this.color("red");
-          this.shape(p1.coordHistory, false, false);
           this.circle(p1.coords.x, p1.coords.y, 2);
           results.push((function() {
             var k, len1, ref1, results1;

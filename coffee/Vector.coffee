@@ -3,6 +3,9 @@ define ->
 
         @Zero = new Vector(0, 0)
 
+        @Random : (xMin, xMax, yMin, yMax) ->
+            new Vector Math.randomInRange(xMin, xMax), Math.randomInRange(yMin, yMax)
+
         constructor : (@x = 0, @y = 0) ->
 
         length : () ->
@@ -24,8 +27,8 @@ define ->
             new Vector(@x * n, @y * n)
 
         distance : (v) ->
-            dx = x - v.x
-            dy = y - v.y
+            dx = @x - v.x
+            dy = @y - v.y
             Math.sqrt dx * dx + dy * dy
 
         normalized : (v) ->
