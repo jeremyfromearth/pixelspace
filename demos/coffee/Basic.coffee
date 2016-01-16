@@ -9,6 +9,7 @@ define ['spectrum/Renderer'], (Renderer) ->
 
         # Render graphics
         render : ->
+            console.log 'render: ' + @width
             @font "bold 80pt Helvetica"
             @color "#ffffff"
             @text 165, 250, "SPECTRUM", false

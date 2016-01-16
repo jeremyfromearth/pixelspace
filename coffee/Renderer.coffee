@@ -93,7 +93,7 @@ define ['spectrum/Dispatcher', 'spectrum/Utils'], (Dispatcher) ->
         font : (style) ->
             @ctx.font = style
 
-        # Dispatches a fullscreen event function
+        # Dispatches a fullscreen event
         fullscreen : () ->
             @dispatch 'fullscreen'
 

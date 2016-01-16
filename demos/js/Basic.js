@@ -20,6 +20,7 @@
       };
 
       Basic.prototype.render = function() {
+        console.log('render: ' + this.width);
         this.font("bold 80pt Helvetica");
         this.color("#ffffff");
         this.text(165, 250, "SPECTRUM", false);

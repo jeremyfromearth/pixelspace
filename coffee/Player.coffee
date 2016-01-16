@@ -121,6 +121,14 @@ define ->
                     @canvas.width = window.innerWidth
                 if @canvas.height != window.innerHeight
                     @canvas.height = window.innerHeight
+                ###
+                if @renderer?
+                    @renderer.width = @canvas.width 
+                    @renderer.height = @canvas.height
+                    if @renderer.static
+                        @renderer.clear()
+                        @renderer.render()
+                ###
 
         # Pauses the player
         pause : =>

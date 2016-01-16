@@ -157,6 +157,15 @@
           if (this.canvas.height !== window.innerHeight) {
             return this.canvas.height = window.innerHeight;
           }
+
+          /*
+          if @renderer?
+              @renderer.width = @canvas.width 
+              @renderer.height = @canvas.height
+              if @renderer.static
+                  @renderer.clear()
+                  @renderer.render()
+           */
         }
       };
 
