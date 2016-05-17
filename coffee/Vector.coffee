@@ -31,7 +31,7 @@ define ->
             dy = @y - v.y
             Math.sqrt dx * dx + dy * dy
 
-        normalized : (v) ->
+        normalized : () ->
             len = @length()
             if len == 0.0
                 @Zero()

@@ -45,7 +45,7 @@
         return Math.sqrt(dx * dx + dy * dy);
       };
 
-      Vector.prototype.normalized = function(v) {
+      Vector.prototype.normalized = function() {
         var len;
         len = this.length();
         if (len === 0.0) {
