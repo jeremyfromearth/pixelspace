@@ -28,7 +28,8 @@ define ['spectrum/Renderer', 'spectrum/Vector'], (Renderer, Vector) ->
     class Vectors extends Renderer
         init : ->
             @particles = []
-            for i in [0..3] @particles.push new Particle new Vector @width * 0.5, @height * 0.5
+            for i in [0..3] 
+                @particles.push new Particle new Vector @width * 0.5, @height * 0.5
                 @particles[i].target =
                     Vector.Random 0, @width * .25 + @width * .75,
                                   0, @height * .25 + @height * .75
