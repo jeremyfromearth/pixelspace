@@ -92,7 +92,7 @@ define ['spectrum/Renderer'], (Renderer) ->
         # Render graphics 
         render : ->
             for k, v of @paths
-                @color "#da4939"
+                @color "#666"
                 @shape v.points, no, no
                 for p in v.points
                     @rectangle p[0]-2, p[1]-2, 4, 4, true 
