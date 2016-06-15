@@ -24,7 +24,6 @@ npm install -g cake
 ```
 
 ## Anatomy of a spectrum app
-
 A Spectrum app is comprised of an instance of the `Player` class and an instance of a `Renderer` subclass. The `Player` is responsible for managing the playback of the renderer. It does so through the two methods that a `Renderer` subclass should override: `step()` and `render()`
 <br/>
 <br/>
