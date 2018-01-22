@@ -3,12 +3,6 @@
 {print} = require 'util'
 {exec}  = require 'child_process'
 
-spectrum_js = "./js/"
-spectrum_coffee = "./coffee/"
-
-demo_js = "./demos/js/"
-demo_coffee = "./demos/coffee/"
-
 run = (command, callback) ->
   proc = exec command
   proc.stdout.on 'data', (data) -> print data.toString()
@@ -17,8 +11,14 @@ run = (command, callback) ->
 
 watch = (callback) ->
   console.log "Watching for changes to Coffeescript files"
-  run "coffee -wco #{spectrum_js} #{spectrum_coffee}", callback
-  run "coffee -wco #{demo_js} #{demo_coffee}", callback
+  run "coffee -wco ./js/ ./coffee", callback
+  run "coffee -wco ./demos/js ./demos/coffee/", callback
+
+bundle = (callback) -> 
+  run 'coffee --join ./lib/spectrum.js --compile coffee/Spectrum.coffee', callback
 
 task 'watch', "Recompile CoffeeScript source into JavaScript", ->
   watch()
+
+task 'bundle', 'Bundles spectrum into single file', ->
+  bundle()
