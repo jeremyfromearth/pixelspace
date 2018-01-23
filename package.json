@@ -1,24 +1,24 @@
 {
 	"name": "pixelspace",
-  "description": "Pixelspace is minimalist tool for drawing pixels to an HTML5 Canvas",
-	"version": "0.0.0",
+	"description": "Pixelspace is minimalist tool for drawing pixels to an HTML5 Canvas",
+	"version": "0.1.0",
 	"author": "jeremy <jeremy.from.earth@gmail.com>",
-  "keywords": [
-    "canvas",
-    "drawing",
-    "visualization",
-    "pixelpace",
-    "pixels"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:jeremyfromearth/pixelspace.git"
-  },
-  "homepage": "https://github.com/jeremyfromearth/pixelspace",
-  "bugs": {
-    "url": "https://github.com/jeremyfromearth/pixelspace/issues"
-  },
-  "license": "GPL",
+	"keywords": [
+		"canvas",
+		"drawing",
+		"visualization",
+		"pixelpace",
+		"pixels"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:jeremyfromearth/pixelspace.git"
+	},
+	"homepage": "https://github.com/jeremyfromearth/pixelspace",
+	"bugs": {
+		"url": "https://github.com/jeremyfromearth/pixelspace/issues"
+	},
+	"license": "GPL",
 	"devDependencies": {
 		"babel-cli": "^6.26.0",
 		"babel-core": "^6.26.0",
