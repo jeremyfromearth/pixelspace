@@ -1,4 +1,4 @@
-define ['lib/es6/spectrum'], (Spectrum) ->
+define ['lib/spectrum'], (Spectrum) ->
     class Basic extends Spectrum.Renderer
         # Initialize instance variables
         init : ->
