@@ -9,11 +9,11 @@
         <script src="../js/config.js"></script>
         <script>
 
-            require(['spectrum/Player', 'demos/Bezier'], function(Player, App) {
+            require(['lib/es6/spectrum', 'demos/Bezier'], function(Spectrum, App) {
                 var canvas = document.getElementById("canvas");
                 var ctx = canvas.getContext('2d');
                 var app = new App(ctx);
-                var player = new Player(canvas);
+                var player = new Spectrum.Player(canvas);
                 player.setRenderer(app);
                 player.init()
                 player.play();

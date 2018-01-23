@@ -1,5 +1,5 @@
-define ['spectrum/Renderer'], (Renderer) ->
-    class Bezier extends Renderer
+define ['lib/es6/spectrum'], (Spectrum) ->
+    class Bezier extends Spectrum.Renderer
         # Initialize instance variables
         init : ->
             @bg = '#000'
@@ -20,6 +20,7 @@ define ['spectrum/Renderer'], (Renderer) ->
             @cp2 = 
                 x : @center.x
                 y : @center.y
+            @cp = null
 
         # Render graphics 
         render : ->
@@ -56,6 +57,11 @@ define ['spectrum/Renderer'], (Renderer) ->
             
         onMouseDown : ->
             @toggle = !@toggle
-            cp = if @toggle then @cp1 else @cp2
-            cp.x = @mouseX
-            cp.y = @mouseY
+            @cp = if @toggle then @cp1 else @cp2
+            @cp.x = @mouseX
+            @cp.y = @mouseY
+
+        onMouseMove : (x, y) -> 
+          if @mouseIsDragging
+            @cp.x = x
+            @cp.y = y

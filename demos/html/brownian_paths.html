@@ -8,12 +8,11 @@
         <script src="../js/require.js"></script>
         <script src="../js/config.js"></script>
         <script>
-            require(['spectrum/Player', 'demos/BrownianPaths'], function(Player, App) {
+            require(['lib/es6/spectrum', 'demos/BrownianPaths'], function(Spectrum, App) {
                 var canvas = document.getElementById("canvas");
                 var ctx = canvas.getContext('2d');
                 var app = new App(ctx);
-
-                var player = new Player(canvas);
+                var player = new Spectrum.Player(canvas);
                 player.setFullWindow(true);
                 player.setRenderer(app);
                 player.init();
