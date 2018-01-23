@@ -10,16 +10,16 @@ module.exports = (grunt) => {
       dist: {
         files: [{
           expand: true,
-          cwd: 'es6',
+          cwd: 'src',
           src: ['*.js'],
-          dest: './lib/es6',
+          dest: './lib/',
           ext: '.js'
         }]
       }
     },
     watch: {
       babel: {
-        files: 'es6/*.js',
+        files: 'src/*.js',
         tasks: ['babel']
       }
     }
