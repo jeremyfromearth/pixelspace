@@ -1,7 +1,7 @@
 {
 	"name": "pixelspace",
 	"description": "Pixelspace is minimalist tool for drawing pixels to an HTML5 Canvas",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"author": "jeremy <jeremy.from.earth@gmail.com>",
 	"keywords": [
 		"canvas",
