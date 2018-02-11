@@ -105,6 +105,7 @@ class Renderer extends Dispatcher{
   circles(points, radius, solid = true) {
     if(points && points.length) {
       for(var i = 0; i < points.length; i++) {
+        var p = points[i];
         this.circle(p[0], p[1], radius, solid);
       }
     }
@@ -151,12 +152,12 @@ class Renderer extends Dispatcher{
     let row_height = height / rows
     let col_width = width / columns
 
-    for(var i = 0; i < rows; i++) {
-      var ypos = Math.round(y) + i * row_eight + .5
+    for(var i = 0; i <= rows; i++) {
+      var ypos = Math.round(y) + i * row_height + .5
       this.line(x, ypos, x + width, ypos);
     }
 
-    for(var i = 0; i < columns; i++) {
+    for(var i = 0; i <= columns; i++) {
       var xpos = Math.round(x) + i * col_width + .5
       this.line(xpos, y, xpos, y + height);
     }
@@ -209,7 +210,7 @@ class Renderer extends Dispatcher{
     let angle = 0;
     let points = [];
     const inc = Math.TWO_PI / sides;
-    for(var i = 0; i < sides.length; i++) {
+    for(var i = 0; i < sides; i++) {
         angle = i * inc;
         points.push([x + Math.cos(angle) * radius, y + Math.sin(angle) * radius]);
     }
@@ -224,21 +225,21 @@ class Renderer extends Dispatcher{
   // @polygonRing 100, 100, 20, 60, 30, 3, true
   // ```
   polygonRing(x, y, innerRadius, outerRadius, innerSides = 90, outerSides = 90, arcLength = Math.TWO_PI, solid = true) {
+    let inc = 0;
     let p = {x : 0, y : 0};
-    let inc = arcLength / outerSides;
     this.ctx.beginPath();
-    for(var n = 0; n < outerSides; n++) {
+    inc =  arcLength / outerSides;
+    for(var n = 0; n <= outerSides; n++) {
       p.x = x + Math.cos(inc * n) * outerRadius;
       p.y = y + Math.sin(inc * n) * outerRadius;
       this.ctx.lineTo(p.x, p.y);
-    }
+    }   
 
-    inc =  arcLength / innerSides;
-    for(var n = 0; n < innerSides; n++) {
-        p.x = x + Math.cos(inc * n) * innerRadius;
-        p.y = y + Math.sin(inc * n) * innerRadius;
-        if(n == innerSides) this.ctx.moveTo(p.x, p.y);
-        this.ctx.lineTo(p.x, p.y);
+    inc = arcLength / innerSides;
+    for(var n = innerSides; n >= 0; n--) {
+      p.x = x + Math.cos(inc * n) * innerRadius;
+      p.y = y + Math.sin(inc * n) * innerRadius;
+      this.ctx.lineTo(p.x, p.y);
     }
 
     this.ctx.closePath();
@@ -248,9 +249,9 @@ class Renderer extends Dispatcher{
   // Returns a random color in rgb format
   randomColor() {
     return "rgb(" +
-        (Math.floor(Math.random() * 256)).toString() + ',' +
-        (Math.floor(Math.random() * 256)).toString() + ',' +
-        (Math.floor(Math.random() * 256)).toString() + ")";
+      (Math.floor(Math.random() * 256)).toString() + ',' +
+      (Math.floor(Math.random() * 256)).toString() + ',' +
+      (Math.floor(Math.random() * 256)).toString() + ")";
   }
 
   // Draws a rectangle
@@ -366,6 +367,7 @@ class Player {
       window.msRequestAnimationFrame;
   }
 
+  /*
   // Initialize properties on the renderer and cal Renderer.init()
   init() {
     if(this.renderer) {
@@ -377,6 +379,7 @@ class Player {
       }
     }
   }
+  */
 
   // The main loop
   loop() {
@@ -521,10 +524,16 @@ class Player {
   setRenderer(newRenderer) {
     if(this.renderer) this.renderer.remove_listener('fullscreen', this.toggleFullscreen);
     this.renderer = newRenderer;
-    this.renderer.width = this.canvas.clientWidth;
-    this.renderer.height = this.canvas.clientHeigh;
-    this.renderer.isFullScreen = this.isFullScreen;
-    this.renderer.add_listener('fullscreen', this.toggleFullScreen.bind(this));
+    if(this.renderer) {
+      this.renderer.stepCount = this.stepCount;
+      this.renderer.width = this.canvas.clientWidth;
+      this.renderer.height = this.canvas.clientHeight;
+      this.renderer.isFullScreen = this.isFullScreen;
+      this.renderer.add_listener('fullscreen', this.toggleFullScreen.bind(this));
+      if(this.renderer.init) {
+        this.renderer.init();
+      }
+    }
   }
 
   // The step phase
