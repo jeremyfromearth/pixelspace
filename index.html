@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <title>Pixelspace Demo</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/demos.css">
+    <script src="js/require.js"></script>
+    <script src="js/config.js"></script>
+    
+  </head>
+  <body>
+    <canvas id="canvas" width="960" height="540"></canvas>
+    <select id='sketch-select'></select>
+    <script> 
+      window.addEventListener('load', function() {
+      require(['lib/pixelspace', 'demos/sketch-data'], function(Pixelspace, data) {
+        var select = document.getElementById('sketch-select');
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext('2d');
+        var player = new Pixelspace.Player(canvas);
+
+        for(var i = 0; i < data.length; i++) {
+          var option = document.createElement('option');
+          option.value = i;
+          option.innerHTML = data[i].title;
+          select.appendChild(option);
+        }
+        
+        function update_sketch() {
+          var sketch = data[select.value];
+          require(['demos/'+sketch.file], function(DemoApp) {
+            var app = new DemoApp(ctx);
+            player.setRenderer(app);
+            player.play(); 
+          });
+        }
+
+        select.addEventListener('change', update_sketch);
+        update_sketch();
+      });
+    });
+    </script>
+  </body>
+</html>
