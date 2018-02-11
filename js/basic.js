@@ -60,18 +60,19 @@ define(['module', 'lib/pixelspace'], function (module, _pixelspace) {
   var Basic = function (_Pixelspace$Renderer) {
     _inherits(Basic, _Pixelspace$Renderer);
 
-    function Basic(ctx) {
+    function Basic() {
       _classCallCheck(this, Basic);
 
-      var _this = _possibleConstructorReturn(this, (Basic.__proto__ || Object.getPrototypeOf(Basic)).call(this, ctx));
-
-      _this.static = true;
-      _this.bg = '#222';
-      _this.title = 'Pixelspace!';
-      return _this;
+      return _possibleConstructorReturn(this, (Basic.__proto__ || Object.getPrototypeOf(Basic)).apply(this, arguments));
     }
 
     _createClass(Basic, [{
+      key: 'init',
+      value: function init() {
+        this.bg = '#222';
+        this.title = 'Pixelspace!';
+      }
+    }, {
       key: 'render',
       value: function render() {
         var cx = this.width * 0.5;

@@ -1,9 +1,7 @@
 import Pixelspace from 'lib/pixelspace';
 
 class Basic extends Pixelspace.Renderer {
-  constructor(ctx) {
-    super(ctx);
-    this.static = true
+  init() {
     this.bg = '#222'
     this.title = 'Pixelspace!';
   }

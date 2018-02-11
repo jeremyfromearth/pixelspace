@@ -29,6 +29,7 @@
         
         function update_sketch() {
           var sketch = data[select.value];
+          console.log(sketch);
           require(['demos/'+sketch.file], function(DemoApp) {
             var app = new DemoApp(ctx);
             player.setRenderer(app);
