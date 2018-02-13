@@ -14,4 +14,12 @@ module.exports = [{
   title: "Drawing", 
   description: "Example of routines that simplify drawing shapes and lines",
   file: 'drawing'
+}, {
+  title: 'Fullscreen Demo',
+  description: 'Example of toggling fullscreen mode',
+  file: 'fullscreen'
+}, {
+  title: 'Grids',
+  description: 'Demo of drawing grids of various configuration',
+  file: 'grids'
 }];
