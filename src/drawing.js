@@ -2,7 +2,7 @@ import Pixelspace from 'lib/pixelspace';
 
 class Drawing extends Pixelspace.Renderer {
   init() {
-    this.bg = "#222222"
+    this.bg = 'black'
   }
 
   render() {

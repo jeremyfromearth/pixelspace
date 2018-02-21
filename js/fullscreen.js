@@ -67,9 +67,14 @@ define(['module', 'lib/pixelspace'], function (module, _pixelspace) {
     }
 
     _createClass(Fullscreen, [{
+      key: 'init',
+      value: function init() {
+        this.bg = 'black';
+      }
+    }, {
       key: 'render',
       value: function render() {
-        this.color('black');
+        this.color('white');
         this.font('bold 20pt Helvetica');
         this.text(20, 40, 'Click anywhere to toggle fullscreen');
       }

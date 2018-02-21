@@ -1,5 +1,5 @@
-define(["module", "lib/pixelspace"], function (module, _pixelspace) {
-  "use strict";
+define(['module', 'lib/pixelspace'], function (module, _pixelspace) {
+  'use strict';
 
   var _pixelspace2 = _interopRequireDefault(_pixelspace);
 
@@ -67,12 +67,12 @@ define(["module", "lib/pixelspace"], function (module, _pixelspace) {
     }
 
     _createClass(Drawing, [{
-      key: "init",
+      key: 'init',
       value: function init() {
-        this.bg = "#222222";
+        this.bg = 'black';
       }
     }, {
-      key: "render",
+      key: 'render',
       value: function render() {
         this.color("#DDDDDD");
         this.lineStyle(1);
