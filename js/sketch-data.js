@@ -14,7 +14,11 @@ define(['module'], function (module) {
     description: 'Randomly generated line segments of varying length crawling around',
     file: 'brownian'
   }, {
-    title: "Drawing",
+    title: 'Contains',
+    description: 'Example of convenience methods for determining whether a point is contained by various gemoetries',
+    'file': 'contain'
+  }, {
+    title: 'Drawing',
     description: "Example of routines that simplify drawing shapes and lines",
     file: 'drawing'
   }, {

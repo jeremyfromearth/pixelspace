@@ -9,6 +9,18 @@ define(['module', 'lib/pixelspace'], function (module, _pixelspace) {
     };
   }
 
+  function _toConsumableArray(arr) {
+    if (Array.isArray(arr)) {
+      for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
+        arr2[i] = arr[i];
+      }
+
+      return arr2;
+    } else {
+      return Array.from(arr);
+    }
+  }
+
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
       throw new TypeError("Cannot call a class as a function");
@@ -57,40 +69,64 @@ define(['module', 'lib/pixelspace'], function (module, _pixelspace) {
     if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
   }
 
-  var Basic = function (_Pixelspace$Renderer) {
-    _inherits(Basic, _Pixelspace$Renderer);
+  var Contain = function (_Pixelspace$Renderer) {
+    _inherits(Contain, _Pixelspace$Renderer);
 
-    function Basic() {
-      _classCallCheck(this, Basic);
+    function Contain() {
+      _classCallCheck(this, Contain);
 
-      return _possibleConstructorReturn(this, (Basic.__proto__ || Object.getPrototypeOf(Basic)).apply(this, arguments));
+      return _possibleConstructorReturn(this, (Contain.__proto__ || Object.getPrototypeOf(Contain)).apply(this, arguments));
     }
 
-    _createClass(Basic, [{
+    _createClass(Contain, [{
       key: 'init',
       value: function init() {
+        var cx = this.width * .5;
+        var cy = this.height * .5;
+
+        // rectangle properties
+        this.rect = [cx, cy - 50, 100, 100];
+
+        // circle propertys
+        this.circ = [cx - 75, cy, 50];
+
+        // triangle properties
+        this.tri = [[cx + 183, cy - 50], [cx + 125, cy + 50], [cx + 250, cy + 50]];
+
+        // ring properties
+        this.ring = [cx - 200, cy, 20, 50, 16, 36];
+
         this.bg = 'black';
-        this.title = 'Pixelspace!';
+        this.cx = cx;
+        this.cy = cy;
       }
     }, {
       key: 'render',
       value: function render() {
-        var cx = this.width * 0.5;
-        var cy = this.height * 0.5;
-        this.font('bold 80pt Helvetica');
-        this.color('#fff');
-        this.text(165, 250, this.title, false);
-        this.color('#d13737');
-        this.circle(cx - 25, cy + 20, 10);
-        this.color('#45d137');
-        this.circle(cx, cy + 20, 10);
-        this.color('#3762d1');
-        this.circle(cx + 25, cy + 20, 10);
+        // rectangle
+        var contains = Math.hitTestRectangle.apply(Math, [this.mouseX, this.mouseY].concat(_toConsumableArray(this.rect)));
+        this.color(contains ? 'red' : 'white');
+        this.rectangle.apply(this, _toConsumableArray(this.rect));
+
+        // circle
+        contains = Math.hitTestCircle.apply(Math, [this.mouseX, this.mouseY].concat(_toConsumableArray(this.circ)));
+        this.color(contains ? 'red' : 'white');
+        this.circle.apply(this, _toConsumableArray(this.circ));
+
+        // triangle
+        contains = Math.hitTestTriangle.apply(Math, [this.mouseX, this.mouseY].concat(_toConsumableArray(this.tri)));
+        this.color(contains ? 'red' : 'white');
+        this.shape(this.tri);
+
+        // ring
+        contains = Math.hitTestRing.apply(Math, [this.mouseX, this.mouseY].concat(_toConsumableArray(this.ring)));
+        this.color(contains ? 'red' : 'white');
+        this.polygonRing.apply(this, _toConsumableArray(this.ring));
       }
     }]);
 
-    return Basic;
+    return Contain;
   }(_pixelspace2.default.Renderer);
 
-  module.exports = Basic;
+  module.exports = Contain;
 });

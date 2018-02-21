@@ -2,7 +2,7 @@ import Pixelspace from 'lib/pixelspace';
 
 class Basic extends Pixelspace.Renderer {
   init() {
-    this.bg = '#222'
+    this.bg = 'black'
     this.title = 'Pixelspace!';
   }
 
