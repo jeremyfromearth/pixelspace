@@ -2,18 +2,22 @@ import Pixelspace from 'lib/pixelspace';
 
 class Keys extends Pixelspace.Renderer {
   init() {
+    this.bg = 'black';
     this.font('normal 14px Helvetica');
     this.keyInfo = 'PRESS AN ARROW KEY';
     this.pointList = [[this.width * .5, this.height * .5]];
+    this.current = this.pointList[0];
   }
 
   render() {
-    this.color('black');
+    this.color('white');
     this.text(10, 30, this.keyInfo);
     this.color('dark slate grey');
     this.shape(this.pointList, false, false)
     this.color('black cat');
     this.circles(this.pointList, 3);
+    this.color('red');
+    this.circle(this.current[0], this.current[1], 3);
   }
 
   onKeyDown(keyCode, altKey, ctrlKey, shiftKey, timeStamp) {
@@ -26,9 +30,9 @@ class Keys extends Pixelspace.Renderer {
       ' timeStamp: ' + timeStamp
     
     let amount = 20 
-    let current = this.pointList[this.pointList.length - 1]
-    let x = current[0]
-    let y = current[1]
+    let x = this.current[0];
+    let y = this.current[1];
+
     switch(keyCode) {
       case 37: x -= amount; break;
       case 38: y -= amount; break;
@@ -36,7 +40,8 @@ class Keys extends Pixelspace.Renderer {
       case 40: y += amount; break;
     }
 
-    this.pointList.push([x, y]);
+    this.current = [x, y];
+    this.pointList.push(this.current);
   }
 }
 

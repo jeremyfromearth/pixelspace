@@ -69,19 +69,23 @@ define(['module', 'lib/pixelspace'], function (module, _pixelspace) {
     _createClass(Keys, [{
       key: 'init',
       value: function init() {
+        this.bg = 'black';
         this.font('normal 14px Helvetica');
         this.keyInfo = 'PRESS AN ARROW KEY';
         this.pointList = [[this.width * .5, this.height * .5]];
+        this.current = this.pointList[0];
       }
     }, {
       key: 'render',
       value: function render() {
-        this.color('black');
+        this.color('white');
         this.text(10, 30, this.keyInfo);
         this.color('dark slate grey');
         this.shape(this.pointList, false, false);
         this.color('black cat');
         this.circles(this.pointList, 3);
+        this.color('red');
+        this.circle(this.current[0], this.current[1], 3);
       }
     }, {
       key: 'onKeyDown',
@@ -89,9 +93,9 @@ define(['module', 'lib/pixelspace'], function (module, _pixelspace) {
         this.keyInfo = 'onKeyDown():' + ' keyCode: ' + keyCode + ' altKey: ' + altKey + ' ctrlKey: ' + ctrlKey + ' shiftKey: ' + shiftKey + ' timeStamp: ' + timeStamp;
 
         var amount = 20;
-        var current = this.pointList[this.pointList.length - 1];
-        var x = current[0];
-        var y = current[1];
+        var x = this.current[0];
+        var y = this.current[1];
+
         switch (keyCode) {
           case 37:
             x -= amount;break;
@@ -103,7 +107,8 @@ define(['module', 'lib/pixelspace'], function (module, _pixelspace) {
             y += amount;break;
         }
 
-        this.pointList.push([x, y]);
+        this.current = [x, y];
+        this.pointList.push(this.current);
       }
     }]);
 
