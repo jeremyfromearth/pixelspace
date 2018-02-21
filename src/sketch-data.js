@@ -30,4 +30,8 @@ module.exports = [{
   title: 'Key Events',
   description: 'Example of handling key events',
   file: 'keys'
+}, {
+  title: 'Motion',
+  description: 'Example of animating graphics', 
+  file: 'motion'
 }];
