@@ -2,11 +2,11 @@ import Pixelspace from 'lib/pixelspace';
 
 class Grids extends Pixelspace.Renderer {
   init() {
-    this.bg = '#222';
+    this.bg = 'black';
   }
 
   render() {
-    this.color('#333');
+    this.color('#222');
     this.grid(0, 0, this.height/10, this.width/10, this.width, this.height);
     this.color('#66ccff');
     this.grid(30, 50, 10, 10, 100, 100);
