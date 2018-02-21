@@ -26,4 +26,8 @@ module.exports = [{
   title: 'Grids',
   description: 'Demo of drawing grids of various configuration',
   file: 'grids'
+}, {
+  title: 'Key Events',
+  description: 'Example of handling key events',
+  file: 'keys'
 }];
