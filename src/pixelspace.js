@@ -578,7 +578,7 @@ class Player {
       if(canvas.msRequestFullScreen) this.canvas.msRequestFullScreen();
     }
 
-    if(this.renderer) this.renderer.isFullScreen = isFullScreen;
+    if(this.renderer) this.renderer.isFullScreen = this.isFullScreen;
   }
 }
 
