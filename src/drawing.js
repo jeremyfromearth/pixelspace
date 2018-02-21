@@ -6,9 +6,9 @@ class Drawing extends Pixelspace.Renderer {
   }
 
   render() {
-    this.color("#DDDDDD");
+    this.color('white');
     this.lineStyle(1)
-    this.font("lighter 14px monospace");
+    this.font('lighter 14px monospace');
 
     // arc()
     this.arc(50, 50, 40, Math.PI, Math.TWO_PI * .75, false);
@@ -25,7 +25,7 @@ class Drawing extends Pixelspace.Renderer {
     // circles()
     this.ctx.save()
     this.circles([[240, 25], [285, 25], [240, 70], [285, 70]], 15);
-    this.color("#ff0000");
+    this.color('red');
     this.circles([[240, 25], [285, 25], [240, 70], [285, 70]], 2, false);
     this.ctx.restore();
     this.text(230, 110, "circles()");
