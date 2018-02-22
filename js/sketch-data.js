@@ -45,5 +45,13 @@ define(['module'], function (module) {
     title: 'Network Graph',
     description: 'A Network Graph data visualization',
     file: 'network'
+  }, {
+    title: 'Poly Rings',
+    description: 'Polygon rings',
+    file: 'polyrings'
+  }, {
+    title: 'Vector Chains',
+    description: 'Example of using Vec class',
+    file: 'vec-chain'
   }];
 });
