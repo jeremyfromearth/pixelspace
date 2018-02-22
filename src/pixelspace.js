@@ -239,10 +239,14 @@ class Renderer extends Dispatcher{
     for(var n = innerSides; n >= 0; n--) {
       p.x = x + Math.cos(inc * n) * innerRadius;
       p.y = y + Math.sin(inc * n) * innerRadius;
-      this.ctx.lineTo(p.x, p.y);
+      if(n == innerSides) {
+        this.ctx.moveTo(p.x, p.y);
+      } else {
+        this.ctx.lineTo(p.x, p.y);
+      }
     }
 
-    this.ctx.closePath();
+    //this.ctx.closePath();
     solid ? this.ctx.fill() : this.ctx.stroke();
   }
 
