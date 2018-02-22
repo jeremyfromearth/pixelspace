@@ -37,5 +37,9 @@ define(['module'], function (module) {
     title: 'Motion',
     description: 'Example of animating graphics',
     file: 'motion'
+  }, {
+    title: 'Mouse Events',
+    description: 'Example of mouse event overrides in a Pixelspace app',
+    file: 'mouse'
   }];
 });
