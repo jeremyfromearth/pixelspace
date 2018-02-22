@@ -371,20 +371,6 @@ class Player {
       window.msRequestAnimationFrame;
   }
 
-  /*
-  // Initialize properties on the renderer and cal Renderer.init()
-  init() {
-    if(this.renderer) {
-      this.renderer.stepCount = this.stepCount;
-      this.renderer.width = this.canvas.clientWidth;
-      this.renderer.height = this.canvas.clientHeight;
-      if(this.renderer.init) {
-        this.renderer.init();
-      }
-    }
-  }
-  */
-
   // The main loop
   loop() {
     this.getAnimationCallback()(this.loop.bind(this));
@@ -534,6 +520,7 @@ class Player {
       this.renderer.height = this.canvas.clientHeight;
       this.renderer.isFullScreen = this.isFullScreen;
       this.renderer.add_listener('fullscreen', this.toggleFullScreen.bind(this));
+      // TODO: This does not appear to be working
       if(this.renderer.init) {
         this.renderer.init();
       }
@@ -583,6 +570,82 @@ class Player {
     }
 
     if(this.renderer) this.renderer.isFullScreen = this.isFullScreen;
+  }
+}
+
+class Vec {
+  static add(v1, v2) {
+    return new Vec(v1.x + v2.x, v1.y + v2.y);
+  }
+
+  static delta(v1, v2) {
+    const x = v1.x - v2.x;
+    const y = v1.y - v2.y;
+    return Math.sqrt(x * x + y * y);
+  } 
+
+  static div(v, n) {
+    return new Vec(v.x / n, v.y / n);
+  }
+
+  static normalize(v) {
+    const m = v.magnitude();
+    if(m == 0.0) return new Vec();
+    return Vec.div(v, m);
+  }
+
+  static random(x1, x2, y1, y2) {
+    return new Vec(
+      Math.randomInRange(x1, x2), 
+      Math.randomInRange(y1, y2));
+  }
+
+  static scale(v, n) {
+    return new Vec(v.x * n, v.y * n);
+  }
+
+  static sub(v1, v2) {
+    return new Vec(v1.x - v2.x, v1.y - v2.y);
+  }
+
+	constructor(x = 0, y = 0) {
+		this.x = x;
+		this.y = y;
+	}
+
+  add(v) {
+    this.set(Vec.add(this, v));
+    return this;
+  }
+
+  div(n) {
+    this.set(Vec.div(this, n));
+    return this;
+  }
+
+  magnitude() {
+    return Math.sqrt(this.x * this.x + this.y * this.y);
+  }
+
+  normalize() {
+    this.set(Vec.normalize(this));
+    return this;
+  }
+
+  scale(n) {
+    this.set(Vec.scale(this, n));
+    return this;
+  }
+
+  set(v) {
+    this.x = v.x;
+    this.y = v.y;
+    return this;
+  }
+
+  sub(v) {
+    this.set(Vec.sub(this, v));
+    return this;
   }
 }
 
@@ -762,5 +825,6 @@ String.numerics = function() {
 module.exports = {
   Dispatcher, 
   Renderer,
-  Player
+  Player,
+  Vec
 }
