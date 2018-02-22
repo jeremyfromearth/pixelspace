@@ -41,5 +41,9 @@ define(['module'], function (module) {
     title: 'Mouse Events',
     description: 'Example of mouse event overrides in a Pixelspace app',
     file: 'mouse'
+  }, {
+    title: 'Network Graph',
+    description: 'A Network Graph data visualization',
+    file: 'network'
   }];
 });
