@@ -79,7 +79,6 @@ define(['module', 'lib/pixelspace'], function (module, _pixelspace) {
         var delta = Vec.sub(this.target, this.position);
         if (delta.magnitude() > 0.1) {
           this.velocity = Vec.scale(this.velocity, this.damping).add(delta.scale(this.timeFactor)).scale(this.stiffness);
-          //this.velocity = delta.scale(0.1);
           this.position.add(this.velocity);
         } else if (setNewTarget) {
           this.target = Vec.random(0, 960, 0, 540);
@@ -151,9 +150,9 @@ define(['module', 'lib/pixelspace'], function (module, _pixelspace) {
         this.chains.push([]);
         var center = new Vec(x, y);
         var linkCount = Math.randomInRange(3, 5);
-        var timeFactor = Math.randomInRange(1, 1);
-        var damping = Math.randomInRange(0.01, 0.6);
-        var stiffness = Math.randomInRange(0.01, 0.2);
+        var timeFactor = Math.randomInRange(0.8, 0.7);
+        var damping = Math.randomInRange(0.01, 0.2);
+        var stiffness = Math.randomInRange(0.01, 0.3);
         for (var i = 0; i < linkCount; i++) {
           var n = new Node(x, y);
           n.timeFactor = timeFactor;

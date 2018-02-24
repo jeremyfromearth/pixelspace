@@ -50,6 +50,14 @@ define(['module'], function (module) {
     description: 'Polygon rings',
     file: 'polyrings'
   }, {
+    title: 'Shape',
+    description: 'Example of drawing a custom polygon',
+    file: 'shape'
+  }, {
+    title: 'Ulam Spiral',
+    description: 'The Ulam Sprial visualization',
+    file: 'ulam'
+  }, {
     title: 'Vector Chains',
     description: 'Example of using Vec class',
     file: 'vec-chain'

@@ -2,6 +2,7 @@ import Pixelspace from 'lib/pixelspace';
 
 class PolyRings extends Pixelspace.Renderer {
   init() {
+    this.bg = 'black';
     this.cx = this.width * .5
     this.cy = this.height * .5
     

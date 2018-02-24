@@ -81,6 +81,7 @@ define(['module', 'lib/pixelspace'], function (module, _pixelspace) {
     _createClass(PolyRings, [{
       key: 'init',
       value: function init() {
+        this.bg = 'black';
         this.cx = this.width * .5;
         this.cy = this.height * .5;
 
