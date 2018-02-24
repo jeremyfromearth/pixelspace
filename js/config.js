@@ -1,6 +1,8 @@
 require({
   paths: {
-    demos: 'js',
-    lib: '../pixelspace/lib'
+    demos: './',
+    text: 'text',
+    source: '../src',
+    lib: '../../pixelspace/lib'
   }
 });

@@ -3,8 +3,7 @@
     <title>Pixelspace Demo</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/demos.css">
-    <script src="js/require.js"></script>
-    <script src="js/config.js"></script>
+    <script data-main="js/config" src="js/require.js"></script>
     
   </head>
   <body>
@@ -12,7 +11,7 @@
     <select id='sketch-select'></select>
     <script> 
       window.addEventListener('load', function() {
-      require(['lib/pixelspace', 'demos/sketch-data'], function(Pixelspace, data) {
+      require(['demos/text', 'lib/pixelspace', 'demos/sketch-data'], function(text, Pixelspace, data) {
         var select = document.getElementById('sketch-select');
         var canvas = document.getElementById("canvas");
         var ctx = canvas.getContext('2d');
@@ -27,11 +26,13 @@
         
         function update_sketch() {
           var sketch = data[select.value];
-          console.log(sketch);
           require(['demos/'+sketch.file], function(DemoApp) {
             var app = new DemoApp(ctx);
             player.setRenderer(app);
             player.play(); 
+            require(['text!source/'+sketch.file+'.js'], function(file) {
+              console.log(file);
+            });
           });
         }
 
