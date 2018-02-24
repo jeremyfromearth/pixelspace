@@ -9,5 +9,5 @@ npm install
 
 ## Build
 ```
-npx babel src --out-dir lib --presets=es2015,stage-0 --plugins=transform-es2015-modules-amd --watch
+npx babel src --out-dir js --presets=es2015,stage-0 --plugins=transform-es2015-modules-amd --watch
 ```
