@@ -1,19 +1,21 @@
 import Pixelspace from 'lib/pixelspace';
 
-class PixelScan extends Pixelspace.Renderer {
+class Basic extends Pixelspace.Renderer {
   init() {
-    this.freq = 0;
-    this.size = 4;
-    this.bg = 'black';
-    this.squares = [];
+    this.bg = 'black'
     let cx = this.width * 0.5;
     let cy = this.height * 0.5;
+    this.freq = 0;
+    this.size = 4;
+    this.squares = [];
+    this.phazer_attenuation = 0.00008;
     for(var i = 0; i < this.width / 5; i++) {
       for(var j = 0; j < this.height / 5; j++) {
         this.squares.push({
-          a: 0,
           x: i * 5,
           y: j * 5,
+          a: 0,
+          color: Math.random() * 0xffffff
         });
       }
     }
@@ -29,18 +31,18 @@ class PixelScan extends Pixelspace.Renderer {
   }
 
   render() {
-    this.color('white');
     for(var i = 0; i < this.squares.length; i++) {
       var s = this.squares[i];
       this.alpha(s.a);
+      this.color('white');
       this.rectangle(s.x, s.y, 4, 4);
     }
 
     this.alpha(1);
     this.color('#000');
-    this.font('bold 80pt Terminus');
+    this.font('bold 50pt Terminus');
     this.text(50, this.height * 0.5, '[PIXELSPACE]');
   }
 }
 
-module.exports = PixelScan
+module.exports = Basic

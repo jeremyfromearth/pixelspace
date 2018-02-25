@@ -57,30 +57,32 @@ define(['module', 'lib/pixelspace'], function (module, _pixelspace) {
     if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
   }
 
-  var PixelScan = function (_Pixelspace$Renderer) {
-    _inherits(PixelScan, _Pixelspace$Renderer);
+  var Basic = function (_Pixelspace$Renderer) {
+    _inherits(Basic, _Pixelspace$Renderer);
 
-    function PixelScan() {
-      _classCallCheck(this, PixelScan);
+    function Basic() {
+      _classCallCheck(this, Basic);
 
-      return _possibleConstructorReturn(this, (PixelScan.__proto__ || Object.getPrototypeOf(PixelScan)).apply(this, arguments));
+      return _possibleConstructorReturn(this, (Basic.__proto__ || Object.getPrototypeOf(Basic)).apply(this, arguments));
     }
 
-    _createClass(PixelScan, [{
+    _createClass(Basic, [{
       key: 'init',
       value: function init() {
-        this.freq = 0;
-        this.size = 4;
         this.bg = 'black';
-        this.squares = [];
         var cx = this.width * 0.5;
         var cy = this.height * 0.5;
+        this.freq = 0;
+        this.size = 4;
+        this.squares = [];
+        this.phazer_attenuation = 0.00008;
         for (var i = 0; i < this.width / 5; i++) {
           for (var j = 0; j < this.height / 5; j++) {
             this.squares.push({
-              a: 0,
               x: i * 5,
-              y: j * 5
+              y: j * 5,
+              a: 0,
+              color: Math.random() * 0xffffff
             });
           }
         }
@@ -98,22 +100,22 @@ define(['module', 'lib/pixelspace'], function (module, _pixelspace) {
     }, {
       key: 'render',
       value: function render() {
-        this.color('white');
         for (var i = 0; i < this.squares.length; i++) {
           var s = this.squares[i];
           this.alpha(s.a);
+          this.color('white');
           this.rectangle(s.x, s.y, 4, 4);
         }
 
         this.alpha(1);
         this.color('#000');
-        this.font('bold 80pt Terminus');
+        this.font('bold 50pt Terminus');
         this.text(50, this.height * 0.5, '[PIXELSPACE]');
       }
     }]);
 
-    return PixelScan;
+    return Basic;
   }(_pixelspace2.default.Renderer);
 
-  module.exports = PixelScan;
+  module.exports = Basic;
 });
