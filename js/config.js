@@ -1,6 +1,6 @@
 require({
   paths: {
-    demos: './',
+    demos: '.',
     text: 'text',
     source: '../src',
     lib: '../../pixelspace/lib'

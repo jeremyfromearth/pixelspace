@@ -43,6 +43,10 @@ module.exports = [{
   description: 'A Network Graph data visualization',
   file: 'network'
 }, {
+  title: 'Pixelspace Scan Lines', 
+  description: 'Chaos tamed for now...', 
+  file: 'pixel-scan'
+}, {
   title: 'Poly Rings',
   description: 'Polygon rings',
   file: 'polyrings'

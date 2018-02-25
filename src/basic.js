@@ -3,21 +3,20 @@ import Pixelspace from 'lib/pixelspace';
 class Basic extends Pixelspace.Renderer {
   init() {
     this.bg = 'black'
-    this.title = 'Pixelspace!';
   }
 
   render() {
     let cx = this.width * 0.5;
     let cy = this.height * 0.5;
-    this.font('bold 80pt Helvetica');
+    this.font('normal 80pt Terminus');
     this.color('#fff');
-    this.text(165, 250, this.title, false);
-    this.color('#d13737');
-    this.circle(cx - 25, cy + 20, 10);
-    this.color('#45d137');
-    this.circle(cx, cy + 20, 10);
-    this.color('#3762d1');
-    this.circle(cx + 25, cy + 20, 10);
+    this.text(160, 250, '[PIXELSPACE]', false);
+    this.color('cyan');
+    this.rectangle(cx-65, cy, 40, 40);
+    this.color('magenta');
+    this.rectangle(cx-20, cy, 40, 40);
+    this.color('yellow');
+    this.rectangle(cx+25, cy, 40, 40);
   }
 }
 

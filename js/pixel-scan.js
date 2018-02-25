@@ -57,39 +57,63 @@ define(['module', 'lib/pixelspace'], function (module, _pixelspace) {
     if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
   }
 
-  var Basic = function (_Pixelspace$Renderer) {
-    _inherits(Basic, _Pixelspace$Renderer);
+  var PixelScan = function (_Pixelspace$Renderer) {
+    _inherits(PixelScan, _Pixelspace$Renderer);
 
-    function Basic() {
-      _classCallCheck(this, Basic);
+    function PixelScan() {
+      _classCallCheck(this, PixelScan);
 
-      return _possibleConstructorReturn(this, (Basic.__proto__ || Object.getPrototypeOf(Basic)).apply(this, arguments));
+      return _possibleConstructorReturn(this, (PixelScan.__proto__ || Object.getPrototypeOf(PixelScan)).apply(this, arguments));
     }
 
-    _createClass(Basic, [{
+    _createClass(PixelScan, [{
       key: 'init',
       value: function init() {
+        this.freq = 0;
+        this.size = 4;
         this.bg = 'black';
+        this.squares = [];
+        var cx = this.width * 0.5;
+        var cy = this.height * 0.5;
+        for (var i = 0; i < this.width / 5; i++) {
+          for (var j = 0; j < this.height / 5; j++) {
+            this.squares.push({
+              a: 0,
+              x: i * 5,
+              y: j * 5
+            });
+          }
+        }
+      }
+    }, {
+      key: 'step',
+      value: function step() {
+        this.freq += 0.05;
+        for (var i = 0; i < this.squares.length; i++) {
+          var s = this.squares[i];
+          var phazer = i > 0 ? this.squares[i - 1].a : 0;
+          s.a = Math.abs(Math.sin(this.freq + i * phazer * 0.00008));
+        }
       }
     }, {
       key: 'render',
       value: function render() {
-        var cx = this.width * 0.5;
-        var cy = this.height * 0.5;
-        this.font('normal 80pt Terminus');
-        this.color('#fff');
-        this.text(160, 250, '[PIXELSPACE]', false);
-        this.color('cyan');
-        this.rectangle(cx - 65, cy, 40, 40);
-        this.color('magenta');
-        this.rectangle(cx - 20, cy, 40, 40);
-        this.color('yellow');
-        this.rectangle(cx + 25, cy, 40, 40);
+        this.color('white');
+        for (var i = 0; i < this.squares.length; i++) {
+          var s = this.squares[i];
+          this.alpha(s.a);
+          this.rectangle(s.x, s.y, 4, 4);
+        }
+
+        this.alpha(1);
+        this.color('#000');
+        this.font('bold 80pt Terminus');
+        this.text(50, this.height * 0.5, '[PIXELSPACE]');
       }
     }]);
 
-    return Basic;
+    return PixelScan;
   }(_pixelspace2.default.Renderer);
 
-  module.exports = Basic;
+  module.exports = PixelScan;
 });
