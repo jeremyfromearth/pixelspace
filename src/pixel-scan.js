@@ -1,6 +1,6 @@
 import Pixelspace from 'lib/pixelspace';
 
-class Basic extends Pixelspace.Renderer {
+class PixelScan extends Pixelspace.Renderer {
   init() {
     this.bg = 'black'
     let cx = this.width * 0.5;
@@ -45,4 +45,4 @@ class Basic extends Pixelspace.Renderer {
   }
 }
 
-module.exports = Basic
+module.exports = PixelScan

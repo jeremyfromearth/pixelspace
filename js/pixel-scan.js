@@ -57,16 +57,16 @@ define(['module', 'lib/pixelspace'], function (module, _pixelspace) {
     if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
   }
 
-  var Basic = function (_Pixelspace$Renderer) {
-    _inherits(Basic, _Pixelspace$Renderer);
+  var PixelScan = function (_Pixelspace$Renderer) {
+    _inherits(PixelScan, _Pixelspace$Renderer);
 
-    function Basic() {
-      _classCallCheck(this, Basic);
+    function PixelScan() {
+      _classCallCheck(this, PixelScan);
 
-      return _possibleConstructorReturn(this, (Basic.__proto__ || Object.getPrototypeOf(Basic)).apply(this, arguments));
+      return _possibleConstructorReturn(this, (PixelScan.__proto__ || Object.getPrototypeOf(PixelScan)).apply(this, arguments));
     }
 
-    _createClass(Basic, [{
+    _createClass(PixelScan, [{
       key: 'init',
       value: function init() {
         this.bg = 'black';
@@ -114,8 +114,8 @@ define(['module', 'lib/pixelspace'], function (module, _pixelspace) {
       }
     }]);
 
-    return Basic;
+    return PixelScan;
   }(_pixelspace2.default.Renderer);
 
-  module.exports = Basic;
+  module.exports = PixelScan;
 });
