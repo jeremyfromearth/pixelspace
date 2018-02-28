@@ -1,8 +1,9 @@
 require({
+  baseUrl:'../../',
   paths: {
-    demos: '.',
-    text: 'text',
-    source: '../src',
-    lib: '../../pixelspace/lib'
+    js: 'pixelspace-demo/js',
+    text: 'pixelspace-demo/js/text',
+    src: 'pixelspace-demo/src/',
+    lib: 'pixelspace/lib',
   }
 });

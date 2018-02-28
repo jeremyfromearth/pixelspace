@@ -69,16 +69,20 @@ define(['module', 'lib/pixelspace'], function (module, _pixelspace) {
     _createClass(Basic, [{
       key: 'init',
       value: function init() {
+        // set the background color
         this.bg = 'black';
       }
     }, {
       key: 'render',
       value: function render() {
+        // text 
+        this.color('#fff');
+        this.font('normal 80pt Terminus');
+        this.text(160, 250, '[PIXELSPACE]', false);
+
+        // shapes
         var cx = this.width * 0.5;
         var cy = this.height * 0.5;
-        this.font('normal 80pt Terminus');
-        this.color('#fff');
-        this.text(160, 250, '[PIXELSPACE]', false);
         this.color('cyan');
         this.rectangle(cx - 65, cy, 40, 40);
         this.color('magenta');
