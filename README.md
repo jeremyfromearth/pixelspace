@@ -14,9 +14,6 @@ Navigate your browser to: [http://localhost:8000/pixelspace-demo/](http://localh
 
 The gist is that both Pixelspace and the demo should live right next to each other and need to be served from one directory up. The demo uses `require.js` and the `text.js` plugin which use XMLHttpRequest. Thus, it needs to be served. I like to use the Python one liner above, but you can use the NodeJS equivalent or L/MAMP or any other approach to serve the files.
 
->Note: I've had some issues running this locally. It seems that it is necessary to use CMD+SHIFT+R (clear the cache and refresh) to actually load the required files.
-
-
 ## Compiling 
 The demos can be compiled from ES6 to cross broswer compatible versions using Babel. 
 > Note: The `--watch` flag is optional and will result in the re-compilation of any modified file in the `src` dir
