@@ -211,8 +211,8 @@ class Renderer extends Dispatcher{
     let points = [];
     const inc = Math.TWO_PI / sides;
     for(var i = 0; i < sides; i++) {
-        angle = i * inc;
-        points.push([x + Math.cos(angle) * radius, y + Math.sin(angle) * radius]);
+      angle = i * inc;
+      points.push([x + Math.cos(angle) * radius, y + Math.sin(angle) * radius]);
     }
 
     this.shape(points, solid, true);
@@ -339,6 +339,7 @@ class Player {
 
   constructor(canvas) {
     this.stepCount = 0;
+    this.focus = false;
     this.playing = false;
     this.renderer = null;
     this.canvas = canvas;
@@ -348,7 +349,6 @@ class Player {
     this.width = this.canvas.clientWidth;
     this.height = this.canvas.clientHeight;
     this.fullScreenMode = Player.FS_RESIZE;
-
     window.addEventListener("keyup", this.onWindowKeyboardEvent.bind(this). true);
     window.addEventListener("keydown", this.onWindowKeyboardEvent.bind(this), true);
     window.addEventListener("mousedown", this.onWindowMouseEvent.bind(this), true);
@@ -357,7 +357,6 @@ class Player {
     window.addEventListener("mouseover", this.onWindowMouseEvent.bind(this), true);
     window.addEventListener("mouseup", this.onWindowMouseEvent.bind(this), true);
     window.addEventListener("resize", this.onWindowResize.bind(this), true);
-
     this.loop.bind(this);
     this.loop();
   }
@@ -390,16 +389,23 @@ class Player {
   }
 
   onWindowKeyboardEvent(event) {
-    if(this.renderer) {
+    if(this.renderer && this.focus) {
+      event.preventDefault();
       switch(event.type) {
         case 'keydown':
           if(this.renderer.onKeyDown) {
-            this.renderer.onKeyDown(event.keyCode, event.altKey, event.ctrlKey, event.shiftKey, event.timeStamp);
+            this.renderer.onKeyDown(
+              event.keyCode, event.altKey, 
+              event.ctrlKey, event.shiftKey, 
+              event.timeStamp);
           }
           break;
         case 'keyup':
           if(this.renderer.onKeyUp) {
-            renderer.onKeyUp(event.keyCode, event.altKey, event.ctrlKey, event.shiftKey, event.timeStamp);
+            renderer.onKeyUp(
+              event.keyCode, event.altKey, 
+              event.ctrlKey, event.shiftKey, 
+              event.timeStamp);
           }
           break;
       }
@@ -408,6 +414,7 @@ class Player {
 
   // Capture all mouse events on the window and pass them to the renderer when it is the target
   onWindowMouseEvent(event) {
+    this.focus = event.target == this.canvas;
     if(this.renderer) {
       let r = this.canvas.getBoundingClientRect();
       let x = event.clientX - r.left;
