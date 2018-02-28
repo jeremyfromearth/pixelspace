@@ -34,7 +34,10 @@ class MouseEvents extends Pixelspace.Renderer {
     let i = 0;
     if(this.show_grid) {
       this.color('#222');
-      this.grid(0, 0, this.height/10, this.width/10, this.width, this.height);
+      this.grid(
+        0, 0, this.height/10, 
+        this.width/10, 
+        this.width, this.height);
     }
 
     while(i < this.data.length) {
@@ -57,9 +60,12 @@ class MouseEvents extends Pixelspace.Renderer {
     this.alpha(1);
     this.color("#ffffff");
     this.font('normal 14pt Terminus');
-    this.text(30, 30, "Mouse position x: " + this.mouseX + ", y: " + this.mouseY);
-    this.text(30, 50, "Current mouse event type: " + this.currentMouseEventType);
-    this.text(30, 70, "mouseIsDragging: " + 
+    this.text(30, 30, 
+      "Mouse position x: " + this.mouseX + ", y: " + this.mouseY);
+    this.text(30, 50, 
+      "Current mouse event type: " + this.currentMouseEventType);
+    this.text(30, 70, 
+      "mouseIsDragging: " + 
       this.mouseIsDragging + ", mouseIsOver: " + 
       this.mouseIsOver + ", mouseIsDown: " + this.mouseIsDown);
   }

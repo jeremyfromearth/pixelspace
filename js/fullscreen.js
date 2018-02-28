@@ -90,7 +90,7 @@ define(['module', 'lib/pixelspace'], function (module, _pixelspace) {
       value: function render() {
         this.color('white');
         this.ctx.textAlign = 'center';
-        this.font('bold 20pt Helvetica');
+        this.font('bold 20pt Terminus');
         this.text(this.width * 0.5, this.height * 0.5 + 60, 'Toggle Fullscreen Mode');
         this.color(this.button_color);
         this.circle.apply(this, _toConsumableArray(this.button));

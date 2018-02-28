@@ -87,7 +87,7 @@ define(['module', 'lib/pixelspace'], function (module, _pixelspace) {
 
         // We can define our first polygon ring here 
         // Note that x, y are zero, we will use translate() to move them around
-        this.poly1 = [0, 0, 30, 80, 6, 3, Math.PI * 2, false];
+        this.poly1 = [0, 0, 30, 80, 3, 3, Math.PI * 2, true];
       }
     }, {
       key: 'render',
@@ -95,7 +95,7 @@ define(['module', 'lib/pixelspace'], function (module, _pixelspace) {
         this.color('white');
 
         // We can supply parameters by themselves
-        this.polygonRing(this.cx, this.cy, 20, 40, 3, 6);
+        this.polygonRing(this.cx, this.cy, 20, 40, 6, 6);
 
         // Or, we pass in the array defining this polygong ring
         this.saveTransform();

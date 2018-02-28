@@ -3,7 +3,8 @@ import Pixelspace from 'lib/pixelspace';
 class Keys extends Pixelspace.Renderer {
   init() {
     this.bg = 'black';
-    this.font('normal 14px Helvetica');
+    this.ctx.textAlign = 'left';
+    this.font('normal 16px Terminus');
     this.keyInfo = 'PRESS AN ARROW KEY';
     this.pointList = [[this.width * .5, this.height * .5]];
     this.current = this.pointList[0];

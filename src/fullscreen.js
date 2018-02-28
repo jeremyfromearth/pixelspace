@@ -10,7 +10,7 @@ class Fullscreen extends Pixelspace.Renderer {
   render() {
     this.color('white');
     this.ctx.textAlign = 'center';
-    this.font('bold 20pt Helvetica');
+    this.font('bold 20pt Terminus');
     this.text(this.width * 0.5, this.height * 0.5 + 60, 'Toggle Fullscreen Mode');
     this.color(this.button_color);
     this.circle(...this.button);

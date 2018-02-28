@@ -44,7 +44,10 @@ class NetworkGraph extends Pixelspace.Renderer {
       var n2 = this.nodes[edge.b]
       if(n1 !== n2) {
         this.color(n1.color);
-        this.bezier(edge.cp1.x, edge.cp1.y, edge.cp2.x, edge.cp2.y, n1.x, n1.y, n2.x, n2.y);
+        this.bezier(
+          edge.cp1.x, edge.cp1.y, 
+          edge.cp2.x, edge.cp2.y, 
+          n1.x, n1.y, n2.x, n2.y);
       }
     }
 

@@ -8,7 +8,7 @@ class Drawing extends Pixelspace.Renderer {
   render() {
     this.color('white');
     this.lineStyle(1)
-    this.font('lighter 14px monospace');
+    this.font('14px Terminus');
 
     // arc()
     this.arc(50, 50, 40, Math.PI, Math.TWO_PI * .75, false);
