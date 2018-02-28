@@ -9,6 +9,18 @@ define(['module', 'lib/pixelspace'], function (module, _pixelspace) {
     };
   }
 
+  function _toConsumableArray(arr) {
+    if (Array.isArray(arr)) {
+      for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
+        arr2[i] = arr[i];
+      }
+
+      return arr2;
+    } else {
+      return Array.from(arr);
+    }
+  }
+
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
       throw new TypeError("Cannot call a class as a function");
@@ -70,18 +82,30 @@ define(['module', 'lib/pixelspace'], function (module, _pixelspace) {
       key: 'init',
       value: function init() {
         this.bg = 'black';
+        this.button_color = 'red';
+        this.button = [this.width * 0.5, this.height * 0.5, 20];
       }
     }, {
       key: 'render',
       value: function render() {
         this.color('white');
+        this.ctx.textAlign = 'center';
         this.font('bold 20pt Helvetica');
-        this.text(20, 40, 'Click anywhere to toggle fullscreen');
+        this.text(this.width * 0.5, this.height * 0.5 + 60, 'Toggle Fullscreen Mode');
+        this.color(this.button_color);
+        this.circle.apply(this, _toConsumableArray(this.button));
+      }
+    }, {
+      key: 'onMouseMove',
+      value: function onMouseMove(x, y) {
+        this.button_color = Math.hitTestCircle.apply(Math, [x, y].concat(_toConsumableArray(this.button))) ? 'darkred' : 'red';
       }
     }, {
       key: 'onMouseDown',
       value: function onMouseDown(x, y) {
-        this.fullscreen();
+        if (Math.hitTestCircle.apply(Math, [x, y].concat(_toConsumableArray(this.button)))) {
+          this.fullscreen();
+        }
       }
     }]);
 
