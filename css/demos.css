@@ -14,6 +14,11 @@ body, html {
 	font-family: Terminus;
 }
 
+h2 {
+  line-height: 0.0em;
+  margin-top: 2em;
+}
+
 pre {
   font-weight: 100;
   color: #333;
@@ -22,6 +27,7 @@ pre {
   border-radius: 0.25em;
   margin-top: 0;
   font-family: Terminus; 
+  white-space: pre-wrap;
 }
 
 p {
@@ -30,7 +36,7 @@ p {
 
 .select-container {
   text-align: right;
-  padding: 1em 1em 1em 0em;
+  padding: 0em 0em 1em 0em;
 }
 
 .outer-container {
