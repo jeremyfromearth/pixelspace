@@ -8,7 +8,9 @@
 		"drawing",
 		"visualization",
 		"pixelpace",
-		"pixels"
+		"pixels",
+    "creative-coding",
+    "simulation"
 	],
 	"repository": {
 		"type": "git",
