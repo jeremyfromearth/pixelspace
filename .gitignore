@@ -1,1 +1,14 @@
+# Logs
+logs
+*.log
+package-lock.json
+npm-debug.log*
 
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Dependency directories
+node_modules/

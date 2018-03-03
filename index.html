@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <title>Pixelspace Demo</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/demos.css">
+    <script data-main="js/config" src="js/require.js"></script>
+  </head>
+  <body>
+    <div class='outer-container'>
+      <div class='inner-container'>
+        <h1>[Pixelspace]</h1>
+        <div class='select-container'>
+          <select id='sketch-select'></select>
+        </div>
+        <div class='canvas-container'>
+          <canvas id="canvas" width="960" height="540"></canvas>
+        </div>
+        
+        <h2 id='title'></h2>
+				<div id='desc' class='desc'></div>
+        <pre id='code' class='code'></pre>
+        <script> 
+          var code = document.getElementById('code');
+					var title = document.getElementById('title');
+					var desc = document.getElementById('desc');
+          window.addEventListener('load', function() {
+          require(['lib/pixelspace', 'js/sketch-data'], function(Pixelspace, data) {
+            var select = document.getElementById('sketch-select');
+            var canvas = document.getElementById("canvas");
+            var ctx = canvas.getContext('2d');
+            var player = new Pixelspace.Player(canvas);
+
+            for(var i = 0; i < data.length; i++) {
+              var option = document.createElement('option');
+              option.value = i;
+              option.innerHTML = data[i].title;
+              select.appendChild(option);
+            }
+            
+            function update_sketch() {
+              var sketch = data[select.value];
+              require(['js/'+sketch.file, 'text!src/'+sketch.file+'.js'], function(DemoApp, file) {
+                var app = new DemoApp(ctx);
+                player.setRenderer(app);
+                player.play(); 
+                title.innerHTML = sketch.title;
+                desc.innerHTML = sketch.description;
+                code.innerHTML = file;
+              });
+            }
+
+            select.addEventListener('change', update_sketch);
+            update_sketch();
+          });
+        });
+        </script>
+      </div>
+    </div>
+  </body>
+</html>
