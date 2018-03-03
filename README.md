@@ -30,7 +30,7 @@ The demos can be compiled from ES6 to cross broswer compatible versions using Ba
 > Note: The `--watch` flag is optional and will result in the re-compilation of any modified file in the `src` dir
 
 ```
-cd pixelspace-demo
+cd demo
 npm install
 npx babel src --out-dir js --presets=es2015,stage-0 --plugins=transform-es2015-modules-amd --watch
 ```
