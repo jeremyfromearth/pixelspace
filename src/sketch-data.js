@@ -51,7 +51,7 @@ module.exports = [{
   description: 'A poly ring is an n-sided annulus. The inner and outer polygons can contain a different number of sides, however in the case of the drawing before, all of the poly rings are uniform.',
   file: 'polyrings'
 }, {
-  title: 'Blob Shapes', 
+  title: 'Blobs', 
   description: 'Shapes can be represented as lists of points and redrawn in several different ways. In the above example, the same data is used to draw a the filled magenta shape, the disconnected cyan shape and the connected yellow shape.',
   file: 'shape'
 }, {
