@@ -31,6 +31,5 @@ The demos can be compiled from ES6 to cross broswer compatible versions using Ba
 
 ```
 cd demo
-npm install
 npx babel src --out-dir js --presets=es2015,stage-0 --plugins=transform-es2015-modules-amd --watch
 ```
