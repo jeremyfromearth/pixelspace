@@ -1,5 +1,10 @@
+console.log(window.location);
+var base = 
+  window.location.hostname == 'localhost' ? 
+    '../../' : 'http://jeremyfromearth.com/pixelspace/';
+
 require({
-  baseUrl:'../../',
+  baseUrl: base,
   paths: {
     js: 'demo/js',
     text: 'demo/js/text',
