@@ -1,4 +1,3 @@
-console.log(window.location);
 var base = 
   window.location.hostname == 'localhost' ? 
     '../../' : 'http://jeremyfromearth.com/pixelspace/';
