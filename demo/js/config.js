@@ -4,7 +4,7 @@ var base =
     '../../' : 'http://jeremyfromearth.com/pixelspace/';
 
 require({
-  baseUrl: base,
+  baseUrl: '../../',
   paths: {
     js: 'demo/js',
     text: 'demo/js/text',
