@@ -70,6 +70,7 @@ define(['module', 'lib/pixelspace'], function (module, _pixelspace) {
       key: 'init',
       value: function init() {
         this.bg = 'black';
+        this.ctx.textAlign = 'left';
       }
     }, {
       key: 'render',

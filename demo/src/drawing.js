@@ -3,6 +3,7 @@ import Pixelspace from 'lib/pixelspace';
 class Drawing extends Pixelspace.Renderer {
   init() {
     this.bg = 'black'
+    this.ctx.textAlign = 'left';
   }
 
   render() {
