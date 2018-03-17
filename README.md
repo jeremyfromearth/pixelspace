@@ -3,6 +3,9 @@
 
 > Tested in Chrome, Firefox & Safari
 
+## Demo Site: 
+[http://jeremyfromearth.com/pixelspace/demo/](http://jeremyfromearth.com/pixelspace/demo/)
+
 ## Getting Started
 ### Installation
 ```
@@ -45,9 +48,8 @@ class CustomApp extends Pixelspace.Renderer {
 }
 
 let canvas = document.getElementById("canvas");
-var context = canvas.getContext('2d');
 let player = new Pixelspace.Player(canvas);
-let custom_app = new CustomApp(context);
+let custom_app = new CustomApp();
 player.setRenderer(custom_app);
 player.play();
 ```

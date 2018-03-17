@@ -38,9 +38,9 @@ class Dispatcher {
 }
 
 class Renderer extends Dispatcher{
-  constructor(ctx) {
+  constructor() {
     super();
-    this.ctx = ctx;
+
     // Width of the drawing context
     this.width = 0;
     // Height of the drawing context
@@ -67,8 +67,6 @@ class Renderer extends Dispatcher{
     this.mouseIsOver = false;
     // Boolean indicating that the mouse is dragging
     this.mouseIsDragging = false;
-    // In some cases the alpha of the context was set by a previous renderer, initialize it
-    this.ctx.globalAlpha = 1.0;
   }
 
   // Set the opacity of all subsequent draw commands
@@ -349,6 +347,7 @@ class Player {
     this.width = this.canvas.clientWidth;
     this.height = this.canvas.clientHeight;
     this.fullScreenMode = Player.FS_RESIZE;
+    this.ctx = canvas.getContext('2d');
     window.addEventListener("keyup", this.onWindowKeyboardEvent.bind(this). true);
     window.addEventListener("keydown", this.onWindowKeyboardEvent.bind(this), true);
     window.addEventListener("mousedown", this.onWindowMouseEvent.bind(this), true);
@@ -520,7 +519,9 @@ class Player {
   // Sets an instance of a Renderer sub-class as the renderer for this Player
   setRenderer(newRenderer) {
     if(this.renderer) this.renderer.remove_listener('fullscreen', this.toggleFullscreen);
+    this.ctx.globalAlpha = 1.0;
     this.renderer = newRenderer;
+    this.renderer.ctx = this.ctx;
     if(this.renderer) {
       this.renderer.stepCount = this.stepCount;
       this.renderer.width = this.canvas.clientWidth;

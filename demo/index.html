@@ -27,7 +27,6 @@
           require(['lib/pixelspace', 'js/sketch-data'], function(Pixelspace, data) {
             var select = document.getElementById('sketch-select');
             var canvas = document.getElementById("canvas");
-            var ctx = canvas.getContext('2d');
             var player = new Pixelspace.Player(canvas);
 
             for(var i = 0; i < data.length; i++) {
@@ -40,7 +39,7 @@
             function update_sketch() {
               var sketch = data[select.value];
               require(['js/'+sketch.file, 'text!src/'+sketch.file+'.js'], function(DemoApp, file) {
-                var app = new DemoApp(ctx);
+                var app = new DemoApp();
                 player.setRenderer(app);
                 player.play(); 
                 title.innerHTML = sketch.title;
