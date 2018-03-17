@@ -3,6 +3,12 @@
 	"description": "Pixelspace is minimalist tool for drawing pixels to an HTML5 Canvas",
 	"version": "0.2.0",
 	"author": "@jeremyfromearth",
+  "scripts": {
+    "build": "npx babel src --out-dir lib --presets=es2015,stage-0 --plugins=transform-es2015-modules-amd",
+    "watch": "npx babel src --out-dir lib --presets=es2015,stage-0 --plugins=transform-es2015-modules-amd --watch",
+    "demos": "open http://localhost:8000/demo; python -m http.server",
+    "build-demos": "npx babel demo/src --out-dir demo/js --presets=es2015,stage-0 --plugins=transform-es2015-modules-amd"
+  }, 
 	"keywords": [
 		"canvas",
 		"drawing",
