@@ -1,7 +1,5 @@
 # [PIXELSPACE]
-**Pixelspace is minimalist tool for drawing pixels to an HTML5 Canvas. If features a concise drawing API, simple animation loop and a handful of helpful utilities.**
-
-![Screen capture of Pixelspace app](docs/pixelscan.gif)
+**Pixelspace is minimalist toolkit for drawing pixels to an HTML5 Canvas. If features a concise drawing API, simple animation loop and a handful of helpful utilities.**
 
 > Tested in Chrome, Firefox & Safari
 
