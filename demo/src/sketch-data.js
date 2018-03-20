@@ -15,6 +15,10 @@ module.exports = [{
   description: 'Example of convenience methods for determining whether a point is contained by various gemoetries. Move your mouse over the shapes.', 
   'file': 'contain'
 }, {
+  title: 'Dragging', 
+  description: 'A simple example of how to drag and drop an object. Click and drag to move the circle.',
+  file: 'drag'
+}, {
   title: 'Drawing With Code', 
   description: "Various examples of programmatically drawn shapes.",
   file: 'drawing'
