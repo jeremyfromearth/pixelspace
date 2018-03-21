@@ -14,6 +14,19 @@ body, html {
 	font-family: Terminus;
 }
 
+h1 {
+  float: left;
+}
+
+h1 a {
+  color: black;
+  text-decoration: none;
+}
+
+h1 a:hover {
+  color: red;
+}
+
 h2 {
   line-height: 0.0em;
   margin-top: 2em;
